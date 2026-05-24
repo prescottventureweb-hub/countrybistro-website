@@ -184,22 +184,32 @@
 </style>`;
 
   /* ── INJECT nav and footer into DOM ───────────────────────── */
-  // Prepend shared CSS into <head>
-  document.head.insertAdjacentHTML('beforeend', sharedCSS);
+  function injectShared() {
+    // Inject shared CSS into <head>
+    document.head.insertAdjacentHTML('beforeend', sharedCSS);
 
-  // Remove any existing inline nav/footer the page built itself
-  const existingNav = document.querySelector('nav');
-  if (existingNav) existingNav.remove();
-  const existingFooter = document.querySelector('footer');
-  if (existingFooter) existingFooter.remove();
+    // Remove any existing inline nav/footer the page may have
+    const existingNav = document.querySelector('nav');
+    if (existingNav) existingNav.remove();
+    const existingFooter = document.querySelector('footer');
+    if (existingFooter) existingFooter.remove();
 
-  // Insert nav at very top of body
-  document.body.insertAdjacentHTML('afterbegin', navHTML);
+    // Insert nav at very top of body
+    document.body.insertAdjacentHTML('afterbegin', navHTML);
 
-  // Insert footer at very end of body
-  document.body.insertAdjacentHTML('beforeend', footerHTML);
+    // Insert footer at very end of body
+    document.body.insertAdjacentHTML('beforeend', footerHTML);
+  }
 
-  /* ── THEME ─────────────────────────────────────────────────── */
+  // Wait for full DOM before injecting so page content is in place
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', injectShared);
+  } else {
+    injectShared();
+  }
+
+  /* ── THEME + MENU + SETTINGS (run after DOM injected) ──────── */
+  function initShared() {
   // Sync theme from localStorage across pages
   const savedTheme = localStorage.getItem('cb-theme') || 'light';
   document.documentElement.setAttribute('data-theme', savedTheme);
@@ -244,7 +254,7 @@
   // These are loaded on every page via shared.js
   // Token is read from the page's own SANITY_TOKEN variable if defined
   function tryLoadSharedSettings() {
-    if (typeof SANITY_TOKEN === 'undefined' || SANITY_TOKEN === 'PASTE_YOUR_TOKEN_HERE') return;
+    if (typeof SANITY_TOKEN === 'undefined' || SANITY_TOKEN === 'sk1HLNZVzRZQHQeajRkBjiogNLB0rIIm77VBiJpEAamOLQtolyCdxS080rULVipr053Q88AK8EftpcnZbXxDuIv5OOSMWiiMBjDsivzEO3YI75QpjpxTgiDzLHL2IfOIowncWMcvurAxfbmRhavOn9I5olPwgdN5vYUzf1ZBmisSUCzhcLbz') return;
     const pid = typeof SANITY_PROJECT_ID !== 'undefined' ? SANITY_PROJECT_ID : 'e7xkc9nk';
     const ds  = typeof SANITY_DATASET !== 'undefined' ? SANITY_DATASET : 'production';
     const url = `https://${pid}.api.sanity.io/v2024-01-01/data/query/${ds}?query=${encodeURIComponent('*[_type=="siteSettings"][0]{phone1,phone2,email,instagramHandle,facebookUrl,whatsappNumber}')}`;
@@ -271,6 +281,14 @@
       .catch(() => {});
   }
   // Run after a short delay so page scripts have defined SANITY_TOKEN
-  setTimeout(tryLoadSharedSettings, 200);
+  setTimeout(tryLoadSharedSettings, 300);
+  } // end initShared
+
+  // Run initShared after injection completes
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initShared);
+  } else {
+    initShared();
+  }
 
 })();
