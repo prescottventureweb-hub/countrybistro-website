@@ -111,16 +111,22 @@
   .space-bg-2{background-image:url('https://images.unsplash.com/photo-1551632811-561732d1e306?w=1400&q=80')}
   .space-bg-3{background-image:url('https://images.unsplash.com/photo-1517457373958-b7bdd4587205?w=1400&q=80')}
   .space-overlay{position:absolute;inset:0;background:linear-gradient(90deg,rgba(26,18,16,.88) 0%,rgba(26,18,16,.55) 55%,rgba(26,18,16,.15) 100%)}
-  /* Content panel — pushed right away from dots and bottom bar */
-  .spaces-content{position:absolute;top:50%;left:8%;transform:translateY(-50%);max-width:600px;color:white;z-index:2;padding-bottom:5rem}
-  .spaces-label{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem}
-  .space-info{position:absolute;opacity:0;transform:translateY(20px);pointer-events:none;transition:opacity .55s ease,transform .55s ease}
+  /* Content panel — flex column, vertically centred, clear of bottom chrome */
+  .spaces-content{
+    position:absolute;
+    top:0;left:8%;bottom:6rem;
+    width:min(600px, 55vw);
+    display:flex;flex-direction:column;justify-content:center;
+    color:white;z-index:2;padding-top:2rem
+  }
+  .spaces-label{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;flex-shrink:0}
+  .space-info{position:absolute;top:0;left:0;right:0;bottom:0;display:flex;flex-direction:column;justify-content:center;opacity:0;transform:translateY(20px);pointer-events:none;transition:opacity .55s ease,transform .55s ease}
   .space-info.active{opacity:1;transform:translateY(0);pointer-events:auto}
-  .space-num{font-size:4rem;font-family:'Playfair Display',serif;font-weight:700;color:rgba(255,255,255,.07);line-height:1;margin-bottom:-.4rem}
-  .space-name{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,4vw,3.2rem);font-weight:400;color:white;margin-bottom:1rem;line-height:1.1}
+  .space-num{font-size:4rem;font-family:'Playfair Display',serif;font-weight:700;color:rgba(255,255,255,.07);line-height:1;margin-bottom:-.4rem;flex-shrink:0}
+  .space-name{font-family:'Playfair Display',serif;font-size:clamp(2rem,3.5vw,3rem);font-weight:400;color:white;margin-bottom:.9rem;line-height:1.1;flex-shrink:0}
   .space-name em{font-style:italic;color:var(--gold)}
-  .space-desc{font-size:.97rem;color:rgba(255,255,255,.75);line-height:1.8;margin-bottom:1.5rem;max-width:560px}
-  .space-features{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.8rem}
+  .space-desc{font-size:.95rem;color:rgba(255,255,255,.78);line-height:1.85;margin-bottom:1.4rem;max-width:560px}
+  .space-features{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.6rem}
   .space-pill{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.8);font-size:.75rem;padding:.3rem .85rem;border-radius:100px}
 
   /* Dots — raised higher so text never overlaps */
@@ -149,7 +155,8 @@
   .highlights-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-top:2.5rem}
   .highlight-item{padding:1.8rem 1.4rem;border:1px solid var(--border);border-radius:14px;transition:background .2s,border-color .2s}
   .highlight-item:hover{background:var(--surface);border-color:var(--crimson)}
-  .highlight-icon{width:44px;height:44px;background:rgba(179,16,32,.08);border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:1rem;font-size:1.4rem}
+  .highlight-icon{width:44px;height:44px;background:rgba(179,16,32,.08);border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:1rem;color:var(--crimson)}
+  .highlight-icon svg{width:22px;height:22px}
   .highlight-title{font-family:'Playfair Display',serif;font-size:1.05rem;margin-bottom:.4rem}
   .highlight-desc{font-size:.84rem;color:var(--text-muted);line-height:1.6}
 
@@ -169,7 +176,7 @@
   .reservation{background:var(--surface2)}
   .res-wrap{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;max-width:900px;margin:3rem auto 0}
   .res-info-item{display:flex;gap:1rem;margin-bottom:1.5rem;align-items:flex-start}
-  .res-info-icon{font-size:1.3rem;flex-shrink:0;margin-top:2px}
+  .res-info-icon{display:flex;align-items:flex-start;flex-shrink:0;margin-top:2px}
   .res-info-label{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:.2rem}
   .res-info-val{font-size:.95rem;font-weight:500}
   .res-form{background:var(--surface);border-radius:20px;padding:2rem;border:1px solid var(--border)}
@@ -194,7 +201,7 @@
   .social-strip h2{font-family:'Playfair Display',serif;font-size:2rem;font-style:italic;margin-bottom:.5rem;position:relative}
   .social-strip p{opacity:.82;font-size:.9rem;margin-bottom:1.5rem;position:relative}
   .social-links{display:flex;gap:1rem;justify-content:center;position:relative;flex-wrap:wrap}
-  .social-btn{display:flex;align-items:center;gap:8px;padding:.6rem 1.4rem;border-radius:100px;border:1px solid rgba(255,255,255,.5);color:white;text-decoration:none;font-size:.85rem;transition:background .2s}
+  .social-btn{display:inline-flex;align-items:center;gap:8px;padding:.6rem 1.4rem;border-radius:100px;border:1px solid rgba(255,255,255,.5);color:white;text-decoration:none;font-size:.85rem;transition:background .2s,border-color .2s}
   .social-btn:hover{background:rgba(255,255,255,.15)}
 
   /* FOOTER */
@@ -289,12 +296,30 @@
     <p class="section-label reveal">The bistro experience</p>
     <h2 class="section-title reveal">Everything you <em>need</em></h2>
     <div class="highlights-grid">
-      <div class="highlight-item reveal"><div class="highlight-icon">🍽️</div><h3 class="highlight-title">Dining Excellence</h3><p class="highlight-desc">A diverse menu for every taste — exquisite mains to delectable desserts in generous portions.</p></div>
-      <div class="highlight-item reveal"><div class="highlight-icon">🍹</div><h3 class="highlight-title">Craft Bar</h3><p class="highlight-desc">Signature cocktails, mocktails, fine wines, and a full premium spirits selection.</p></div>
-      <div class="highlight-item reveal"><div class="highlight-icon">🏛️</div><h3 class="highlight-title">Private Events</h3><p class="highlight-desc">Three unique spaces for intimate dinners to large celebrations and corporate meetings.</p></div>
-      <div class="highlight-item reveal"><div class="highlight-icon">📶</div><h3 class="highlight-title">Wi-Fi Connected</h3><p class="highlight-desc">Reliable high-speed connectivity so you can work, share, or simply enjoy your visit.</p></div>
-      <div class="highlight-item reveal"><div class="highlight-icon">👨‍👩‍👧‍👦</div><h3 class="highlight-title">Family Friendly</h3><p class="highlight-desc">Kids Corner menu, family bundle platters, and a welcoming space the whole family will love.</p></div>
-      <div class="highlight-item reveal"><div class="highlight-icon">📍</div><h3 class="highlight-title">Easy to Find</h3><p class="highlight-desc">Ground floor of Juja City Mall, right off Thika Super Highway. Ample parking.</p></div>
+      <div class="highlight-item reveal">
+        <div class="highlight-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11h18M3 11c0-4 2-7 9-7s9 3 9 7"/><path d="M12 11v8M8 19h8"/><path d="M5 11c0 4 1 6 7 6s7-2 7-6"/></svg></div>
+        <h3 class="highlight-title">Dining Excellence</h3><p class="highlight-desc">A diverse menu for every taste — exquisite mains to delectable desserts in generous portions.</p>
+      </div>
+      <div class="highlight-item reveal">
+        <div class="highlight-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8M12 21v-4"/><path d="M5 3h14l-1 10H6L5 3z"/><path d="M9 3c0 2 1 3 3 3s3-1 3-3"/></svg></div>
+        <h3 class="highlight-title">Craft Bar</h3><p class="highlight-desc">Signature cocktails, mocktails, fine wines, and a full premium spirits selection.</p>
+      </div>
+      <div class="highlight-item reveal">
+        <div class="highlight-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="10" width="18" height="11" rx="1"/><path d="M3 10l9-7 9 7"/><path d="M9 21V14h6v7"/></svg></div>
+        <h3 class="highlight-title">Private Events</h3><p class="highlight-desc">Three unique spaces for intimate dinners to large celebrations and corporate meetings.</p>
+      </div>
+      <div class="highlight-item reveal">
+        <div class="highlight-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><circle cx="12" cy="20" r="1" fill="currentColor"/></svg></div>
+        <h3 class="highlight-title">Wi-Fi Connected</h3><p class="highlight-desc">Reliable high-speed connectivity so you can work, share, or simply enjoy your visit.</p>
+      </div>
+      <div class="highlight-item reveal">
+        <div class="highlight-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <h3 class="highlight-title">Family Friendly</h3><p class="highlight-desc">Kids Corner menu, family bundle platters, and a welcoming space the whole family will love.</p>
+      </div>
+      <div class="highlight-item reveal">
+        <div class="highlight-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <h3 class="highlight-title">Easy to Find</h3><p class="highlight-desc">Ground floor of Juja City Mall, right off Thika Super Highway. Ample parking.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -377,10 +402,10 @@
     <div class="res-wrap">
       <div class="res-info reveal">
         <h3 style="font-family:'Playfair Display',serif;font-size:1.4rem;margin-bottom:1.5rem">Find us</h3>
-        <div class="res-info-item"><div class="res-info-icon">📍</div><div><div class="res-info-label">Location</div><div class="res-info-val">Ground Floor, Juja City Mall<br>Thika Super Highway, Kenya</div></div></div>
-        <div class="res-info-item"><div class="res-info-icon">📞</div><div><div class="res-info-label">Phone</div><div class="res-info-val" id="footer-phone">+254 768 262450</div></div></div>
-        <div class="res-info-item"><div class="res-info-icon">🕐</div><div><div class="res-info-label">Opening hours</div><div class="res-info-val">Mon–Sun: 7:30AM – 11PM<br>Happy Hour: 3PM – 7PM daily</div></div></div>
-        <div class="res-info-item"><div class="res-info-icon">✉️</div><div><div class="res-info-label">Email</div><div class="res-info-val" id="footer-email">info@countrybistro.co.ke</div></div></div>
+        <div class="res-info-item"><div class="res-info-icon"><svg style="width:20px;height:20px;flex-shrink:0;color:var(--crimson);margin-top:2px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div><div class="res-info-label">Location</div><div class="res-info-val">Ground Floor, Juja City Mall<br>Thika Super Highway, Kenya</div></div></div>
+        <div class="res-info-item"><div class="res-info-icon"><svg style="width:20px;height:20px;flex-shrink:0;color:var(--crimson);margin-top:2px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6 6l1-1a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div><div><div class="res-info-label">Phone</div><div class="res-info-val" id="footer-phone">+254 768 262450</div></div></div>
+        <div class="res-info-item"><div class="res-info-icon"><svg style="width:20px;height:20px;flex-shrink:0;color:var(--crimson);margin-top:2px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div><div class="res-info-label">Opening hours</div><div class="res-info-val">Mon–Sun: 7:30AM – 11PM<br>Happy Hour: 3PM – 7PM daily</div></div></div>
+        <div class="res-info-item"><div class="res-info-icon"><svg style="width:20px;height:20px;flex-shrink:0;color:var(--crimson);margin-top:2px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div><div class="res-info-label">Email</div><div class="res-info-val" id="footer-email">info@countrybistro.co.ke</div></div></div>
       </div>
       <div class="res-form reveal">
         <h3 style="font-family:'Playfair Display',serif;font-size:1.2rem;margin-bottom:1.2rem">Make a reservation</h3>
@@ -448,9 +473,18 @@
   <h2>Follow the <em>bistro</em></h2>
   <p>Stay updated with our latest specials, events, and menu additions</p>
   <div class="social-links" id="social-links">
-    <a href="https://instagram.com/CountryBistroJuja" class="social-btn" target="_blank" id="ig-link">📸 @CountryBistroJuja</a>
-    <a href="#" class="social-btn" target="_blank" id="fb-link">Facebook</a>
-    <a href="https://wa.me/254768262450" class="social-btn" target="_blank" id="wa-link">💬 WhatsApp us</a>
+    <a href="https://instagram.com/CountryBistroJuja" class="social-btn" target="_blank" id="ig-link">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+      @CountryBistroJuja
+    </a>
+    <a href="#" class="social-btn" target="_blank" id="fb-link">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+      Facebook
+    </a>
+    <a href="https://wa.me/254768262450" class="social-btn" target="_blank" id="wa-link">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+      WhatsApp us
+    </a>
   </div>
 </section>
 
