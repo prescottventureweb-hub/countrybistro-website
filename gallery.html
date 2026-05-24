@@ -86,25 +86,7 @@
 </style>
 </head>
 <body>
-
-<nav>
-  <a href="index.html" class="nav-logo">
-    <div class="nav-logo-icon">
-      <svg viewBox="0 0 40 32" xmlns="http://www.w3.org/2000/svg">
-        <path d="M4 20Q4 14 20 13Q36 14 36 20L33 22Q28 20 20 20Q12 20 7 22Z"/>
-        <path d="M7 22Q6 26 4 28L36 28Q34 26 33 22Q28 21 20 21Q12 21 7 22Z"/>
-        <path d="M11 13Q14 6 20 5Q26 6 29 13" fill="white"/>
-        <path d="M11 13Q14 9 20 8Q26 9 29 13"/>
-      </svg>
-    </div>
-    <div><div class="nav-logo-text">Country Bistro</div><div class="nav-logo-sub">Food & Drinks</div></div>
-  </a>
-  <div class="nav-right">
-    <a href="index.html" class="nav-back">← Back to home</a>
-    <a href="index.html#reservation" class="nav-cta">Reserve a table</a>
-    <button class="theme-toggle" onclick="toggleTheme()"><span id="ti">☀</span></button>
-  </div>
-</nav>
+<script src="shared.js"></script>
 
 <div class="gallery-hero">
   <h1>Our <em>Gallery</em></h1>
@@ -244,10 +226,6 @@
   <a href="index.html#reservation" class="btn-outline-white">Book a table</a>
 </div>
 
-<footer>
-  © 2025 Country Bistro – Prescott Venture Limited &nbsp;·&nbsp; <a href="index.html">Back to home</a>
-</footer>
-
 <script>
 function toggleTheme(){const h=document.documentElement,d=h.getAttribute('data-theme')==='dark';h.setAttribute('data-theme',d?'light':'dark');document.getElementById('ti').textContent=d?'☀':'☾'}
 
@@ -317,7 +295,7 @@ document.addEventListener('keydown',e=>{
 const SANITY_PROJECT_ID = 'e7xkc9nk';
 const SANITY_DATASET    = 'production';
 const SANITY_API_VER    = '2024-01-01';
-const SANITY_TOKEN      = 'sk1HLNZVzRZQHQeajRkBjiogNLB0rIIm77VBiJpEAamOLQtolyCdxS080rULVipr053Q88AK8EftpcnZbXxDuIv5OOSMWiiMBjDsivzEO3YI75QpjpxTgiDzLHL2IfOIowncWMcvurAxfbmRhavOn9I5olPwgdN5vYUzf1ZBmisSUCzhcLbz';
+const SANITY_TOKEN      = 'PASTE_YOUR_TOKEN_HERE';
 
 async function sanityFetch(query) {
   const url = `https://${SANITY_PROJECT_ID}.api.sanity.io/v${SANITY_API_VER}/data/query/${SANITY_DATASET}?query=${encodeURIComponent(query)}`;

@@ -20,23 +20,6 @@
   html{scroll-behavior:smooth}
   body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text-main);line-height:1.6;transition:background .3s,color .3s;overflow-x:hidden}
 
-  /* NAV */
-  nav{position:fixed;top:0;left:0;right:0;z-index:200;background:var(--nav-bg);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:70px;transition:background .3s}
-  .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
-  .nav-logo-icon{width:42px;height:42px;background:var(--crimson);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-  .nav-logo-icon svg{width:26px;height:26px;fill:white}
-  .nav-logo-text{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--crimson);line-height:1.1}
-  .nav-logo-sub{font-size:.58rem;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase}
-  .nav-links{display:flex;align-items:center;gap:2rem;list-style:none}
-  .nav-links a{text-decoration:none;color:var(--text-main);font-size:.84rem;letter-spacing:.04em;transition:color .2s}
-  .nav-links a:hover{color:var(--crimson)}
-  .nav-cta{background:var(--crimson);color:white!important;padding:.44rem 1.2rem;border-radius:100px;font-size:.82rem!important;font-weight:500!important;transition:background .2s!important}
-  .nav-cta:hover{background:var(--crimson-dark)!important}
-  .nav-right{display:flex;align-items:center;gap:1rem}
-  .theme-toggle{background:none;border:1px solid var(--border);border-radius:100px;padding:.3rem .7rem;cursor:pointer;color:var(--text-main);font-size:.78rem;transition:background .2s}
-  .theme-toggle:hover{background:var(--surface2)}
-  @media(max-width:768px){.nav-links{display:none}}
-
   /* ANNOUNCEMENT BANNER */
   #announcement-banner{background:var(--gold);color:#1A1210;text-align:center;padding:.55rem 1rem;font-size:.85rem;font-weight:500;display:none;margin-top:70px}
   #announcement-banner.visible{display:block}
@@ -84,11 +67,14 @@
 
   /* OFFERS */
   .offers-section{background:var(--surface2)}
-  .offers-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;margin-top:2.5rem;min-height:320px}
+  .offers-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.5rem;margin-top:2.5rem;min-height:320px}
+  /* Single card should never stretch full width */
+  .offers-grid:has(.offer-card:only-child){grid-template-columns:minmax(300px,440px)}
   .offer-card{background:var(--surface);border-radius:16px;overflow:hidden;border:1px solid var(--border);transition:transform .3s,box-shadow .3s}
   .offer-card:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
-  .offer-card-img{height:200px;overflow:hidden;position:relative;background:var(--surface2)}
-  .offer-card-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+  /* Fixed 16:9 aspect ratio — tell designers to use 1200×675px or 800×450px */
+  .offer-card-img{position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;background:var(--surface2)}
+  .offer-card-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
   .offer-card:hover .offer-card-img img{transform:scale(1.06)}
   .offer-badge{position:absolute;top:12px;left:12px;background:var(--crimson);color:white;padding:.25rem .7rem;border-radius:100px;font-size:.7rem;font-weight:500;letter-spacing:.06em}
   .offer-card-body{padding:1.2rem 1.4rem 1.4rem}
@@ -219,33 +205,9 @@
 </style>
 </head>
 <body>
+<script src="shared.js"></script>
 
 <!-- NAV -->
-<nav>
-  <a href="index.html" class="nav-logo">
-    <div class="nav-logo-icon">
-      <svg viewBox="0 0 40 32" xmlns="http://www.w3.org/2000/svg">
-        <path d="M4 20Q4 14 20 13Q36 14 36 20L33 22Q28 20 20 20Q12 20 7 22Z"/>
-        <path d="M7 22Q6 26 4 28L36 28Q34 26 33 22Q28 21 20 21Q12 21 7 22Z"/>
-        <path d="M11 13Q14 6 20 5Q26 6 29 13" fill="white"/>
-        <path d="M11 13Q14 9 20 8Q26 9 29 13"/>
-      </svg>
-    </div>
-    <div><div class="nav-logo-text">Country Bistro</div><div class="nav-logo-sub">Food & Drinks</div></div>
-  </a>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="menu.html">Menu</a></li>
-    <li><a href="#spaces">Spaces</a></li>
-    <li><a href="gallery.html">Gallery</a></li>
-    <li><a href="#conference-form">Venue</a></li>
-    <li><a href="#reservation" class="nav-cta">Reserve a table</a></li>
-  </ul>
-  <div class="nav-right">
-    <button class="theme-toggle" onclick="toggleTheme()"><span id="theme-icon">☀</span> <span id="theme-label">Light</span></button>
-  </div>
-</nav>
-
 <!-- ANNOUNCEMENT BANNER (from CMS) -->
 <div id="announcement-banner"></div>
 
@@ -304,6 +266,22 @@
   </div>
 </section>
 
+<!-- HIGHLIGHTS -->
+<section class="highlights" id="about">
+  <div class="container">
+    <p class="section-label reveal">The bistro experience</p>
+    <h2 class="section-title reveal">Everything you <em>need</em></h2>
+    <div class="highlights-grid">
+      <div class="highlight-item reveal"><div class="highlight-icon">🍽️</div><h3 class="highlight-title">Dining Excellence</h3><p class="highlight-desc">A diverse menu for every taste — exquisite mains to delectable desserts in generous portions.</p></div>
+      <div class="highlight-item reveal"><div class="highlight-icon">🍹</div><h3 class="highlight-title">Craft Bar</h3><p class="highlight-desc">Signature cocktails, mocktails, fine wines, and a full premium spirits selection.</p></div>
+      <div class="highlight-item reveal"><div class="highlight-icon">🏛️</div><h3 class="highlight-title">Private Events</h3><p class="highlight-desc">Three unique spaces for intimate dinners to large celebrations and corporate meetings.</p></div>
+      <div class="highlight-item reveal"><div class="highlight-icon">📶</div><h3 class="highlight-title">Wi-Fi Connected</h3><p class="highlight-desc">Reliable high-speed connectivity so you can work, share, or simply enjoy your visit.</p></div>
+      <div class="highlight-item reveal"><div class="highlight-icon">👨‍👩‍👧‍👦</div><h3 class="highlight-title">Family Friendly</h3><p class="highlight-desc">Kids Corner menu, family bundle platters, and a welcoming space the whole family will love.</p></div>
+      <div class="highlight-item reveal"><div class="highlight-icon">📍</div><h3 class="highlight-title">Easy to Find</h3><p class="highlight-desc">Ground floor of Juja City Mall, right off Thika Super Highway. Ample parking.</p></div>
+    </div>
+  </div>
+</section>
+
 <!-- SPACES -->
 <div class="spaces-outer" id="spaces">
   <div class="spaces-section" id="spaces-sticky">
@@ -346,21 +324,6 @@
   </div>
 </div>
 
-<!-- HIGHLIGHTS -->
-<section class="highlights" id="about">
-  <div class="container">
-    <p class="section-label reveal">The bistro experience</p>
-    <h2 class="section-title reveal">Everything you <em>need</em></h2>
-    <div class="highlights-grid">
-      <div class="highlight-item reveal"><div class="highlight-icon">🍽️</div><h3 class="highlight-title">Dining Excellence</h3><p class="highlight-desc">A diverse menu for every taste — exquisite mains to delectable desserts in generous portions.</p></div>
-      <div class="highlight-item reveal"><div class="highlight-icon">🍹</div><h3 class="highlight-title">Craft Bar</h3><p class="highlight-desc">Signature cocktails, mocktails, fine wines, and a full premium spirits selection.</p></div>
-      <div class="highlight-item reveal"><div class="highlight-icon">🏛️</div><h3 class="highlight-title">Private Events</h3><p class="highlight-desc">Three unique spaces for intimate dinners to large celebrations and corporate meetings.</p></div>
-      <div class="highlight-item reveal"><div class="highlight-icon">📶</div><h3 class="highlight-title">Wi-Fi Connected</h3><p class="highlight-desc">Reliable high-speed connectivity so you can work, share, or simply enjoy your visit.</p></div>
-      <div class="highlight-item reveal"><div class="highlight-icon">👨‍👩‍👧‍👦</div><h3 class="highlight-title">Family Friendly</h3><p class="highlight-desc">Kids Corner menu, family bundle platters, and a welcoming space the whole family will love.</p></div>
-      <div class="highlight-item reveal"><div class="highlight-icon">📍</div><h3 class="highlight-title">Easy to Find</h3><p class="highlight-desc">Ground floor of Juja City Mall, right off Thika Super Highway. Ample parking.</p></div>
-    </div>
-  </div>
-</section>
 
 <!-- ABOUT -->
 <section class="about-section">
@@ -470,33 +433,6 @@
 </section>
 
 <!-- FOOTER -->
-<footer>
-  <div class="footer-grid">
-    <div class="footer-brand">
-      <div style="font-family:'Playfair Display',serif;font-size:1.3rem;color:white;font-weight:700">Country <em style="color:var(--gold)">Bistro</em></div>
-      <p>Modern dining with the warmth of the Kenyan countryside. Your home away from home at Juja City Mall since 2020.</p>
-    </div>
-    <div>
-      <div class="footer-title">Quick links</div>
-      <ul class="footer-links">
-        <li><a href="#offers">Today's specials</a></li>
-        <li><a href="menu.html">Full menu</a></li>
-        <li><a href="#reservation">Reserve a table</a></li>
-        <li><a href="#conference-form">Private events</a></li>
-        <li><a href="gallery.html">Gallery</a></li>
-      </ul>
-    </div>
-    <div>
-      <div class="footer-title">Contact</div>
-      <div class="footer-contact-item"><span>📍</span><span>Ground Floor, Juja City Mall</span></div>
-      <div class="footer-contact-item"><span>📞</span><span id="f-phone1">+254 768 262450</span></div>
-      <div class="footer-contact-item"><span>📞</span><span id="f-phone2">+254 707 356971</span></div>
-      <div class="footer-contact-item"><span>✉️</span><span id="f-email">info@countrybistro.co.ke</span></div>
-    </div>
-  </div>
-  <div class="footer-bottom">© 2025 Country Bistro – Prescott Venture Limited. All rights reserved.</div>
-</footer>
-
 <div class="toast" id="toast"></div>
 
 <script>
@@ -504,7 +440,7 @@
 const SANITY_PROJECT_ID = 'e7xkc9nk';
 const SANITY_DATASET    = 'production';
 const SANITY_API_VER    = '2024-01-01';
-const SANITY_TOKEN      = 'sk1HLNZVzRZQHQeajRkBjiogNLB0rIIm77VBiJpEAamOLQtolyCdxS080rULVipr053Q88AK8EftpcnZbXxDuIv5OOSMWiiMBjDsivzEO3YI75QpjpxTgiDzLHL2IfOIowncWMcvurAxfbmRhavOn9I5olPwgdN5vYUzf1ZBmisSUCzhcLbz'; // ← replace before deploying
+const SANITY_TOKEN      = 'PASTE_YOUR_TOKEN_HERE'; // ← replace before deploying
 
 // ── SANITY HELPERS ────────────────────────────────────────────
 async function sanityFetch(query) {
