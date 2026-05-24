@@ -1,0 +1,17 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+
+# Secrets — never commit these
+.env
+.env.local
+secrets.txt
+credentials.json
+
+# Node (for future Sanity CLI use)
+node_modules/
+.sanity/
