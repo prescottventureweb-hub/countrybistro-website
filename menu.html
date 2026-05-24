@@ -996,7 +996,7 @@ if (window.location.hash === '#bar') {
 const SANITY_PROJECT_ID = 'e7xkc9nk';
 const SANITY_DATASET    = 'production';
 const SANITY_API_VER    = '2024-01-01';
-const SANITY_TOKEN      = 'PASTE_YOUR_TOKEN_HERE'; // ← same token as index.html
+const SANITY_TOKEN      = 'sk1HLNZVzRZQHQeajRkBjiogNLB0rIIm77VBiJpEAamOLQtolyCdxS080rULVipr053Q88AK8EftpcnZbXxDuIv5OOSMWiiMBjDsivzEO3YI75QpjpxTgiDzLHL2IfOIowncWMcvurAxfbmRhavOn9I5olPwgdN5vYUzf1ZBmisSUCzhcLbz'; // ← same token as index.html
 
 async function sanityFetch(query) {
   const url = `https://${SANITY_PROJECT_ID}.api.sanity.io/v${SANITY_API_VER}/data/query/${SANITY_DATASET}?query=${encodeURIComponent(query)}`;
