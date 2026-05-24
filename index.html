@@ -110,21 +110,39 @@
   .space-bg-1{background-image:url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1400&q=80')}
   .space-bg-2{background-image:url('https://images.unsplash.com/photo-1551632811-561732d1e306?w=1400&q=80')}
   .space-bg-3{background-image:url('https://images.unsplash.com/photo-1517457373958-b7bdd4587205?w=1400&q=80')}
-  .space-overlay{position:absolute;inset:0;background:linear-gradient(90deg,rgba(26,18,16,.85) 0%,rgba(26,18,16,.4) 100%)}
-  .spaces-content{position:absolute;top:50%;left:8%;transform:translateY(-50%);max-width:520px;color:white;z-index:2}
-  .spaces-label{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:.8rem}
-  .space-info{position:absolute;opacity:0;transform:translateY(20px);pointer-events:none;transition:opacity .5s ease,transform .5s ease}
+  .space-overlay{position:absolute;inset:0;background:linear-gradient(90deg,rgba(26,18,16,.88) 0%,rgba(26,18,16,.55) 55%,rgba(26,18,16,.15) 100%)}
+  /* Content panel — pushed right away from dots and bottom bar */
+  .spaces-content{position:absolute;top:50%;left:8%;transform:translateY(-50%);max-width:600px;color:white;z-index:2;padding-bottom:5rem}
+  .spaces-label{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem}
+  .space-info{position:absolute;opacity:0;transform:translateY(20px);pointer-events:none;transition:opacity .55s ease,transform .55s ease}
   .space-info.active{opacity:1;transform:translateY(0);pointer-events:auto}
-  .space-num{font-size:4rem;font-family:'Playfair Display',serif;font-weight:700;color:rgba(255,255,255,.08);line-height:1;margin-bottom:-.5rem}
-  .space-name{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3rem);font-weight:400;color:white;margin-bottom:1rem;line-height:1.1}
+  .space-num{font-size:4rem;font-family:'Playfair Display',serif;font-weight:700;color:rgba(255,255,255,.07);line-height:1;margin-bottom:-.4rem}
+  .space-name{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,4vw,3.2rem);font-weight:400;color:white;margin-bottom:1rem;line-height:1.1}
   .space-name em{font-style:italic;color:var(--gold)}
-  .space-desc{font-size:.95rem;color:rgba(255,255,255,.72);line-height:1.75;margin-bottom:1.5rem;max-width:440px}
-  .space-features{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.5rem}
-  .space-pill{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.8);font-size:.75rem;padding:.3rem .8rem;border-radius:100px}
-  .spaces-nav{position:absolute;bottom:2.5rem;left:8%;display:flex;gap:.6rem;z-index:3}
+  .space-desc{font-size:.97rem;color:rgba(255,255,255,.75);line-height:1.8;margin-bottom:1.5rem;max-width:560px}
+  .space-features{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.8rem}
+  .space-pill{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.8);font-size:.75rem;padding:.3rem .85rem;border-radius:100px}
+
+  /* Dots — raised higher so text never overlaps */
+  .spaces-nav{position:absolute;bottom:3.5rem;left:8%;display:flex;gap:.6rem;z-index:3;align-items:center}
   .space-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.3);cursor:pointer;transition:background .3s,transform .2s}
   .space-dot.active{background:var(--gold);transform:scale(1.3)}
-  .spaces-scroll-hint{position:absolute;bottom:2.5rem;right:8%;color:rgba(255,255,255,.4);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase}
+
+  /* Floating up/down nav buttons */
+  .spaces-arrows{position:absolute;right:5%;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:.7rem;z-index:4}
+  .space-arrow{width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);color:white;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s,border-color .2s,transform .15s;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+  .space-arrow:hover{background:rgba(255,255,255,.2);border-color:rgba(255,255,255,.4);transform:scale(1.08)}
+  .space-arrow:active{transform:scale(.96)}
+  .space-arrow.disabled{opacity:.25;cursor:default;pointer-events:none}
+
+  .spaces-scroll-hint{position:absolute;bottom:3.5rem;right:8%;color:rgba(255,255,255,.35);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase}
+
+  @media(max-width:900px){
+    .spaces-content{left:5%;right:5%;max-width:none;padding-bottom:6rem}
+    .space-desc{max-width:none}
+    .spaces-arrows{right:3%}
+    .space-arrow{width:40px;height:40px;font-size:1rem}
+  }
 
   /* HIGHLIGHTS */
   .highlights{background:var(--cream)}
@@ -318,7 +336,12 @@
         <div class="space-dot" onclick="goToSpace(1)"></div>
         <div class="space-dot" onclick="goToSpace(2)"></div>
       </div>
-      <div class="spaces-scroll-hint">↓ Scroll to explore</div>
+      <!-- Floating up/down arrow buttons -->
+      <div class="spaces-arrows">
+        <button class="space-arrow disabled" id="space-arrow-up" onclick="navigateSpace(-1)" title="Previous space">↑</button>
+        <button class="space-arrow" id="space-arrow-down" onclick="navigateSpace(1)" title="Next space">↓</button>
+      </div>
+      <div class="spaces-scroll-hint" id="spaces-scroll-hint">↓ Scroll to explore</div>
     </div>
   </div>
 </div>
@@ -482,6 +505,7 @@ const spacesBgs=document.querySelectorAll('.space-bg');
 const spacesInfos=document.querySelectorAll('.space-info');
 const spaceDots=document.querySelectorAll('.space-dot');
 function goToSpace(idx){
+  if(idx<0||idx>2) return;
   spacesBgs[currentSpace].classList.remove('active');
   spacesInfos[currentSpace].classList.remove('active');
   spaceDots[currentSpace].classList.remove('active');
@@ -489,6 +513,27 @@ function goToSpace(idx){
   spacesBgs[currentSpace].classList.add('active');
   spacesInfos[currentSpace].classList.add('active');
   spaceDots[currentSpace].classList.add('active');
+  // Update arrow button states
+  const upBtn=document.getElementById('space-arrow-up');
+  const downBtn=document.getElementById('space-arrow-down');
+  const hint=document.getElementById('spaces-scroll-hint');
+  if(upBtn) upBtn.classList.toggle('disabled', currentSpace===0);
+  if(downBtn) downBtn.classList.toggle('disabled', currentSpace===2);
+  // Hide scroll hint once user has started navigating with buttons
+  if(idx>0 && hint) hint.style.opacity='0';
+}
+
+function navigateSpace(dir){
+  // Scroll the outer container to trigger ScrollTrigger for the target space
+  const outer=document.getElementById('spaces');
+  const target=currentSpace+dir;
+  if(target<0||target>2) return;
+  // Calculate the scroll position for this space panel
+  const rect=outer.getBoundingClientRect();
+  const outerTop=outer.offsetTop;
+  const panelHeight=outer.offsetHeight/3;
+  const targetScroll=outerTop+(target*panelHeight)+(panelHeight*0.1);
+  window.scrollTo({top:targetScroll, behavior:'smooth'});
 }
 
 // ── GSAP ──────────────────────────────────────────────────────
