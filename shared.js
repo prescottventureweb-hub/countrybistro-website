@@ -254,7 +254,7 @@
   // These are loaded on every page via shared.js
   // Token is read from the page's own SANITY_TOKEN variable if defined
   function tryLoadSharedSettings() {
-    if (typeof SANITY_TOKEN === 'undefined' || SANITY_TOKEN === 'skJT2rx2FgeGswYUPseFPhpycL5mu1r5alTqwkLeQQpvvvYf6JOqAxHRqtiin3B2Hgb2IeDgDT5E8Klrq4mrwpc9M3qobQJfJ6O2Z7DM7jFNQIKxwe5O5MT1ZffFRhZshO59llVHz0hvRh6J76N62zni9fxzz0J3wR23atXH5jthwPWVjRDo') return;
+    if (typeof SANITY_TOKEN === 'undefined' || SANITY_TOKEN === 'sk1HLNZVzRZQHQeajRkBjiogNLB0rIIm77VBiJpEAamOLQtolyCdxS080rULVipr053Q88AK8EftpcnZbXxDuIv5OOSMWiiMBjDsivzEO3YI75QpjpxTgiDzLHL2IfOIowncWMcvurAxfbmRhavOn9I5olPwgdN5vYUzf1ZBmisSUCzhcLbz') return;
     const pid = typeof SANITY_PROJECT_ID !== 'undefined' ? SANITY_PROJECT_ID : 'e7xkc9nk';
     const ds  = typeof SANITY_DATASET !== 'undefined' ? SANITY_DATASET : 'production';
     const url = `https://${pid}.api.sanity.io/v2024-01-01/data/query/${ds}?query=${encodeURIComponent('*[_type=="siteSettings"][0]{phone1,phone2,email,instagramHandle,facebookUrl,whatsappNumber}')}`;
