@@ -311,5 +311,57 @@ document.addEventListener('keydown',e=>{
   if(e.key==='ArrowLeft')navigateLightbox(-1);
 });
 </script>
+
+<script>
+// ── SANITY CONFIG (gallery.html) ──────────────────────────────
+const SANITY_PROJECT_ID = 'e7xkc9nk';
+const SANITY_DATASET    = 'production';
+const SANITY_API_VER    = '2024-01-01';
+const SANITY_TOKEN      = 'sk1HLNZVzRZQHQeajRkBjiogNLB0rIIm77VBiJpEAamOLQtolyCdxS080rULVipr053Q88AK8EftpcnZbXxDuIv5OOSMWiiMBjDsivzEO3YI75QpjpxTgiDzLHL2IfOIowncWMcvurAxfbmRhavOn9I5olPwgdN5vYUzf1ZBmisSUCzhcLbz';
+
+async function sanityFetch(query) {
+  const url = `https://${SANITY_PROJECT_ID}.api.sanity.io/v${SANITY_API_VER}/data/query/${SANITY_DATASET}?query=${encodeURIComponent(query)}`;
+  const res = await fetch(url, { headers: { Authorization: `Bearer ${SANITY_TOKEN}` } });
+  if (!res.ok) throw new Error('Sanity fetch: ' + res.status);
+  return (await res.json()).result;
+}
+
+function imgUrl(ref, w=600) {
+  if (!ref) return null;
+  const parts = ref.replace('image-','').split('-');
+  const ext = parts.pop();
+  const id = parts.join('-');
+  return `https://cdn.sanity.io/images/${SANITY_PROJECT_ID}/${SANITY_DATASET}/${id}.${ext}?w=${w}&auto=format&fit=crop`;
+}
+
+async function loadGallery() {
+  try {
+    const photos = await sanityFetch(
+      `*[_type=="galleryPhoto" && isActive==true] | order(sortOrder asc) {_id,caption,category,"imageRef":image.asset._ref}`
+    );
+    if (!photos || !photos.length) return; // keep placeholder images if CMS is empty
+
+    const grid = document.getElementById('masonry-grid');
+    grid.innerHTML = photos.map((p, i) => `
+      <div class="gallery-item" data-cat="${p.category}" data-idx="${i}">
+        <img src="${imgUrl(p.imageRef, 600)}" alt="${p.caption || ''}" loading="lazy">
+        <div class="gallery-item-overlay"><span class="gallery-item-label">${p.caption || ''}</span></div>
+        <span class="gallery-item-tag">${p.category}</span>
+      </div>`).join('');
+
+    // Re-attach lightbox click handlers after DOM update
+    document.querySelectorAll('.gallery-item').forEach(item => {
+      item.addEventListener('click', function() {
+        visibleItems = getVisibleItems();
+        currentIdx = visibleItems.indexOf(this);
+        openLightbox(currentIdx);
+      });
+    });
+  } catch(e) { console.warn('Gallery load failed:', e); }
+}
+
+loadGallery();
+</script>
+
 </body>
 </html>

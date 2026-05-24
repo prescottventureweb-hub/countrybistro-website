@@ -13,73 +13,33 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,300;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
 <style>
-  :root {
-    --crimson: #B31020;
-    --crimson-dark: #8B0C18;
-    --crimson-light: #D4162B;
-    --cream: #FAF6F0;
-    --cream-warm: #F2EAD9;
-    --wood: #8B5E3C;
-    --gold: #C9963A;
-    --charcoal: #1A1210;
-    --text-main: #1A1210;
-    --text-muted: #6B5B52;
-    --surface: #FFFFFF;
-    --surface2: #FAF6F0;
-    --border: rgba(139,12,24,0.12);
-    --nav-bg: rgba(250,246,240,0.96);
-    --shadow: 0 4px 32px rgba(26,18,16,0.08);
-  }
-  [data-theme="dark"] {
-    --cream: #1A1210; --cream-warm: #231A17;
-    --text-main: #F5EDE4; --text-muted: #B8A99E;
-    --surface: #231A17; --surface2: #2C201C;
-    --border: rgba(201,150,58,0.18);
-    --nav-bg: rgba(26,18,16,0.97);
-    --shadow: 0 4px 32px rgba(0,0,0,0.4);
-    --charcoal: #F5EDE4;
-  }
+  :root{--crimson:#B31020;--crimson-dark:#8B0C18;--gold:#C9963A;--cream:#FAF6F0;--cream-warm:#F2EAD9;--text-main:#1A1210;--text-muted:#6B5B52;--surface:#FFFFFF;--surface2:#FAF6F0;--border:rgba(139,12,24,0.12);--nav-bg:rgba(250,246,240,0.96);--shadow:0 4px 32px rgba(26,18,16,0.08)}
+  [data-theme="dark"]{--cream:#1A1210;--cream-warm:#231A17;--text-main:#F5EDE4;--text-muted:#B8A99E;--surface:#231A17;--surface2:#2C201C;--border:rgba(201,150,58,0.18);--nav-bg:rgba(26,18,16,0.97);--shadow:0 4px 32px rgba(0,0,0,0.4)}
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
-  body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text-main);font-size:16px;line-height:1.6;transition:background .3s,color .3s;overflow-x:hidden}
+  body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text-main);line-height:1.6;transition:background .3s,color .3s;overflow-x:hidden}
 
   /* NAV */
-  nav{position:fixed;top:0;left:0;right:0;z-index:200;background:var(--nav-bg);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:70px;transition:background .3s}
+  nav{position:fixed;top:0;left:0;right:0;z-index:200;background:var(--nav-bg);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:70px;transition:background .3s}
   .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
   .nav-logo-icon{width:42px;height:42px;background:var(--crimson);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
   .nav-logo-icon svg{width:26px;height:26px;fill:white}
   .nav-logo-text{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--crimson);line-height:1.1}
-  .nav-logo-sub{font-size:0.58rem;color:var(--text-muted);font-weight:300;letter-spacing:2px;text-transform:uppercase}
+  .nav-logo-sub{font-size:.58rem;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase}
   .nav-links{display:flex;align-items:center;gap:2rem;list-style:none}
-  .nav-links a{text-decoration:none;color:var(--text-main);font-size:0.84rem;letter-spacing:.04em;transition:color .2s}
+  .nav-links a{text-decoration:none;color:var(--text-main);font-size:.84rem;letter-spacing:.04em;transition:color .2s}
   .nav-links a:hover{color:var(--crimson)}
-  .nav-cta{background:var(--crimson);color:white!important;padding:.44rem 1.2rem;border-radius:100px;font-size:.82rem!important;font-weight:500!important;transition:background .2s,transform .15s!important}
-  .nav-cta:hover{background:var(--crimson-dark)!important;transform:translateY(-1px)}
+  .nav-cta{background:var(--crimson);color:white!important;padding:.44rem 1.2rem;border-radius:100px;font-size:.82rem!important;font-weight:500!important;transition:background .2s!important}
+  .nav-cta:hover{background:var(--crimson-dark)!important}
   .nav-right{display:flex;align-items:center;gap:1rem}
-  .theme-toggle{background:none;border:1px solid var(--border);border-radius:100px;padding:.3rem .7rem;cursor:pointer;color:var(--text-main);font-size:.78rem;display:flex;align-items:center;gap:5px;transition:background .2s}
+  .theme-toggle{background:none;border:1px solid var(--border);border-radius:100px;padding:.3rem .7rem;cursor:pointer;color:var(--text-main);font-size:.78rem;transition:background .2s}
   .theme-toggle:hover{background:var(--surface2)}
   @media(max-width:768px){.nav-links{display:none}}
 
-  /* HERO */
-  .hero{height:100vh;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#1A1210;margin-top:0}
-  .hero-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=1600&q=80') center/cover no-repeat;will-change:transform}
-  .hero-overlay{position:absolute;inset:0;background:linear-gradient(160deg,rgba(179,16,32,.52) 0%,rgba(26,18,16,.88) 60%)}
-  .hero-content{position:relative;z-index:2;text-align:center;padding:0 1.5rem;max-width:800px}
-  .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(201,150,58,.18);border:1px solid rgba(201,150,58,.4);color:var(--gold);padding:.4rem 1rem;border-radius:100px;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:1.5rem;opacity:0}
-  .hero-badge::before{content:'★';font-size:.6rem}
-  .hero-title{font-family:'Playfair Display',serif;font-size:clamp(3rem,8vw,6rem);font-weight:400;color:white;line-height:1.05;margin-bottom:.4rem;opacity:0}
-  .hero-title em{font-style:italic;color:var(--gold)}
-  .hero-sub{font-family:'Cormorant Garamond',serif;font-size:clamp(1.1rem,2.5vw,1.5rem);color:rgba(255,255,255,.7);font-style:italic;font-weight:300;margin-bottom:2.5rem;opacity:0}
-  .hero-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;opacity:0}
-  .btn-primary{background:var(--crimson);color:white;padding:.8rem 2rem;border-radius:100px;text-decoration:none;font-size:.88rem;font-weight:500;letter-spacing:.03em;transition:background .2s,transform .15s,box-shadow .2s;border:none;cursor:pointer;display:inline-block}
-  .btn-primary:hover{background:var(--crimson-dark);transform:translateY(-2px);box-shadow:0 8px 24px rgba(179,16,32,.35)}
-  .btn-outline{background:transparent;color:white;padding:.8rem 2rem;border-radius:100px;text-decoration:none;font-size:.88rem;letter-spacing:.03em;border:1px solid rgba(255,255,255,.4);transition:background .2s,border-color .2s,transform .15s;display:inline-block}
-  .btn-outline:hover{background:rgba(255,255,255,.1);border-color:white;transform:translateY(-2px)}
-  .hero-scroll{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.5);font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:8px;opacity:0}
-  .hero-scroll::after{content:'';width:1px;height:48px;background:linear-gradient(to bottom,rgba(255,255,255,.4),transparent);animation:scrollLine 2s ease-in-out infinite}
-  @keyframes scrollLine{0%,100%{opacity:.4;transform:scaleY(1)}50%{opacity:1;transform:scaleY(.6)}}
+  /* ANNOUNCEMENT BANNER */
+  #announcement-banner{background:var(--gold);color:#1A1210;text-align:center;padding:.55rem 1rem;font-size:.85rem;font-weight:500;display:none;margin-top:70px}
+  #announcement-banner.visible{display:block}
 
   /* HAPPY HOUR BANNER */
   .hh-banner{background:linear-gradient(135deg,var(--crimson-dark),var(--crimson));color:white;text-align:center;padding:1rem 2rem;position:relative;overflow:hidden}
@@ -88,7 +48,24 @@
   .hh-title{font-family:'Playfair Display',serif;font-size:1.3rem;font-style:italic}
   .hh-desc{font-size:.84rem;opacity:.88;margin-top:.15rem}
   .hh-timer{font-weight:600;font-size:.95rem;margin-top:.3rem;letter-spacing:.06em;font-variant-numeric:tabular-nums}
-  .hh-timer span{display:inline-block;min-width:2.2ch}
+
+  /* HERO */
+  .hero{height:100vh;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#1A1210}
+  .hero-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=1600&q=80') center/cover no-repeat;will-change:transform}
+  .hero-overlay{position:absolute;inset:0;background:linear-gradient(160deg,rgba(179,16,32,.52) 0%,rgba(26,18,16,.88) 60%)}
+  .hero-content{position:relative;z-index:2;text-align:center;padding:0 1.5rem;max-width:800px}
+  .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(201,150,58,.18);border:1px solid rgba(201,150,58,.4);color:var(--gold);padding:.4rem 1rem;border-radius:100px;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:1.5rem;opacity:0}
+  .hero-title{font-family:'Playfair Display',serif;font-size:clamp(3rem,8vw,6rem);font-weight:400;color:white;line-height:1.05;margin-bottom:.4rem;opacity:0}
+  .hero-title em{font-style:italic;color:var(--gold)}
+  .hero-sub{font-family:'Cormorant Garamond',serif;font-size:clamp(1.1rem,2.5vw,1.5rem);color:rgba(255,255,255,.7);font-style:italic;font-weight:300;margin-bottom:2.5rem;opacity:0}
+  .hero-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;opacity:0}
+  .btn-primary{background:var(--crimson);color:white;padding:.8rem 2rem;border-radius:100px;text-decoration:none;font-size:.88rem;font-weight:500;transition:background .2s,transform .15s,box-shadow .2s;border:none;cursor:pointer;display:inline-block}
+  .btn-primary:hover{background:var(--crimson-dark);transform:translateY(-2px);box-shadow:0 8px 24px rgba(179,16,32,.35)}
+  .btn-outline{background:transparent;color:white;padding:.8rem 2rem;border-radius:100px;text-decoration:none;font-size:.88rem;border:1px solid rgba(255,255,255,.4);transition:background .2s,transform .15s;display:inline-block}
+  .btn-outline:hover{background:rgba(255,255,255,.1);transform:translateY(-2px)}
+  .hero-scroll{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.5);font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:8px;opacity:0}
+  .hero-scroll::after{content:'';width:1px;height:48px;background:linear-gradient(to bottom,rgba(255,255,255,.4),transparent);animation:scrollLine 2s ease-in-out infinite}
+  @keyframes scrollLine{0%,100%{opacity:.4}50%{opacity:1}}
 
   /* SECTION COMMONS */
   section{padding:5rem 2rem}
@@ -101,16 +78,16 @@
   .reveal{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease}
   .reveal.visible{opacity:1;transform:translateY(0)}
 
-  /* PARALLAX SECTION WRAPPER */
-  .parallax-section{position:relative;overflow:hidden}
-  .parallax-bg{position:absolute;inset:-20% 0;background-size:cover;background-position:center;will-change:transform}
+  /* SKELETON LOADER */
+  .skeleton{background:linear-gradient(90deg,var(--surface2) 25%,var(--cream-warm) 50%,var(--surface2) 75%);background-size:200% 100%;animation:shimmer 1.5s infinite;border-radius:12px}
+  @keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
 
   /* OFFERS */
   .offers-section{background:var(--surface2)}
-  .offers-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;margin-top:2.5rem}
-  .offer-card{background:var(--surface);border-radius:16px;overflow:hidden;border:1px solid var(--border);transition:transform .3s,box-shadow .3s;position:relative}
+  .offers-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;margin-top:2.5rem;min-height:320px}
+  .offer-card{background:var(--surface);border-radius:16px;overflow:hidden;border:1px solid var(--border);transition:transform .3s,box-shadow .3s}
   .offer-card:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
-  .offer-card-img{height:200px;overflow:hidden;position:relative}
+  .offer-card-img{height:200px;overflow:hidden;position:relative;background:var(--surface2)}
   .offer-card-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
   .offer-card:hover .offer-card-img img{transform:scale(1.06)}
   .offer-badge{position:absolute;top:12px;left:12px;background:var(--crimson);color:white;padding:.25rem .7rem;border-radius:100px;font-size:.7rem;font-weight:500;letter-spacing:.06em}
@@ -119,7 +96,7 @@
   .offer-card-desc{font-size:.88rem;color:var(--text-muted);line-height:1.6;margin-bottom:.8rem}
   .offer-card-price{color:var(--crimson);font-weight:600;font-size:1rem}
 
-  /* MENU PREVIEW DARK */
+  /* MENU PREVIEW */
   .menu-preview{background:#1A1210;color:white;padding:5rem 2rem;position:relative;overflow:hidden}
   .menu-preview-parallax{position:absolute;inset:-20% 0;background:url('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=1200&q=60') center/cover;opacity:.12;will-change:transform}
   .menu-preview .section-label{color:var(--gold)}
@@ -129,28 +106,27 @@
   .menu-tabs-preview{display:flex;gap:.5rem;flex-wrap:wrap;margin:2rem 0 1.5rem;position:relative;z-index:1}
   .menu-tab-pill{padding:.45rem 1.1rem;border-radius:100px;font-size:.82rem;border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.65);background:transparent;cursor:pointer;transition:all .2s;font-family:'DM Sans',sans-serif}
   .menu-tab-pill.active,.menu-tab-pill:hover{background:var(--crimson);border-color:var(--crimson);color:white}
-  .menu-preview-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1px;background:rgba(255,255,255,.08);border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,.08);position:relative;z-index:1}
+  .menu-preview-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1px;background:rgba(255,255,255,.08);border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,.08);position:relative;z-index:1;min-height:200px}
   .menu-item-card{background:rgba(255,255,255,.03);padding:1.4rem 1.6rem;transition:background .2s}
   .menu-item-card:hover{background:rgba(255,255,255,.07)}
   .menu-item-name{font-family:'Playfair Display',serif;font-size:1rem;color:white;margin-bottom:.3rem}
   .menu-item-desc{font-size:.8rem;color:rgba(255,255,255,.5);line-height:1.5;margin-bottom:.6rem}
   .menu-item-price{color:var(--gold);font-weight:600;font-size:.9rem}
-  .menu-item-badge{display:inline-block;background:rgba(179,16,32,.6);color:rgba(255,255,255,.9);font-size:.65rem;padding:.15rem .5rem;border-radius:100px;margin-left:.4rem;vertical-align:middle;letter-spacing:.05em}
+  .menu-item-badge{display:inline-block;background:rgba(179,16,32,.6);color:rgba(255,255,255,.9);font-size:.65rem;padding:.15rem .5rem;border-radius:100px;margin-left:.4rem;vertical-align:middle}
   .menu-cta{text-align:center;margin-top:2rem;position:relative;z-index:1}
 
-  /* ══ SPACES SECTION (GSAP SNAP) ══ */
-  .spaces-section{background:var(--charcoal);overflow:hidden;height:100vh;position:sticky;top:0}
+  /* SPACES */
+  .spaces-outer{height:300vh;position:relative}
+  .spaces-section{background:#1A1210;overflow:hidden;height:100vh;position:sticky;top:0}
   .spaces-wrapper{position:relative;width:100%;height:100%}
-  .spaces-bg-track{position:absolute;inset:0;width:100%;height:100%}
   .space-bg{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity .8s ease}
   .space-bg.active{opacity:1}
   .space-bg-1{background-image:url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1400&q=80')}
   .space-bg-2{background-image:url('https://images.unsplash.com/photo-1551632811-561732d1e306?w=1400&q=80')}
   .space-bg-3{background-image:url('https://images.unsplash.com/photo-1517457373958-b7bdd4587205?w=1400&q=80')}
-  .space-overlay{position:absolute;inset:0;background:linear-gradient(90deg,rgba(26,18,16,.85) 0%,rgba(26,18,16,.5) 50%,rgba(26,18,16,.2) 100%)}
-  [data-theme="dark"] .space-overlay{background:linear-gradient(90deg,rgba(10,6,5,.9) 0%,rgba(10,6,5,.55) 50%,rgba(10,6,5,.25) 100%)}
+  .space-overlay{position:absolute;inset:0;background:linear-gradient(90deg,rgba(26,18,16,.85) 0%,rgba(26,18,16,.4) 100%)}
   .spaces-content{position:absolute;top:50%;left:8%;transform:translateY(-50%);max-width:520px;color:white;z-index:2}
-  .spaces-label{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:.8rem;opacity:.9}
+  .spaces-label{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:.8rem}
   .space-info{position:absolute;opacity:0;transform:translateY(20px);pointer-events:none;transition:opacity .5s ease,transform .5s ease}
   .space-info.active{opacity:1;transform:translateY(0);pointer-events:auto}
   .space-num{font-size:4rem;font-family:'Playfair Display',serif;font-weight:700;color:rgba(255,255,255,.08);line-height:1;margin-bottom:-.5rem}
@@ -158,15 +134,11 @@
   .space-name em{font-style:italic;color:var(--gold)}
   .space-desc{font-size:.95rem;color:rgba(255,255,255,.72);line-height:1.75;margin-bottom:1.5rem;max-width:440px}
   .space-features{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.5rem}
-  .space-pill{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.8);font-size:.75rem;padding:.3rem .8rem;border-radius:100px;letter-spacing:.04em}
+  .space-pill{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.8);font-size:.75rem;padding:.3rem .8rem;border-radius:100px}
   .spaces-nav{position:absolute;bottom:2.5rem;left:8%;display:flex;gap:.6rem;z-index:3}
   .space-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.3);cursor:pointer;transition:background .3s,transform .2s}
   .space-dot.active{background:var(--gold);transform:scale(1.3)}
-  .spaces-scroll-hint{position:absolute;bottom:2.5rem;right:8%;color:rgba(255,255,255,.4);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;display:flex;align-items:center;gap:6px}
-  .spaces-scroll-hint::after{content:'↓';animation:bounce .8s ease-in-out infinite alternate}
-  @keyframes bounce{from{transform:translateY(0)}to{transform:translateY(4px)}}
-  /* Scroll container for spaces */
-  .spaces-outer{height:300vh;position:relative}
+  .spaces-scroll-hint{position:absolute;bottom:2.5rem;right:8%;color:rgba(255,255,255,.4);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase}
 
   /* HIGHLIGHTS */
   .highlights{background:var(--cream)}
@@ -177,14 +149,14 @@
   .highlight-title{font-family:'Playfair Display',serif;font-size:1.05rem;margin-bottom:.4rem}
   .highlight-desc{font-size:.84rem;color:var(--text-muted);line-height:1.6}
 
-  /* ABOUT (parallax) */
-  .about-section{background:var(--surface2);padding:5rem 2rem;position:relative}
+  /* ABOUT */
+  .about-section{background:var(--surface2);padding:5rem 2rem}
   .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;margin-top:3rem}
-  .about-img-wrap{position:relative}
   .about-img{border-radius:20px;overflow:hidden;aspect-ratio:3/4}
   .about-img img{width:100%;height:100%;object-fit:cover}
   .about-accent{position:absolute;bottom:-1.5rem;right:-1.5rem;width:200px;border-radius:14px;overflow:hidden;border:4px solid var(--surface2);box-shadow:var(--shadow)}
   .about-accent img{width:100%;aspect-ratio:1;object-fit:cover}
+  .about-img-wrap{position:relative}
   .about-stat{display:flex;gap:2rem;margin:2rem 0}
   .stat-num{font-family:'Playfair Display',serif;font-size:2.4rem;font-weight:700;color:var(--crimson);line-height:1}
   .stat-label{font-size:.8rem;color:var(--text-muted);letter-spacing:.06em;text-transform:uppercase}
@@ -205,24 +177,24 @@
   textarea{resize:vertical;min-height:80px}
   .form-submit{width:100%;margin-top:.4rem;padding:.85rem;font-size:.9rem}
 
-  /* CONFERENCE — replaced by spaces section, keep quote form */
+  /* CONFERENCE */
   .conference-form-section{background:var(--cream);padding:4rem 2rem}
+  .conf-wrap{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
   .conf-features{list-style:none;margin:1.5rem 0;display:grid;grid-template-columns:1fr 1fr;gap:.6rem}
   .conf-features li{font-size:.85rem;color:var(--text-muted);display:flex;align-items:center;gap:6px}
   .conf-features li::before{content:'✓';color:var(--crimson);font-weight:600}
 
-  /* SOCIAL STRIP (parallax) */
+  /* SOCIAL */
   .social-strip{background:var(--crimson);color:white;padding:3.5rem 2rem;text-align:center;position:relative;overflow:hidden}
   .social-strip-bg{position:absolute;inset:-20% 0;background:url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1000&q=50') center/cover;opacity:.08;will-change:transform}
   .social-strip h2{font-family:'Playfair Display',serif;font-size:2rem;font-style:italic;margin-bottom:.5rem;position:relative}
   .social-strip p{opacity:.82;font-size:.9rem;margin-bottom:1.5rem;position:relative}
   .social-links{display:flex;gap:1rem;justify-content:center;position:relative;flex-wrap:wrap}
-  .social-btn{display:flex;align-items:center;gap:8px;padding:.6rem 1.4rem;border-radius:100px;border:1px solid rgba(255,255,255,.5);color:white;text-decoration:none;font-size:.85rem;transition:background .2s,border-color .2s}
-  .social-btn:hover{background:rgba(255,255,255,.15);border-color:white}
+  .social-btn{display:flex;align-items:center;gap:8px;padding:.6rem 1.4rem;border-radius:100px;border:1px solid rgba(255,255,255,.5);color:white;text-decoration:none;font-size:.85rem;transition:background .2s}
+  .social-btn:hover{background:rgba(255,255,255,.15)}
 
   /* FOOTER */
   footer{background:#1A1210;color:white;padding:3rem 2rem 1.5rem}
-  [data-theme="dark"] footer{background:#0F0A08}
   .footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:3rem;max-width:1000px;margin:0 auto 2rem}
   .footer-brand p{color:rgba(255,255,255,.5);font-size:.85rem;margin:.8rem 0 1rem;max-width:280px;line-height:1.7}
   .footer-title{font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:.8rem}
@@ -238,12 +210,11 @@
   .toast.show{transform:translateY(0);opacity:1}
 
   @media(max-width:900px){
-    .res-wrap,.about-grid{grid-template-columns:1fr;gap:2rem}
+    .res-wrap,.about-grid,.conf-wrap{grid-template-columns:1fr;gap:2rem}
     .form-row{grid-template-columns:1fr}
     .footer-grid{grid-template-columns:1fr;gap:1.5rem}
     .about-accent{display:none}
     .spaces-content{left:5%;right:5%;max-width:none}
-    .space-name{font-size:2rem}
   }
 </style>
 </head>
@@ -256,14 +227,11 @@
       <svg viewBox="0 0 40 32" xmlns="http://www.w3.org/2000/svg">
         <path d="M4 20Q4 14 20 13Q36 14 36 20L33 22Q28 20 20 20Q12 20 7 22Z"/>
         <path d="M7 22Q6 26 4 28L36 28Q34 26 33 22Q28 21 20 21Q12 21 7 22Z"/>
-        <path d="M11 13Q14 6 20 5Q26 6 29 13" stroke="white" stroke-width=".5" fill="white"/>
+        <path d="M11 13Q14 6 20 5Q26 6 29 13" fill="white"/>
         <path d="M11 13Q14 9 20 8Q26 9 29 13"/>
       </svg>
     </div>
-    <div>
-      <div class="nav-logo-text">Country Bistro</div>
-      <div class="nav-logo-sub">Food & Drinks</div>
-    </div>
+    <div><div class="nav-logo-text">Country Bistro</div><div class="nav-logo-sub">Food & Drinks</div></div>
   </a>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
@@ -278,8 +246,11 @@
   </div>
 </nav>
 
+<!-- ANNOUNCEMENT BANNER (from CMS) -->
+<div id="announcement-banner"></div>
+
 <!-- HAPPY HOUR BANNER -->
-<div class="hh-banner" id="hh-banner" style="margin-top:70px">
+<div class="hh-banner" id="hh-wrap" style="margin-top:70px">
   <div class="hh-inner">
     <div class="hh-title" id="hh-title">🍹 Happy Hour</div>
     <div class="hh-desc">Special prices on all cocktails & mocktails · Every day 3PM to 7PM</div>
@@ -303,126 +274,74 @@
   <div class="hero-scroll" id="hero-scroll">Explore</div>
 </section>
 
-<!-- OFFERS -->
+<!-- OFFERS (CMS-driven) -->
 <section class="offers-section" id="offers">
   <div class="container">
     <p class="section-label reveal">Today's highlights</p>
     <h2 class="section-title reveal">Featured <em>specials</em></h2>
     <p class="section-intro reveal">Seasonal menus, curated bundles, and limited-time offers — updated regularly by our team.</p>
-    <div class="offers-grid">
-      <div class="offer-card reveal">
-        <div class="offer-card-img"><img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600&q=80" alt="Family Platter"><span class="offer-badge">Family Bundle</span></div>
-        <div class="offer-card-body">
-          <h3 class="offer-card-title">Family Platter for Three</h3>
-          <p class="offer-card-desc">Fillet steak, pork ribs, chicken wings in BBQ sauce, chicken breast & sausages with three sides of your choice.</p>
-          <span class="offer-card-price">KES 4,500</span>
-        </div>
-      </div>
-      <div class="offer-card reveal">
-        <div class="offer-card-img"><img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=600&q=80" alt="Happy Hour"><span class="offer-badge">Happy Hour</span></div>
-        <div class="offer-card-body">
-          <h3 class="offer-card-title">Happy Hour Cocktails</h3>
-          <p class="offer-card-desc">Daily 3PM–7PM. Enjoy our signature cocktails and mocktails at happy hour prices. Great for after-work or after-shopping.</p>
-          <span class="offer-card-price">From KES 550</span>
-        </div>
-      </div>
-      <div class="offer-card reveal">
-        <div class="offer-card-img"><img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=600&q=80" alt="Full Breakfast"><span class="offer-badge">Breakfast</span></div>
-        <div class="offer-card-body">
-          <h3 class="offer-card-title">Full Breakfast Deal</h3>
-          <p class="offer-card-desc">Egg of choice, toast, mini fruit salad, sausage or bacon with a cup of tea or coffee & home fries. Served 7:30–11AM.</p>
-          <span class="offer-card-price">KES 1,150</span>
-        </div>
-      </div>
+    <div class="offers-grid" id="offers-grid">
+      <!-- skeleton placeholders -->
+      <div class="skeleton" style="height:320px"></div>
+      <div class="skeleton" style="height:320px"></div>
+      <div class="skeleton" style="height:320px"></div>
     </div>
   </div>
 </section>
 
-<!-- MENU PREVIEW (dark, parallax bg) -->
+<!-- MENU PREVIEW (CMS-driven) -->
 <section class="menu-preview" id="menu-preview">
   <div class="menu-preview-parallax" id="menu-parallax"></div>
   <div class="container" style="position:relative;z-index:1">
     <p class="section-label reveal">Our menu</p>
     <h2 class="section-title reveal">A taste of what's <em>waiting</em></h2>
-    <p class="section-intro reveal">From hearty breakfasts to grilled perfection and handcrafted cocktails — something for every appetite.</p>
-    <div class="menu-tabs-preview">
-      <button class="menu-tab-pill active" onclick="switchTab(this,'grills')">Grills</button>
-      <button class="menu-tab-pill" onclick="switchTab(this,'burgers')">Burgers</button>
-      <button class="menu-tab-pill" onclick="switchTab(this,'pizzas')">Pizzas</button>
-      <button class="menu-tab-pill" onclick="switchTab(this,'cocktails')">Cocktails</button>
+    <p class="section-intro reveal">From hearty breakfasts to grilled perfection and handcrafted cocktails.</p>
+    <div class="menu-tabs-preview" id="menu-tabs"></div>
+    <div class="menu-preview-grid" id="menu-preview-grid">
+      <div class="skeleton" style="height:200px;background:rgba(255,255,255,.05)"></div>
     </div>
-    <div class="menu-preview-grid" id="menu-preview-grid"></div>
     <div class="menu-cta"><a href="menu.html" class="btn-primary">View full menu</a></div>
   </div>
 </section>
 
-<!-- ══ SPACES (GSAP SCROLL SNAP) ══ -->
+<!-- SPACES -->
 <div class="spaces-outer" id="spaces">
   <div class="spaces-section" id="spaces-sticky">
     <div class="spaces-wrapper">
-      <!-- Background images -->
-      <div class="spaces-bg-track">
-        <div class="space-bg space-bg-1 active"></div>
-        <div class="space-bg space-bg-2"></div>
-        <div class="space-bg space-bg-3"></div>
-      </div>
+      <div class="space-bg space-bg-1 active"></div>
+      <div class="space-bg space-bg-2"></div>
+      <div class="space-bg space-bg-3"></div>
       <div class="space-overlay"></div>
-
-      <!-- Content panels -->
       <div class="spaces-content">
         <div class="spaces-label">Our spaces</div>
-
-        <!-- Space 1: Indoor -->
         <div class="space-info active" id="space-0">
           <div class="space-num">01</div>
           <h2 class="space-name">The Main <em>Hall</em></h2>
-          <p class="space-desc">Our signature indoor dining space blends warm lighting, plush low seating, and rustic charm. Pull up a barstool or sink into a couch — the atmosphere works either way. Every screen is tuned for live sport, and our sound system wraps the entire space in music that moves with the mood.</p>
-          <div class="space-features">
-            <span class="space-pill">Full bar · High & low seating</span>
-            <span class="space-pill">Live sport TVs</span>
-            <span class="space-pill">Sound system throughout</span>
-            <span class="space-pill">Couches & tables</span>
-          </div>
+          <p class="space-desc">Our signature indoor space blends warm lighting, plush low seating, and rustic charm. Every screen is tuned for live sport, and our sound system wraps the entire space in music that moves with the mood.</p>
+          <div class="space-features"><span class="space-pill">Full bar</span><span class="space-pill">Live sport TVs</span><span class="space-pill">Sound system</span><span class="space-pill">Couches & tables</span></div>
           <a href="#reservation" class="btn-primary" style="font-size:.82rem;padding:.6rem 1.4rem">Reserve a table</a>
         </div>
-
-        <!-- Space 2: Outdoor -->
         <div class="space-info" id="space-1">
           <div class="space-num">02</div>
           <h2 class="space-name">The <em>Outdoor</em> Terrace</h2>
-          <p class="space-desc">Step outside and breathe. Our outdoor terrace offers open-air dining with the same quality service — whether you prefer a high perch at the bar tables or a relaxed evening on the couches. Ideal for groups, sundowners, and anyone who prefers fresh air with their meal.</p>
-          <div class="space-features">
-            <span class="space-pill">High & low seating</span>
-            <span class="space-pill">Outdoor couches</span>
-            <span class="space-pill">Open-air dining</span>
-            <span class="space-pill">Evening ambience</span>
-          </div>
+          <p class="space-desc">Open-air dining with the same quality service — high perch bar tables or relaxed evening couches. Ideal for groups, sundowners, and anyone who prefers fresh air with their meal.</p>
+          <div class="space-features"><span class="space-pill">High & low seating</span><span class="space-pill">Outdoor couches</span><span class="space-pill">Evening ambience</span></div>
           <a href="#reservation" class="btn-primary" style="font-size:.82rem;padding:.6rem 1.4rem">Reserve outdoor</a>
         </div>
-
-        <!-- Space 3: Private Room -->
         <div class="space-info" id="space-2">
           <div class="space-num">03</div>
           <h2 class="space-name">The Private <em>Room</em></h2>
-          <p class="space-desc">Entirely self-contained and completely secluded from the main floor. Our private room comes with its own TV, dedicated staff, and its own washroom — giving your group total privacy. Perfect for corporate meetings, celebrations, or any occasion that calls for an exclusive setting.</p>
-          <div class="space-features">
-            <span class="space-pill">Fully self-contained</span>
-            <span class="space-pill">Private washroom</span>
-            <span class="space-pill">Dedicated TV</span>
-            <span class="space-pill">Corporate & events</span>
-            <span class="space-pill">Custom menu available</span>
-          </div>
+          <p class="space-desc">Entirely self-contained and completely secluded. Dedicated TV, private washroom, and your own staff — perfect for corporate meetings, celebrations, or any occasion that calls for an exclusive setting.</p>
+          <div class="space-features"><span class="space-pill">Self-contained</span><span class="space-pill">Private washroom</span><span class="space-pill">Dedicated TV</span><span class="space-pill">Custom menus</span></div>
           <a href="#conference-form" class="btn-primary" style="font-size:.82rem;padding:.6rem 1.4rem">Request a quote</a>
         </div>
       </div>
-
-      <!-- Dots nav -->
       <div class="spaces-nav">
         <div class="space-dot active" onclick="goToSpace(0)"></div>
         <div class="space-dot" onclick="goToSpace(1)"></div>
         <div class="space-dot" onclick="goToSpace(2)"></div>
       </div>
-      <div class="spaces-scroll-hint">Scroll to explore</div>
+      <div class="spaces-scroll-hint">↓ Scroll to explore</div>
     </div>
   </div>
 </div>
@@ -433,32 +352,32 @@
     <p class="section-label reveal">The bistro experience</p>
     <h2 class="section-title reveal">Everything you <em>need</em></h2>
     <div class="highlights-grid">
-      <div class="highlight-item reveal"><div class="highlight-icon">🍽️</div><h3 class="highlight-title">Dining Excellence</h3><p class="highlight-desc">A diverse menu crafted for every taste — from exquisite mains to delectable desserts, in generous portions.</p></div>
-      <div class="highlight-item reveal"><div class="highlight-icon">🍹</div><h3 class="highlight-title">Craft Bar</h3><p class="highlight-desc">Signature cocktails, mocktails, fine wines, and a full premium spirits selection — our bar is always ready.</p></div>
-      <div class="highlight-item reveal"><div class="highlight-icon">🏛️</div><h3 class="highlight-title">Private Events</h3><p class="highlight-desc">Indoor & outdoor spaces and a dedicated private room for everything from intimate dinners to large celebrations.</p></div>
-      <div class="highlight-item reveal"><div class="highlight-icon">📶</div><h3 class="highlight-title">Wi-Fi Connected</h3><p class="highlight-desc">Reliable high-speed connectivity so you can work, share, or simply enjoy your visit at your own pace.</p></div>
-      <div class="highlight-item reveal"><div class="highlight-icon">👨‍👩‍👧‍👦</div><h3 class="highlight-title">Family Friendly</h3><p class="highlight-desc">A dedicated Kids Corner menu, family bundle platters, and a welcoming space that the whole family will love.</p></div>
-      <div class="highlight-item reveal"><div class="highlight-icon">📍</div><h3 class="highlight-title">Easy to Find</h3><p class="highlight-desc">Ground floor of Juja City Mall, right off Thika Super Highway. Convenient for mall shoppers.</p></div>
+      <div class="highlight-item reveal"><div class="highlight-icon">🍽️</div><h3 class="highlight-title">Dining Excellence</h3><p class="highlight-desc">A diverse menu for every taste — exquisite mains to delectable desserts in generous portions.</p></div>
+      <div class="highlight-item reveal"><div class="highlight-icon">🍹</div><h3 class="highlight-title">Craft Bar</h3><p class="highlight-desc">Signature cocktails, mocktails, fine wines, and a full premium spirits selection.</p></div>
+      <div class="highlight-item reveal"><div class="highlight-icon">🏛️</div><h3 class="highlight-title">Private Events</h3><p class="highlight-desc">Three unique spaces for intimate dinners to large celebrations and corporate meetings.</p></div>
+      <div class="highlight-item reveal"><div class="highlight-icon">📶</div><h3 class="highlight-title">Wi-Fi Connected</h3><p class="highlight-desc">Reliable high-speed connectivity so you can work, share, or simply enjoy your visit.</p></div>
+      <div class="highlight-item reveal"><div class="highlight-icon">👨‍👩‍👧‍👦</div><h3 class="highlight-title">Family Friendly</h3><p class="highlight-desc">Kids Corner menu, family bundle platters, and a welcoming space the whole family will love.</p></div>
+      <div class="highlight-item reveal"><div class="highlight-icon">📍</div><h3 class="highlight-title">Easy to Find</h3><p class="highlight-desc">Ground floor of Juja City Mall, right off Thika Super Highway. Ample parking.</p></div>
     </div>
   </div>
 </section>
 
-<!-- ABOUT (parallax img) -->
-<section class="about-section parallax-section">
+<!-- ABOUT -->
+<section class="about-section">
   <div class="about-grid container">
     <div class="about-img-wrap reveal">
-      <div class="about-img"><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80" alt="Country Bistro interior" id="about-img"></div>
+      <div class="about-img"><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80" alt="Country Bistro interior"></div>
       <div class="about-accent"><img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=400&q=80" alt="Cocktail"></div>
     </div>
     <div class="reveal">
       <p class="section-label">Our story</p>
       <h2 class="section-title">A home <em>away</em> from home</h2>
-      <p class="section-intro" style="margin-bottom:1.2rem">Established in 2020, Country Bistro is a premier dining establishment redefining the countryside experience right in the heart of Juja. We are a fusion of modern sophistication and rustic aesthetics — warm lighting, generous portions, and genuine hospitality.</p>
+      <p class="section-intro" style="margin-bottom:1.2rem">Established in 2020, Country Bistro is a premier dining establishment redefining the countryside experience right in the heart of Juja — a fusion of modern sophistication and rustic aesthetics.</p>
       <p style="color:var(--text-muted);font-size:.92rem;line-height:1.8;max-width:480px">Our carefully curated menu brings together flavours that tantalize every palate, complemented by an extensive beverage selection ranging from fine wines to signature cocktails crafted by our expert bar team.</p>
       <div class="about-stat">
-        <div class="stat-item"><div class="stat-num">2020</div><div class="stat-label">Established</div></div>
-        <div class="stat-item"><div class="stat-num">100+</div><div class="stat-label">Menu items</div></div>
-        <div class="stat-item"><div class="stat-num">3</div><div class="stat-label">Unique spaces</div></div>
+        <div><div class="stat-num">2020</div><div class="stat-label">Established</div></div>
+        <div><div class="stat-num">100+</div><div class="stat-label">Menu items</div></div>
+        <div><div class="stat-num">3</div><div class="stat-label">Unique spaces</div></div>
       </div>
       <a href="menu.html" class="btn-primary">Explore the menu</a>
     </div>
@@ -470,33 +389,32 @@
   <div class="container">
     <p class="section-label reveal" style="justify-content:center;text-align:center">Book a table</p>
     <h2 class="section-title reveal" style="text-align:center">Reserve your <em>spot</em></h2>
-    <p class="section-intro reveal" style="text-align:center;margin:0 auto">We'll confirm your booking by phone or email. Walk-ins always welcome too.</p>
     <div class="res-wrap">
       <div class="res-info reveal">
         <h3 style="font-family:'Playfair Display',serif;font-size:1.4rem;margin-bottom:1.5rem">Find us</h3>
         <div class="res-info-item"><div class="res-info-icon">📍</div><div><div class="res-info-label">Location</div><div class="res-info-val">Ground Floor, Juja City Mall<br>Thika Super Highway, Kenya</div></div></div>
-        <div class="res-info-item"><div class="res-info-icon">📞</div><div><div class="res-info-label">Phone</div><div class="res-info-val">+254 768 262450<br>+254 707 356971</div></div></div>
+        <div class="res-info-item"><div class="res-info-icon">📞</div><div><div class="res-info-label">Phone</div><div class="res-info-val" id="footer-phone">+254 768 262450</div></div></div>
         <div class="res-info-item"><div class="res-info-icon">🕐</div><div><div class="res-info-label">Opening hours</div><div class="res-info-val">Mon–Sun: 7:30AM – 11PM<br>Happy Hour: 3PM – 7PM daily</div></div></div>
-        <div class="res-info-item"><div class="res-info-icon">✉️</div><div><div class="res-info-label">Email</div><div class="res-info-val">info@countrybistro.co.ke</div></div></div>
+        <div class="res-info-item"><div class="res-info-icon">✉️</div><div><div class="res-info-label">Email</div><div class="res-info-val" id="footer-email">info@countrybistro.co.ke</div></div></div>
       </div>
       <div class="res-form reveal">
         <h3 style="font-family:'Playfair Display',serif;font-size:1.2rem;margin-bottom:1.2rem">Make a reservation</h3>
         <form onsubmit="submitReservation(event)">
           <div class="form-row">
-            <div class="form-group"><label>First name</label><input type="text" placeholder="Jane" required></div>
-            <div class="form-group"><label>Last name</label><input type="text" placeholder="Doe" required></div>
+            <div class="form-group"><label>First name</label><input type="text" required></div>
+            <div class="form-group"><label>Last name</label><input type="text" required></div>
           </div>
           <div class="form-row">
-            <div class="form-group"><label>Phone</label><input type="tel" placeholder="+254..." required></div>
-            <div class="form-group"><label>Email</label><input type="email" placeholder="you@email.com"></div>
+            <div class="form-group"><label>Phone</label><input type="tel" required></div>
+            <div class="form-group"><label>Email</label><input type="email"></div>
           </div>
           <div class="form-row">
             <div class="form-group"><label>Date</label><input type="date" required></div>
             <div class="form-group"><label>Time</label><select required><option value="">Select time</option><option>7:30 AM</option><option>8:00 AM</option><option>9:00 AM</option><option>10:00 AM</option><option>11:00 AM</option><option>12:00 PM</option><option>1:00 PM</option><option>2:00 PM</option><option>3:00 PM</option><option>4:00 PM</option><option>5:00 PM</option><option>6:00 PM</option><option>7:00 PM</option><option>8:00 PM</option><option>9:00 PM</option></select></div>
           </div>
           <div class="form-group"><label>Party size</label><select required><option value="">How many guests?</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7-10</option><option>10+</option></select></div>
-          <div class="form-group"><label>Preferred space</label><select><option value="">Any available space</option><option>Main indoor hall</option><option>Outdoor terrace</option><option>Private room</option></select></div>
-          <div class="form-group"><label>Special requests (optional)</label><textarea placeholder="Dietary needs, occasion, seating preference..."></textarea></div>
+          <div class="form-group"><label>Preferred space</label><select><option value="">Any available</option><option>Main indoor hall</option><option>Outdoor terrace</option><option>Private room</option></select></div>
+          <div class="form-group"><label>Special requests</label><textarea placeholder="Dietary needs, occasion, seating preference..."></textarea></div>
           <button type="submit" class="btn-primary form-submit">Confirm reservation</button>
         </form>
       </div>
@@ -504,14 +422,14 @@
   </div>
 </section>
 
-<!-- CONFERENCE FORM -->
+<!-- CONFERENCE -->
 <section class="conference-form-section" id="conference-form">
   <div class="container">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start" class="conf-wrap">
+    <div class="conf-wrap">
       <div class="reveal">
         <p class="section-label">Private venue</p>
         <h2 class="section-title">Host your next <em>event</em></h2>
-        <p class="section-intro">Our private room and flexible spaces can host corporate meetings, team lunches, birthdays, and milestone celebrations.</p>
+        <p class="section-intro">Our private room and flexible spaces accommodate corporate meetings, team lunches, birthdays, and milestone celebrations.</p>
         <ul class="conf-features">
           <li>Self-contained private room</li><li>Private washroom</li>
           <li>Outdoor event space</li><li>Dedicated TV</li>
@@ -523,8 +441,8 @@
         <h3 style="font-family:'Playfair Display',serif;font-size:1.2rem;margin-bottom:1.2rem">Request a venue quote</h3>
         <form onsubmit="submitQuote(event)">
           <div class="form-row">
-            <div class="form-group"><label>Your name</label><input type="text" placeholder="Full name" required></div>
-            <div class="form-group"><label>Phone / Email</label><input type="text" placeholder="+254... or email" required></div>
+            <div class="form-group"><label>Your name</label><input type="text" required></div>
+            <div class="form-group"><label>Phone / Email</label><input type="text" required></div>
           </div>
           <div class="form-row">
             <div class="form-group"><label>Event type</label><select><option>Corporate meeting</option><option>Birthday celebration</option><option>Family gathering</option><option>Team lunch/dinner</option><option>Workshop / Training</option><option>Other</option></select></div>
@@ -539,15 +457,15 @@
   </div>
 </section>
 
-<!-- SOCIAL STRIP (parallax) -->
+<!-- SOCIAL -->
 <section class="social-strip" id="contact">
   <div class="social-strip-bg" id="social-parallax"></div>
-  <h2 style="position:relative">Follow the <em>bistro</em></h2>
-  <p style="position:relative">Stay updated with our latest specials, events, and menu additions</p>
-  <div class="social-links">
-    <a href="https://instagram.com/CountryBistroJuja" class="social-btn" target="_blank">📸 @CountryBistroJuja</a>
-    <a href="https://facebook.com/CountryBistroJuja" class="social-btn" target="_blank">Facebook</a>
-    <a href="https://wa.me/254768262450" class="social-btn" target="_blank">💬 WhatsApp us</a>
+  <h2>Follow the <em>bistro</em></h2>
+  <p>Stay updated with our latest specials, events, and menu additions</p>
+  <div class="social-links" id="social-links">
+    <a href="https://instagram.com/CountryBistroJuja" class="social-btn" target="_blank" id="ig-link">📸 @CountryBistroJuja</a>
+    <a href="#" class="social-btn" target="_blank" id="fb-link">Facebook</a>
+    <a href="https://wa.me/254768262450" class="social-btn" target="_blank" id="wa-link">💬 WhatsApp us</a>
   </div>
 </section>
 
@@ -571,83 +489,64 @@
     <div>
       <div class="footer-title">Contact</div>
       <div class="footer-contact-item"><span>📍</span><span>Ground Floor, Juja City Mall</span></div>
-      <div class="footer-contact-item"><span>📞</span><span>+254 768 262450</span></div>
-      <div class="footer-contact-item"><span>📞</span><span>+254 707 356971</span></div>
-      <div class="footer-contact-item"><span>✉️</span><span>info@countrybistro.co.ke</span></div>
+      <div class="footer-contact-item"><span>📞</span><span id="f-phone1">+254 768 262450</span></div>
+      <div class="footer-contact-item"><span>📞</span><span id="f-phone2">+254 707 356971</span></div>
+      <div class="footer-contact-item"><span>✉️</span><span id="f-email">info@countrybistro.co.ke</span></div>
     </div>
   </div>
   <div class="footer-bottom">© 2025 Country Bistro – Prescott Venture Limited. All rights reserved.</div>
 </footer>
 
-<div class="toast" id="toast">✓ Submitted! We'll be in touch shortly.</div>
+<div class="toast" id="toast"></div>
 
 <script>
-/* ── Theme ── */
-function toggleTheme(){const h=document.documentElement,d=h.getAttribute('data-theme')==='dark';h.setAttribute('data-theme',d?'light':'dark');document.getElementById('theme-icon').textContent=d?'☀':'☾';document.getElementById('theme-label').textContent=d?'Light':'Dark'}
+// ── CONFIG ────────────────────────────────────────────────────
+const SANITY_PROJECT_ID = 'e7xkc9nk';
+const SANITY_DATASET    = 'production';
+const SANITY_API_VER    = '2024-01-01';
+const SANITY_TOKEN      = 'sk1HLNZVzRZQHQeajRkBjiogNLB0rIIm77VBiJpEAamOLQtolyCdxS080rULVipr053Q88AK8EftpcnZbXxDuIv5OOSMWiiMBjDsivzEO3YI75QpjpxTgiDzLHL2IfOIowncWMcvurAxfbmRhavOn9I5olPwgdN5vYUzf1ZBmisSUCzhcLbz'; // ← replace before deploying
 
-/* ── Scroll reveal ── */
-const revEls=document.querySelectorAll('.reveal');
-const revObs=new IntersectionObserver(entries=>{entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('visible'),i*80);revObs.unobserve(e.target)}})},{threshold:.12});
-revEls.forEach(el=>revObs.observe(el));
-
-/* ── Happy Hour timer ── */
-function updateHHTimer(){
-  const now=new Date();
-  const h=now.getHours(),m=now.getMinutes(),s=now.getSeconds();
-  const totalSec=h*3600+m*60+s;
-  const startSec=15*3600, endSec=19*3600;
-  const timerEl=document.getElementById('hh-timer');
-  const titleEl=document.getElementById('hh-title');
-  function fmt(sec){const hh=Math.floor(sec/3600),mm=Math.floor((sec%3600)/60),ss=sec%60;return`${hh}h ${String(mm).padStart(2,'0')}m ${String(ss).padStart(2,'0')}s`}
-  if(totalSec>=startSec&&totalSec<endSec){
-    titleEl.textContent='🍹 Happy Hour is On!';
-    timerEl.textContent='Ending in '+fmt(endSec-totalSec);
-    timerEl.style.color='#7fffd4';
-  } else if(totalSec<startSec){
-    titleEl.textContent='🍹 Happy Hour Coming Up';
-    timerEl.textContent='Starting in '+fmt(startSec-totalSec);
-    timerEl.style.color='rgba(255,255,255,0.9)';
-  } else {
-    titleEl.textContent='🍹 Happy Hour Tomorrow';
-    timerEl.textContent='Starting tomorrow at 3:00 PM';
-  }
+// ── SANITY HELPERS ────────────────────────────────────────────
+async function sanityFetch(query) {
+  const url = `https://${SANITY_PROJECT_ID}.api.sanity.io/v${SANITY_API_VER}/data/query/${SANITY_DATASET}?query=${encodeURIComponent(query)}`;
+  const res = await fetch(url, { headers: { Authorization: `Bearer ${SANITY_TOKEN}` } });
+  if (!res.ok) throw new Error('Sanity fetch error: ' + res.status);
+  return (await res.json()).result;
 }
-updateHHTimer();setInterval(updateHHTimer,1000);
 
-/* ── Menu preview data ── */
-const menuData={grills:[{name:'Rib-Eye Steak',desc:'Grilled house rib-eye with mushroom or pepper sauce',price:'KES 1,900'},{name:'Dry Aged T-Bone',desc:'Prime t-bone grilled, mushroom or pepper sauce',price:'KES 2,200'},{name:'Peri Peri Chicken',desc:'Grilled spicy chicken breast with house sauce',price:'KES 1,500'},{name:'Lamb Chops',desc:'Grilled lamb chops with pepper or mushroom sauce',price:'KES 1,600'},{name:'Pork Ribs',desc:'Glazed in tangy barbeque sauce',price:'KES 1,550'},{name:'Fillet Steak',desc:'Grilled prime beef fillet, pepper or mushroom sauce',price:'KES 1,600'}],burgers:[{name:'Country Style Cheese Burger',desc:'Beef patty, cheddar, fried egg, bacon, onion rings',price:'KES 1,450',badge:'Best Seller'},{name:'Crispy Chicken Burger',desc:'Bread crumbed chicken, avocado, tomatoes, lettuce',price:'KES 1,150'},{name:'Bacon Cheese Burger',desc:'Beef patty, cheddar, bacon, onion rings, tomatoes',price:'KES 1,400'},{name:'Grilled PeriPeri Chicken',desc:'Spicy chicken breast, red cabbage & apple coleslaw',price:'KES 1,200'},{name:'Beef Burger',desc:'Beef patty, onion rings, tomatoes & lettuce',price:'KES 1,000'},{name:'Veggie Burger',desc:'Mashed potato & veg rice grilled patty',price:'KES 800'}],pizzas:[{name:'Pizza Meat Deluxe',desc:'Minced meat, chicken, bacon, green pepper, mozzarella',price:'Med KES 1,250 / Lg KES 1,450'},{name:'Country Style Pizza',desc:'Minced meat, chicken, sweetcorn, baby spinach, peppers',price:'Med KES 1,250 / Lg KES 1,450',badge:'Signature'},{name:'Hawaiian Pizza',desc:'Bacon, cooked ham, roasted pineapple, mozzarella',price:'Med KES 1,100 / Lg KES 1,300'},{name:'Four Cheese Pizza',desc:'Mozzarella, cheddar, feta & parmesan',price:'Med KES 1,050 / Lg KES 1,250'},{name:'Chicken/Beef Diablo',desc:'Spicy buffalo sauce, red onions, coriander',price:'Med KES 1,000 / Lg KES 1,200'},{name:'Bistro Pepperoni',desc:'Beef choma sausage, tomato sauce, mozzarella',price:'Med KES 750 / Lg KES 950'}],cocktails:[{name:'Long Island Iced Tea',desc:'Vodka, gin, tequila, rum, triple sec, lime, coke',price:'KES 1,100',badge:'★ Happy Hour'},{name:'Red Sangria',desc:'Brandy, fruits, red wine, sprite',price:'KES 1,100',badge:'★ Happy Hour'},{name:'Mai Tai',desc:'Clear rum, dark rum, liqueur, orange & pineapple juice',price:'KES 950'},{name:'Mango Margarita',desc:'Tequila gold, cointreau, lime juice, frozen mango',price:'KES 950'},{name:'Blue Lagoon',desc:'Vodka, blue curacao, tonic',price:'KES 850'},{name:'Country Bistro Cosmo',desc:'Vodka, cranberry, orange & lime juice',price:'KES 800',badge:'★ Happy Hour'}]};
-function switchTab(btn,key){document.querySelectorAll('.menu-tab-pill').forEach(b=>b.classList.remove('active'));btn.classList.add('active');document.getElementById('menu-preview-grid').innerHTML=menuData[key].map(item=>`<div class="menu-item-card"><div class="menu-item-name">${item.name}${item.badge?`<span class="menu-item-badge">${item.badge}</span>`:''}</div><div class="menu-item-desc">${item.desc}</div><div class="menu-item-price">${item.price}</div></div>`).join('')}
-switchTab(document.querySelector('.menu-tab-pill'),'grills');
+function imgUrl(ref, w=800) {
+  if (!ref) return null;
+  const parts = ref.replace('image-','').split('-');
+  const ext = parts.pop();
+  const id = parts.join('-');
+  return `https://cdn.sanity.io/images/${SANITY_PROJECT_ID}/${SANITY_DATASET}/${id}.${ext}?w=${w}&auto=format&fit=crop`;
+}
 
-/* ── Forms ── */
+// ── THEME ─────────────────────────────────────────────────────
+function toggleTheme(){
+  const h=document.documentElement, d=h.getAttribute('data-theme')==='dark';
+  h.setAttribute('data-theme',d?'light':'dark');
+  document.getElementById('theme-icon').textContent=d?'☀':'☾';
+  document.getElementById('theme-label').textContent=d?'Light':'Dark';
+}
+
+// ── REVEAL ON SCROLL ──────────────────────────────────────────
+const revObs=new IntersectionObserver(entries=>{
+  entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('visible'),i*80);revObs.unobserve(e.target)}});
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
+
+// ── FORMS ─────────────────────────────────────────────────────
 function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),4000)}
-function submitReservation(e){e.preventDefault();showToast('✓ Reservation submitted! We\'ll confirm your booking shortly.');e.target.reset()}
-function submitQuote(e){e.preventDefault();showToast('✓ Enquiry sent! Our events team will be in touch within 24hrs.');e.target.reset()}
+function submitReservation(e){e.preventDefault();showToast('✓ Reservation submitted! We\'ll confirm shortly.');e.target.reset()}
+function submitQuote(e){e.preventDefault();showToast('✓ Enquiry sent! We\'ll be in touch within 24hrs.');e.target.reset()}
 
-/* ── GSAP ── */
-gsap.registerPlugin(ScrollTrigger,ScrollToPlugin);
-
-// Hero parallax + entry animations
-gsap.to('#hero-bg',{yPercent:30,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
-gsap.to('#menu-parallax',{yPercent:20,ease:'none',scrollTrigger:{trigger:'.menu-preview',start:'top bottom',end:'bottom top',scrub:true}});
-gsap.to('#social-parallax',{yPercent:20,ease:'none',scrollTrigger:{trigger:'.social-strip',start:'top bottom',end:'bottom top',scrub:true}});
-
-// Hero entrance
-gsap.timeline().to('#hero-badge',{opacity:1,y:0,duration:.7,ease:'power2.out',delay:.3})
-  .to('#hero-title',{opacity:1,y:0,duration:.7,ease:'power2.out'},'-=.4')
-  .to('#hero-sub',{opacity:1,y:0,duration:.7,ease:'power2.out'},'-=.4')
-  .to('#hero-actions',{opacity:1,y:0,duration:.7,ease:'power2.out'},'-=.4')
-  .to('#hero-scroll',{opacity:1,duration:.5},'-=.2');
-
-// ── SPACES SCROLL ──
+// ── SPACES SCROLL ─────────────────────────────────────────────
 let currentSpace=0;
-const totalSpaces=3;
 const spacesBgs=document.querySelectorAll('.space-bg');
 const spacesInfos=document.querySelectorAll('.space-info');
 const spaceDots=document.querySelectorAll('.space-dot');
-
 function goToSpace(idx){
-  if(idx<0||idx>=totalSpaces)return;
   spacesBgs[currentSpace].classList.remove('active');
   spacesInfos[currentSpace].classList.remove('active');
   spaceDots[currentSpace].classList.remove('active');
@@ -657,27 +556,137 @@ function goToSpace(idx){
   spaceDots[currentSpace].classList.add('active');
 }
 
+// ── GSAP ──────────────────────────────────────────────────────
+gsap.registerPlugin(ScrollTrigger);
+gsap.to('#hero-bg',{yPercent:30,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+gsap.to('#menu-parallax',{yPercent:20,ease:'none',scrollTrigger:{trigger:'.menu-preview',start:'top bottom',end:'bottom top',scrub:true}});
+gsap.to('#social-parallax',{yPercent:20,ease:'none',scrollTrigger:{trigger:'.social-strip',start:'top bottom',end:'bottom top',scrub:true}});
+gsap.timeline()
+  .to('#hero-badge',{opacity:1,y:0,duration:.7,ease:'power2.out',delay:.3})
+  .to('#hero-title',{opacity:1,y:0,duration:.7,ease:'power2.out'},'-=.4')
+  .to('#hero-sub',{opacity:1,y:0,duration:.7,ease:'power2.out'},'-=.4')
+  .to('#hero-actions',{opacity:1,y:0,duration:.7,ease:'power2.out'},'-=.4')
+  .to('#hero-scroll',{opacity:1,duration:.5},'-=.2');
+
 ScrollTrigger.create({
-  trigger:'.spaces-outer',
-  start:'top top',
-  end:'bottom bottom',
-  scrub:false,
+  trigger:'.spaces-outer', start:'top top', end:'bottom bottom', scrub:false,
   onUpdate:self=>{
-    const prog=self.progress;
-    const idx=Math.min(Math.floor(prog*totalSpaces),totalSpaces-1);
-    if(idx!==currentSpace)goToSpace(idx);
+    const idx=Math.min(Math.floor(self.progress*3),2);
+    if(idx!==currentSpace) goToSpace(idx);
   }
 });
 
-// About image subtle parallax
-gsap.to('#about-img',{yPercent:-8,ease:'none',scrollTrigger:{trigger:'.about-section',start:'top bottom',end:'bottom top',scrub:true}});
+// ── HAPPY HOUR TIMER ──────────────────────────────────────────
+let hhStart=15*3600, hhEnd=19*3600, hhOverride=false;
 
-// Conference form grid responsive
-function fixConfGrid(){
-  const wrap=document.querySelector('.conf-wrap');
-  if(wrap)wrap.style.gridTemplateColumns=window.innerWidth<900?'1fr':'1fr 1fr';
+function updateHHTimer(){
+  const now=new Date(), total=now.getHours()*3600+now.getMinutes()*60+now.getSeconds();
+  const titleEl=document.getElementById('hh-title'), timerEl=document.getElementById('hh-timer');
+  function fmt(s){return`${Math.floor(s/3600)}h ${String(Math.floor((s%3600)/60)).padStart(2,'0')}m ${String(s%60).padStart(2,'0')}s`}
+  if(hhOverride||(total>=hhStart&&total<hhEnd)){
+    titleEl.textContent='🍹 Happy Hour is On!';
+    timerEl.textContent=hhOverride?'Extended hours today':'Ending in '+fmt(hhEnd-total);
+    timerEl.style.color='#7fffd4';
+  } else if(total<hhStart){
+    titleEl.textContent='🍹 Happy Hour Coming Up';
+    timerEl.textContent='Starting in '+fmt(hhStart-total);
+    timerEl.style.color='rgba(255,255,255,.9)';
+  } else {
+    titleEl.textContent='🍹 Happy Hour Tomorrow';
+    timerEl.textContent='Starting tomorrow at '+fmt(hhStart).split('h')[0]+'h 00m';
+  }
 }
-fixConfGrid();window.addEventListener('resize',fixConfGrid);
+updateHHTimer(); setInterval(updateHHTimer,1000);
+
+// ── MENU PREVIEW TAB DATA ─────────────────────────────────────
+let allMenuItems=[];
+const tabCategories=[
+  {label:'Grills', cats:['beef','chicken','goat','pork','fish']},
+  {label:'Burgers', cats:['burgers']},
+  {label:'Pizza', cats:['pizza']},
+  {label:'Cocktails', cats:['cocktails']},
+];
+let activeTab=0;
+
+function renderMenuTab(tabIdx){
+  activeTab=tabIdx;
+  document.querySelectorAll('.menu-tab-pill').forEach((b,i)=>b.classList.toggle('active',i===tabIdx));
+  const cats=tabCategories[tabIdx].cats;
+  const items=allMenuItems.filter(m=>cats.includes(m.category)).slice(0,6);
+  const grid=document.getElementById('menu-preview-grid');
+  if(!items.length){grid.innerHTML='<div style="padding:2rem;color:rgba(255,255,255,.4);font-style:italic">No items yet — add them in the CMS</div>';return}
+  grid.innerHTML=items.map(item=>{
+    const badge=item.isHappyHour?'★ Happy Hour':item.isFeatured?(item.badgeLabel||'Signature'):item.badgeLabel?item.badgeLabel:'';
+    return`<div class="menu-item-card">
+      <div class="menu-item-name">${item.name}${badge?`<span class="menu-item-badge">${badge}</span>`:''}</div>
+      ${item.description?`<div class="menu-item-desc">${item.description}</div>`:''}
+      <div class="menu-item-price">KES ${item.price}</div>
+    </div>`;
+  }).join('');
+}
+
+function buildMenuTabs(){
+  const wrap=document.getElementById('menu-tabs');
+  wrap.innerHTML=tabCategories.map((t,i)=>`<button class="menu-tab-pill${i===0?' active':''}" onclick="renderMenuTab(${i})">${t.label}</button>`).join('');
+  renderMenuTab(0);
+}
+
+// ── LOAD CMS DATA ─────────────────────────────────────────────
+async function loadSiteSettings(){
+  try{
+    const s=await sanityFetch(`*[_type=="siteSettings"][0]{happyHourStart,happyHourEnd,happyHourOverrideActive,phone1,phone2,email,instagramHandle,facebookUrl,whatsappNumber,announcementBanner}`);
+    if(!s) return;
+    // Happy hour times
+    if(s.happyHourStart){const[h,m]=s.happyHourStart.split(':');hhStart=parseInt(h)*3600+parseInt(m)*60}
+    if(s.happyHourEnd){const[h,m]=s.happyHourEnd.split(':');hhEnd=parseInt(h)*3600+parseInt(m)*60}
+    hhOverride=!!s.happyHourOverrideActive;
+    // Contact info
+    if(s.phone1){document.getElementById('footer-phone').textContent=s.phone1;document.getElementById('f-phone1').textContent=s.phone1}
+    if(s.phone2)document.getElementById('f-phone2').textContent=s.phone2;
+    if(s.email){document.getElementById('footer-email').textContent=s.email;document.getElementById('f-email').textContent=s.email}
+    // Social links
+    if(s.instagramHandle){const el=document.getElementById('ig-link');el.href=`https://instagram.com/${s.instagramHandle}`;el.textContent=`📸 @${s.instagramHandle}`}
+    if(s.facebookUrl)document.getElementById('fb-link').href=s.facebookUrl;
+    if(s.whatsappNumber)document.getElementById('wa-link').href=`https://wa.me/${s.whatsappNumber}`;
+    // Announcement banner
+    if(s.announcementBanner){const b=document.getElementById('announcement-banner');b.textContent=s.announcementBanner;b.classList.add('visible')}
+  }catch(e){console.warn('Settings load failed:',e)}
+}
+
+async function loadOffers(){
+  try{
+    const today=new Date().toISOString().split('T')[0];
+    const offers=await sanityFetch(`*[_type=="offer" && isActive==true && (!defined(startDate)||startDate<="${today}") && (!defined(endDate)||endDate>="${today}")] | order(sortOrder asc){_id,title,badgeLabel,description,price,"imageRef":image.asset._ref}`);
+    const grid=document.getElementById('offers-grid');
+    if(!offers||!offers.length){
+      grid.innerHTML='<p style="color:var(--text-muted);font-style:italic">No active offers right now — check back soon.</p>';
+      return;
+    }
+    grid.innerHTML=offers.map(o=>`
+      <div class="offer-card">
+        <div class="offer-card-img">
+          <img src="${o.imageRef?imgUrl(o.imageRef,600):'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600&q=80'}" alt="${o.title}" loading="lazy">
+          <span class="offer-badge">${o.badgeLabel}</span>
+        </div>
+        <div class="offer-card-body">
+          <h3 class="offer-card-title">${o.title}</h3>
+          <p class="offer-card-desc">${o.description}</p>
+          ${o.price?`<span class="offer-card-price">KES ${o.price}</span>`:''}
+        </div>
+      </div>`).join('');
+  }catch(e){console.warn('Offers load failed:',e)}
+}
+
+async function loadMenuItems(){
+  try{
+    const items=await sanityFetch(`*[_type=="menuItem" && isActive==true] | order(category asc, sortOrder asc, name asc){_id,name,category,description,price,isHappyHour,isBundle,isFeatured,badgeLabel}`);
+    allMenuItems=items||[];
+    buildMenuTabs();
+  }catch(e){console.warn('Menu load failed:',e);buildMenuTabs()}
+}
+
+// Kick everything off
+Promise.all([loadSiteSettings(), loadOffers(), loadMenuItems()]);
 </script>
 </body>
 </html>
