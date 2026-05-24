@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gallery – Country Bistro | Juja City Mall</title>
+<meta name="description" content="Photo gallery of Country Bistro – our spaces, food, cocktails and events at Juja City Mall.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{--crimson:#B31020;--crimson-dark:#8B0C18;--gold:#C9963A;--cream:#FAF6F0;--text-main:#1A1210;--text-muted:#6B5B52;--surface:#FFFFFF;--surface2:#FAF6F0;--border:rgba(139,12,24,0.10);--nav-bg:rgba(250,246,240,0.96);--shadow:0 4px 32px rgba(26,18,16,0.08)}
+  [data-theme="dark"]{--cream:#1A1210;--text-main:#F5EDE4;--text-muted:#B8A99E;--surface:#231A17;--surface2:#2C201C;--border:rgba(201,150,58,0.15);--nav-bg:rgba(26,18,16,0.97);--shadow:0 4px 32px rgba(0,0,0,0.4)}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text-main);overflow-x:hidden;transition:background .3s,color .3s}
+
+  nav{position:fixed;top:0;left:0;right:0;z-index:200;background:var(--nav-bg);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:70px}
+  .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+  .nav-logo-icon{width:40px;height:40px;background:var(--crimson);border-radius:50%;display:flex;align-items:center;justify-content:center}
+  .nav-logo-icon svg{width:24px;height:24px;fill:white}
+  .nav-logo-text{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;color:var(--crimson)}
+  .nav-logo-sub{font-size:.58rem;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase}
+  .nav-right{display:flex;align-items:center;gap:1rem}
+  .nav-back{text-decoration:none;color:var(--text-muted);font-size:.82rem;display:flex;align-items:center;gap:5px;transition:color .2s}
+  .nav-back:hover{color:var(--crimson)}
+  .nav-cta{background:var(--crimson);color:white;padding:.42rem 1.1rem;border-radius:100px;text-decoration:none;font-size:.8rem;font-weight:500;transition:background .2s}
+  .nav-cta:hover{background:var(--crimson-dark)}
+  .theme-toggle{background:none;border:1px solid var(--border);border-radius:100px;padding:.28rem .65rem;cursor:pointer;color:var(--text-main);font-size:.75rem;transition:background .2s}
+  .theme-toggle:hover{background:var(--surface2)}
+
+  /* HERO */
+  .gallery-hero{margin-top:70px;background:linear-gradient(160deg,var(--crimson-dark),var(--crimson));padding:4rem 2rem 3rem;position:relative;overflow:hidden;text-align:center;color:white}
+  .gallery-hero::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent,transparent 10px,rgba(255,255,255,.03) 10px,rgba(255,255,255,.03) 20px)}
+  .gallery-hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.5rem,6vw,4rem);font-weight:400;position:relative}
+  .gallery-hero h1 em{font-style:italic;color:rgba(255,255,255,.75)}
+  .gallery-hero p{color:rgba(255,255,255,.72);font-size:.92rem;margin-top:.6rem;position:relative}
+
+  /* FILTER TABS */
+  .filter-bar{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:70px;z-index:90;padding:.8rem 2rem;display:flex;gap:.5rem;flex-wrap:wrap;align-items:center}
+  .filter-btn{padding:.38rem 1rem;border-radius:100px;font-size:.82rem;border:1px solid var(--border);color:var(--text-muted);background:none;cursor:pointer;transition:all .2s;font-family:'DM Sans',sans-serif}
+  .filter-btn:hover{border-color:var(--crimson);color:var(--crimson)}
+  .filter-btn.active{background:var(--crimson);border-color:var(--crimson);color:white}
+
+  /* MASONRY GRID */
+  .gallery-container{max-width:1200px;margin:0 auto;padding:2rem}
+  .masonry{columns:3 280px;column-gap:1rem}
+  @media(max-width:600px){.masonry{columns:2 160px}}
+  .gallery-item{break-inside:avoid;margin-bottom:1rem;border-radius:12px;overflow:hidden;position:relative;cursor:pointer;group:true;transition:transform .3s}
+  .gallery-item:hover{transform:scale(1.015)}
+  .gallery-item img{width:100%;display:block;border-radius:12px;transition:transform .4s ease}
+  .gallery-item:hover img{transform:scale(1.04)}
+  .gallery-item-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(26,18,16,.7) 0%,transparent 50%);opacity:0;transition:opacity .3s;border-radius:12px;display:flex;align-items:flex-end;padding:1rem}
+  .gallery-item:hover .gallery-item-overlay{opacity:1}
+  .gallery-item-label{color:white;font-size:.8rem;font-family:'Playfair Display',serif}
+  .gallery-item-tag{position:absolute;top:10px;left:10px;background:rgba(179,16,32,.85);color:white;font-size:.65rem;padding:.2rem .55rem;border-radius:100px;text-transform:uppercase;letter-spacing:.06em;opacity:0;transform:translateY(-4px);transition:opacity .25s,transform .25s}
+  .gallery-item:hover .gallery-item-tag{opacity:1;transform:translateY(0)}
+
+  /* LIGHTBOX */
+  .lightbox{position:fixed;inset:0;z-index:1000;background:rgba(10,6,5,.95);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s;padding:2rem}
+  .lightbox.open{opacity:1;pointer-events:auto}
+  .lightbox-img{max-width:90vw;max-height:85vh;border-radius:12px;object-fit:contain;transform:scale(.95);transition:transform .3s}
+  .lightbox.open .lightbox-img{transform:scale(1)}
+  .lightbox-close{position:absolute;top:1.5rem;right:1.5rem;background:rgba(255,255,255,.15);border:none;color:white;font-size:1.4rem;width:44px;height:44px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s}
+  .lightbox-close:hover{background:rgba(255,255,255,.25)}
+  .lightbox-prev,.lightbox-next{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.12);border:none;color:white;font-size:1.5rem;width:50px;height:50px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s}
+  .lightbox-prev:hover,.lightbox-next:hover{background:rgba(255,255,255,.22)}
+  .lightbox-prev{left:1.5rem}.lightbox-next{right:1.5rem}
+  .lightbox-caption{position:absolute;bottom:1.5rem;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.7);font-size:.82rem;font-family:'Playfair Display',serif;font-style:italic;white-space:nowrap}
+  .lightbox-counter{position:absolute;top:1.5rem;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.5);font-size:.78rem;letter-spacing:.1em}
+
+  /* LOAD MORE */
+  .load-more-wrap{text-align:center;padding:2rem 0 4rem}
+  .btn-primary{background:var(--crimson);color:white;padding:.8rem 2rem;border-radius:100px;text-decoration:none;font-size:.88rem;font-weight:500;border:none;cursor:pointer;transition:background .2s,transform .15s}
+  .btn-primary:hover{background:var(--crimson-dark);transform:translateY(-1px)}
+
+  /* CTA STRIP */
+  .cta-strip{background:var(--crimson);color:white;text-align:center;padding:3rem 2rem}
+  .cta-strip h2{font-family:'Playfair Display',serif;font-size:1.8rem;font-style:italic;margin-bottom:.5rem}
+  .cta-strip p{opacity:.82;margin-bottom:1.2rem;font-size:.9rem}
+  .btn-outline-white{display:inline-block;border:1px solid rgba(255,255,255,.5);color:white;padding:.7rem 1.8rem;border-radius:100px;text-decoration:none;font-size:.85rem;transition:background .2s}
+  .btn-outline-white:hover{background:rgba(255,255,255,.15)}
+  footer{background:#1A1210;color:rgba(255,255,255,.4);text-align:center;padding:1.5rem;font-size:.78rem}
+  footer a{color:var(--gold);text-decoration:none}
+
+  .hidden{display:none!important}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-icon">
+      <svg viewBox="0 0 40 32" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4 20Q4 14 20 13Q36 14 36 20L33 22Q28 20 20 20Q12 20 7 22Z"/>
+        <path d="M7 22Q6 26 4 28L36 28Q34 26 33 22Q28 21 20 21Q12 21 7 22Z"/>
+        <path d="M11 13Q14 6 20 5Q26 6 29 13" fill="white"/>
+        <path d="M11 13Q14 9 20 8Q26 9 29 13"/>
+      </svg>
+    </div>
+    <div><div class="nav-logo-text">Country Bistro</div><div class="nav-logo-sub">Food & Drinks</div></div>
+  </a>
+  <div class="nav-right">
+    <a href="index.html" class="nav-back">← Back to home</a>
+    <a href="index.html#reservation" class="nav-cta">Reserve a table</a>
+    <button class="theme-toggle" onclick="toggleTheme()"><span id="ti">☀</span></button>
+  </div>
+</nav>
+
+<div class="gallery-hero">
+  <h1>Our <em>Gallery</em></h1>
+  <p>A taste of the atmosphere, food, cocktails, and spaces at Country Bistro</p>
+</div>
+
+<div class="filter-bar">
+  <button class="filter-btn active" data-filter="all">All</button>
+  <button class="filter-btn" data-filter="food">Food</button>
+  <button class="filter-btn" data-filter="drinks">Drinks & Bar</button>
+  <button class="filter-btn" data-filter="spaces">Spaces</button>
+  <button class="filter-btn" data-filter="events">Events</button>
+</div>
+
+<div class="gallery-container">
+  <div class="masonry" id="masonry-grid">
+    <!-- Food items -->
+    <div class="gallery-item" data-cat="food" data-idx="0">
+      <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600&q=80" alt="Grilled platter" loading="lazy">
+      <div class="gallery-item-overlay"><span class="gallery-item-label">Grilled Platter</span></div>
+      <span class="gallery-item-tag">Food</span>
+    </div>
+    <div class="gallery-item" data-cat="food" data-idx="1">
+      <img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=600&q=80" alt="Breakfast spread" loading="lazy">
+      <div class="gallery-item-overlay"><span class="gallery-item-label">Full Breakfast</span></div>
+      <span class="gallery-item-tag">Food</span>
+    </div>
+    <div class="gallery-item" data-cat="food" data-idx="2">
+      <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=600&q=80" alt="Pizza" loading="lazy">
+      <div class="gallery-item-overlay"><span class="gallery-item-label">Country Style Pizza</span></div>
+      <span class="gallery-item-tag">Food</span>
+    </div>
+    <div class="gallery-item" data-cat="food" data-idx="3">
+      <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600&q=80" alt="Burger" loading="lazy">
+      <div class="gallery-item-overlay"><span class="gallery-item-label">Country Cheese Burger</span></div>
+      <span class="gallery-item-tag">Food</span>
+    </div>
+    <div class="gallery-item" data-cat="food" data-idx="4">
+      <img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=600&q=80" alt="Steak" loading="lazy">
+      <div class="gallery-item-overlay"><span class="gallery-item-label">Rib-Eye Steak</span></div>
+      <span class="gallery-item-tag">Food</span>
+    </div>
+    <div class="gallery-item" data-cat="food" data-idx="5">
+      <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&q=80" alt="Salad" loading="lazy">
+      <div class="gallery-item-overlay"><span class="gallery-item-label">Rancher's Cobb Salad</span></div>
+      <span class="gallery-item-tag">Food</span>
+    </div>
+    <div class="gallery-item" data-cat="food" data-idx="6">
+      <img src="https://images.unsplash.com/photo-1555949258-eb67b1ef0ceb?w=600&q=80" alt="Pasta" loading="lazy">
+      <div class="gallery-item-overlay"><span class="gallery-item-label">Pasta Carbonara</span></div>
+      <span class="gallery-item-tag">Food</span>
+    </div>
+    <!-- Drinks -->
+    <div class="gallery-item" data-cat="drinks" data-idx="7">
+      <img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=600&q=80" alt="Cocktails" loading="lazy">
+      <div class="gallery-item-overlay"><span class="gallery-item-label">Signature Cocktails</span></div>
+      <span class="gallery-item-tag">Bar</span>
+    </div>
+    <div class="gallery-item" data-cat="drinks" data-idx="8">
+      <img src="https://images.unsplash.com/photo-1516997121675-4c2d1684aa3e?w=600&q=80" alt="Mojito" loading="lazy">
+      <div class="gallery-item-overlay"><span class="gallery-item-label">Mojito Series</span></div>
+      <span class="gallery-item-tag">Bar</span>
+    </div>
+    <div class="gallery-item" data-cat="drinks" data-idx="9">
+      <img src="https://images.unsplash.com/photo-1560508179-b2c9a3f8e92b?w=600&q=80" alt="Smoothie" loading="lazy">
+      <div class="gallery-item-overlay"><span class="gallery-item-label">Fresh Smoothies</span></div>
+      <span class="gallery-item-tag">Drinks</span>
+    </div>
+    <div class="gallery-item" data-cat="drinks" data-idx="10">
+      <img src="https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=600&q=80" alt="Coffee" loading="lazy">
+      <div class="gallery-item-overlay"><span class="gallery-item-label">Craft Coffee</span></div>
+      <span class="gallery-item-tag">Drinks</span>
+    </div>
+    <div class="gallery-item" data-cat="drinks" data-idx="11">
+      <img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=600&q=80" alt="Wine" loading="lazy">
+      <div class="gallery-item-overlay"><span class="gallery-item-label">Wine Selection</span></div>
+      <span class="gallery-item-tag">Bar</span>
+    </div>
+    <!-- Spaces -->
+    <div class="gallery-item" data-cat="spaces" data-idx="12">
+      <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80" alt="Main hall" loading="lazy">
+      <div class="gallery-item-overlay"><span class="gallery-item-label">The Main Hall</span></div>
+      <span class="gallery-item-tag">Spaces</span>
+    </div>
+    <div class="gallery-item" data-cat="spaces" data-idx="13">
+      <img src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=600&q=80" alt="Interior" loading="lazy">
+      <div class="gallery-item-overlay"><span class="gallery-item-label">Indoor Seating</span></div>
+      <span class="gallery-item-tag">Spaces</span>
+    </div>
+    <div class="gallery-item" data-cat="spaces" data-idx="14">
+      <img src="https://images.unsplash.com/photo-1551632811-561732d1e306?w=600&q=80" alt="Outdoor" loading="lazy">
+      <div class="gallery-item-overlay"><span class="gallery-item-label">Outdoor Terrace</span></div>
+      <span class="gallery-item-tag">Spaces</span>
+    </div>
+    <div class="gallery-item" data-cat="spaces" data-idx="15">
+      <img src="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?w=600&q=80" alt="Private room" loading="lazy">
+      <div class="gallery-item-overlay"><span class="gallery-item-label">Private Room</span></div>
+      <span class="gallery-item-tag">Spaces</span>
+    </div>
+    <div class="gallery-item" data-cat="spaces" data-idx="16">
+      <img src="https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?w=600&q=80" alt="Bar" loading="lazy">
+      <div class="gallery-item-overlay"><span class="gallery-item-label">The Bar</span></div>
+      <span class="gallery-item-tag">Spaces</span>
+    </div>
+    <!-- Events -->
+    <div class="gallery-item" data-cat="events" data-idx="17">
+      <img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=600&q=80" alt="Event setup" loading="lazy">
+      <div class="gallery-item-overlay"><span class="gallery-item-label">Private Events</span></div>
+      <span class="gallery-item-tag">Events</span>
+    </div>
+    <div class="gallery-item" data-cat="events" data-idx="18">
+      <img src="https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?w=600&q=80" alt="Birthday" loading="lazy">
+      <div class="gallery-item-overlay"><span class="gallery-item-label">Celebrations</span></div>
+      <span class="gallery-item-tag">Events</span>
+    </div>
+    <div class="gallery-item" data-cat="events" data-idx="19">
+      <img src="https://images.unsplash.com/photo-1559329007-40df8a9345d8?w=600&q=80" alt="Meeting" loading="lazy">
+      <div class="gallery-item-overlay"><span class="gallery-item-label">Corporate Events</span></div>
+      <span class="gallery-item-tag">Events</span>
+    </div>
+  </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <button class="lightbox-prev" onclick="event.stopPropagation();navigateLightbox(-1)">‹</button>
+  <img class="lightbox-img" id="lightbox-img" src="" alt="">
+  <button class="lightbox-next" onclick="event.stopPropagation();navigateLightbox(1)">›</button>
+  <div class="lightbox-caption" id="lightbox-caption"></div>
+  <div class="lightbox-counter" id="lightbox-counter"></div>
+</div>
+
+<div class="cta-strip">
+  <h2>Visit us today</h2>
+  <p>Ground Floor, Juja City Mall · Open daily from 7:30AM</p>
+  <a href="index.html#reservation" class="btn-outline-white">Book a table</a>
+</div>
+
+<footer>
+  © 2025 Country Bistro – Prescott Venture Limited &nbsp;·&nbsp; <a href="index.html">Back to home</a>
+</footer>
+
+<script>
+function toggleTheme(){const h=document.documentElement,d=h.getAttribute('data-theme')==='dark';h.setAttribute('data-theme',d?'light':'dark');document.getElementById('ti').textContent=d?'☀':'☾'}
+
+/* Filter */
+document.querySelectorAll('.filter-btn').forEach(btn=>{
+  btn.addEventListener('click',function(){
+    document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+    this.classList.add('active');
+    const f=this.getAttribute('data-filter');
+    document.querySelectorAll('.gallery-item').forEach(item=>{
+      if(f==='all'||item.getAttribute('data-cat')===f){item.style.display='';item.style.animation='fadeIn .4s ease both'}
+      else item.style.display='none';
+    });
+  });
+});
+
+/* Lightbox */
+let currentIdx=0;
+let visibleItems=[];
+
+function getVisibleItems(){return Array.from(document.querySelectorAll('.gallery-item')).filter(el=>el.style.display!=='none')}
+
+document.querySelectorAll('.gallery-item').forEach(item=>{
+  item.addEventListener('click',function(){
+    visibleItems=getVisibleItems();
+    currentIdx=visibleItems.indexOf(this);
+    openLightbox(currentIdx);
+  });
+});
+
+function openLightbox(idx){
+  visibleItems=getVisibleItems();
+  const item=visibleItems[idx];
+  const img=item.querySelector('img');
+  const label=item.querySelector('.gallery-item-label');
+  document.getElementById('lightbox-img').src=img.src.replace('w=600','w=1200');
+  document.getElementById('lightbox-img').alt=img.alt;
+  document.getElementById('lightbox-caption').textContent=label?label.textContent:'';
+  document.getElementById('lightbox-counter').textContent=`${idx+1} / ${visibleItems.length}`;
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow='hidden';
+  currentIdx=idx;
+}
+
+function closeLightbox(e){
+  if(e&&e.target!==document.getElementById('lightbox')&&!e.target.classList.contains('lightbox-close'))return;
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow='';
+}
+
+function navigateLightbox(dir){
+  visibleItems=getVisibleItems();
+  currentIdx=(currentIdx+dir+visibleItems.length)%visibleItems.length;
+  openLightbox(currentIdx);
+}
+
+document.addEventListener('keydown',e=>{
+  if(!document.getElementById('lightbox').classList.contains('open'))return;
+  if(e.key==='Escape')closeLightbox({target:document.getElementById('lightbox')});
+  if(e.key==='ArrowRight')navigateLightbox(1);
+  if(e.key==='ArrowLeft')navigateLightbox(-1);
+});
+</script>
+</body>
+</html>

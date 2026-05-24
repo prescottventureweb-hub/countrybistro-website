@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Menu – Country Bistro | Juja City Mall</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --crimson: #B31020;
+    --crimson-dark: #8B0C18;
+    --gold: #C9963A;
+    --cream: #FAF6F0;
+    --cream-warm: #F2EAD9;
+    --text-main: #1A1210;
+    --text-muted: #6B5B52;
+    --surface: #FFFFFF;
+    --surface2: #FAF6F0;
+    --border: rgba(139,12,24,0.10);
+    --nav-bg: rgba(250,246,240,0.96);
+    --shadow: 0 4px 24px rgba(26,18,16,0.08);
+    --charcoal: #1A1210;
+  }
+  [data-theme="dark"] {
+    --cream: #1A1210;
+    --cream-warm: #231A17;
+    --text-main: #F5EDE4;
+    --text-muted: #B8A99E;
+    --surface: #231A17;
+    --surface2: #2C201C;
+    --border: rgba(201,150,58,0.15);
+    --nav-bg: rgba(26,18,16,0.97);
+    --shadow: 0 4px 24px rgba(0,0,0,0.35);
+    --charcoal: #F5EDE4;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text-main);
+    transition: background 0.3s, color 0.3s;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: var(--nav-bg);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 70px;
+  }
+  .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .nav-logo-icon {
+    width: 40px; height: 40px;
+    background: var(--crimson); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .nav-logo-icon svg { width: 24px; height: 24px; fill: white; }
+  .nav-logo-text { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; color: var(--crimson); }
+  .nav-logo-sub { font-size: 0.58rem; color: var(--text-muted); letter-spacing: 2px; text-transform: uppercase; }
+  .nav-right { display: flex; align-items: center; gap: 1rem; }
+  .nav-back { text-decoration: none; color: var(--text-muted); font-size: 0.82rem; display: flex; align-items: center; gap: 5px; }
+  .nav-back:hover { color: var(--crimson); }
+  .nav-cta {
+    background: var(--crimson); color: white;
+    padding: 0.42rem 1.1rem; border-radius: 100px;
+    text-decoration: none; font-size: 0.8rem; font-weight: 500;
+    transition: background 0.2s;
+  }
+  .nav-cta:hover { background: var(--crimson-dark); }
+  .theme-toggle {
+    background: none; border: 1px solid var(--border); border-radius: 100px;
+    padding: 0.28rem 0.65rem; cursor: pointer;
+    color: var(--text-main); font-size: 0.75rem;
+    transition: background 0.2s;
+  }
+  .theme-toggle:hover { background: var(--surface2); }
+
+  /* ── PAGE HEADER ── */
+  .page-header {
+    margin-top: 70px;
+    background: linear-gradient(160deg, var(--crimson-dark) 0%, var(--crimson) 100%);
+    padding: 3.5rem 2rem 0;
+    position: relative; overflow: hidden;
+  }
+  .page-header::before {
+    content: ''; position: absolute; inset: 0;
+    background: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,0.04) 10px, rgba(255,255,255,0.04) 20px);
+  }
+  .page-header-inner { max-width: 1160px; margin: 0 auto; position: relative; z-index: 1; }
+  .page-header h1 {
+    font-family: 'Playfair Display', serif; font-size: clamp(2rem,5vw,3.2rem);
+    color: white; font-weight: 400; margin-bottom: 0.4rem;
+  }
+  .page-header h1 em { font-style: italic; color: rgba(255,255,255,0.75); }
+  .page-header p { color: rgba(255,255,255,0.7); font-size: 0.9rem; margin-bottom: 1.8rem; }
+
+  /* ── HAPPY HOUR BAR ── */
+  .hh-bar {
+    background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 12px 12px 0 0; padding: 0.7rem 1.2rem;
+    display: inline-flex; align-items: center; gap: 10px;
+    color: white; font-size: 0.85rem;
+    margin-bottom: 0;
+  }
+  .hh-dot { width: 8px; height: 8px; border-radius: 50%; background: #4ade80; animation: pulse 2s infinite; flex-shrink:0; }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.6;transform:scale(0.85)} }
+
+  /* ── MAIN TABS ── */
+  .main-tabs-wrap {
+    background: var(--surface); border-bottom: 1px solid var(--border);
+    position: sticky; top: 70px; z-index: 90;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+  }
+  .main-tabs {
+    max-width: 1160px; margin: 0 auto;
+    display: flex; overflow-x: auto; gap: 0;
+    scrollbar-width: none;
+  }
+  .main-tabs::-webkit-scrollbar { display: none; }
+  .main-tab {
+    flex-shrink: 0; padding: 1rem 1.4rem;
+    background: none; border: none; cursor: pointer;
+    font-family: 'DM Sans', sans-serif; font-size: 0.85rem;
+    color: var(--text-muted); border-bottom: 2px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+    display: flex; align-items: center; gap: 6px; white-space: nowrap;
+  }
+  .main-tab:hover { color: var(--crimson); }
+  .main-tab.active { color: var(--crimson); border-bottom-color: var(--crimson); font-weight: 500; }
+  .tab-count {
+    background: var(--surface2); color: var(--text-muted);
+    font-size: 0.7rem; padding: 1px 6px; border-radius: 100px; min-width: 20px; text-align: center;
+  }
+  .main-tab.active .tab-count { background: rgba(179,16,32,0.1); color: var(--crimson); }
+
+  /* ── CONTENT ── */
+  .menu-content { max-width: 1160px; margin: 0 auto; padding: 2rem; }
+  .menu-section { display: none; }
+  .menu-section.active { display: block; }
+
+  /* Sub-tabs (within food) */
+  .sub-tabs {
+    display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2rem;
+  }
+  .sub-tab {
+    padding: 0.38rem 0.95rem; border-radius: 100px; font-size: 0.8rem;
+    border: 1px solid var(--border); color: var(--text-muted);
+    background: none; cursor: pointer; transition: all 0.2s; font-family: 'DM Sans', sans-serif;
+  }
+  .sub-tab:hover { border-color: var(--crimson); color: var(--crimson); }
+  .sub-tab.active { background: var(--crimson); border-color: var(--crimson); color: white; }
+
+  /* Category heading */
+  .cat-heading {
+    font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 400;
+    color: var(--text-main); margin: 2rem 0 0.3rem; padding-bottom: 0.6rem;
+    border-bottom: 1px solid var(--border); display: flex; align-items: baseline; gap: 10px;
+  }
+  .cat-heading em { font-size: 0.75rem; font-style: normal; color: var(--text-muted); font-family: 'DM Sans',sans-serif; font-weight: 400; }
+  .cat-sub { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 1.2rem; font-style: italic; }
+
+  /* Menu grid */
+  .items-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border); border-radius: 14px; overflow: hidden; margin-bottom: 0.5rem;
+  }
+  .item-card {
+    background: var(--surface); padding: 1.1rem 1.3rem;
+    transition: background 0.2s; display: flex; flex-direction: column; gap: 4px;
+    position: relative;
+  }
+  .item-card:hover { background: var(--surface2); }
+  .item-name { font-family: 'Playfair Display', serif; font-size: 0.98rem; font-weight: 400; color: var(--text-main); }
+  .item-desc { font-size: 0.78rem; color: var(--text-muted); line-height: 1.55; margin-top: 1px; }
+  .item-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 0.4rem; gap: 8px; }
+  .item-price { font-weight: 600; font-size: 0.88rem; color: var(--crimson); flex-shrink: 0; }
+  .badge {
+    font-size: 0.62rem; padding: 0.15rem 0.5rem; border-radius: 100px;
+    font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; flex-shrink:0;
+  }
+  .badge-hh { background: rgba(179,16,32,0.1); color: var(--crimson); border: 1px solid rgba(179,16,32,0.2); }
+  .badge-bundle { background: rgba(201,150,58,0.12); color: var(--gold); border: 1px solid rgba(201,150,58,0.25); }
+  .badge-new { background: rgba(34,197,94,0.1); color: #16a34a; border: 1px solid rgba(34,197,94,0.25); }
+  [data-theme="dark"] .badge-new { color: #4ade80; }
+
+  /* Dual price table (coffee etc) */
+  .price-table { margin: 1rem 0 1.5rem; }
+  .price-table table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+  .price-table th { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); padding: 0.4rem 0.6rem; text-align: right; border-bottom: 1px solid var(--border); }
+  .price-table th:first-child { text-align: left; }
+  .price-table td { padding: 0.5rem 0.6rem; border-bottom: 1px solid var(--border); }
+  .price-table td:not(:first-child) { text-align: right; color: var(--crimson); font-weight: 500; }
+  .price-table tr:last-child td { border-bottom: none; }
+  .price-table tr:hover td { background: var(--surface2); }
+
+  /* Spirits table */
+  .spirits-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1rem; margin-bottom: 1.5rem; }
+  .spirit-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1rem 1.2rem;
+  }
+  .spirit-name { font-weight: 500; font-size: 0.9rem; margin-bottom: 0.3rem; }
+  .spirit-prices { display: flex; gap: 1rem; font-size: 0.8rem; color: var(--text-muted); }
+  .spirit-prices span { display: flex; flex-direction: column; }
+  .spirit-prices strong { color: var(--crimson); font-size: 0.85rem; }
+
+  /* Wines */
+  .wine-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px,1fr)); gap: 0.8rem; margin-bottom: 1.5rem; }
+  .wine-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1rem 1.2rem; }
+  .wine-name { font-family: 'Playfair Display',serif; font-size: 0.95rem; margin-bottom: 2px; }
+  .wine-origin { font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.5rem; }
+  .wine-price { color: var(--crimson); font-weight: 600; font-size: 0.85rem; }
+
+  /* Section-level intro */
+  .section-intro { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem; font-style: italic; }
+
+  /* Family/bundles card */
+  .bundle-card {
+    background: linear-gradient(135deg, var(--surface) 0%, rgba(201,150,58,0.05) 100%);
+    border: 1px solid rgba(201,150,58,0.3); border-radius: 16px; padding: 1.4rem 1.6rem;
+    display: grid; grid-template-columns: 1fr auto; gap: 1rem; align-items: start;
+    margin-bottom: 0.8rem;
+  }
+  .bundle-name { font-family: 'Playfair Display',serif; font-size: 1.05rem; margin-bottom: 0.3rem; }
+  .bundle-desc { font-size: 0.82rem; color: var(--text-muted); line-height: 1.55; }
+  .bundle-price { color: var(--gold); font-weight: 700; font-size: 1.1rem; white-space: nowrap; }
+
+  /* Kids corner */
+  .kids-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+  /* Empty state */
+  .empty { padding: 3rem; text-align: center; color: var(--text-muted); font-style: italic; }
+
+  @media (max-width: 640px) {
+    .items-grid { grid-template-columns: 1fr; }
+    .kids-grid { grid-template-columns: 1fr; }
+    .spirits-grid { grid-template-columns: 1fr; }
+    .nav-right .nav-back { display: none; }
+    .bundle-card { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-icon">
+      <svg viewBox="0 0 40 32" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4 20 Q4 14 20 13 Q36 14 36 20 L33 22 Q28 20 20 20 Q12 20 7 22 Z" fill="white"/>
+        <path d="M7 22 Q6 26 4 28 L36 28 Q34 26 33 22 Q28 21 20 21 Q12 21 7 22 Z" fill="white"/>
+        <path d="M11 13 Q14 6 20 5 Q26 6 29 13" fill="white"/>
+        <path d="M11 13 Q14 9 20 8 Q26 9 29 13" fill="white"/>
+      </svg>
+    </div>
+    <div>
+      <div class="nav-logo-text">Country Bistro</div>
+      <div class="nav-logo-sub">Food & Drinks</div>
+    </div>
+  </a>
+  <div class="nav-right">
+    <a href="index.html" class="nav-back">← Back to home</a>
+    <a href="index.html#reservation" class="nav-cta">Reserve a table</a>
+    <button class="theme-toggle" onclick="toggleTheme()"><span id="ti">☀</span></button>
+  </div>
+</nav>
+
+<!-- ── PAGE HEADER ── -->
+<div class="page-header">
+  <div class="page-header-inner">
+    <h1>Our <em>Menu</em></h1>
+    <p>Freshly crafted daily at Juja City Mall · Prices in Kenyan Shillings (KES)</p>
+    <div class="hh-bar" id="hh-bar" style="display:none">
+      <div class="hh-dot"></div>
+      <strong>Happy Hour is on!</strong> Special prices on cocktails & mocktails · 3PM – 7PM daily
+    </div>
+    <!-- Always show for prototype -->
+    <div class="hh-bar" style="display:inline-flex">
+      <div class="hh-dot"></div>
+      <strong>Happy Hour is on!</strong>&nbsp; Special prices on cocktails & mocktails · 3PM – 7PM daily
+    </div>
+  </div>
+</div>
+
+<!-- ── MAIN TABS ── -->
+<div class="main-tabs-wrap">
+  <div class="main-tabs" id="main-tabs">
+    <button class="main-tab active" onclick="showSection('breakfast',this)">🍳 Breakfast</button>
+    <button class="main-tab" onclick="showSection('drinks',this)">☕ Drinks & Juices</button>
+    <button class="main-tab" onclick="showSection('bites',this)">🥗 Salads & Bites</button>
+    <button class="main-tab" onclick="showSection('mains',this)">🥩 Mains</button>
+    <button class="main-tab" onclick="showSection('burgers',this)">🍔 Burgers & More</button>
+    <button class="main-tab" onclick="showSection('pizza',this)">🍕 Pizza</button>
+    <button class="main-tab" onclick="showSection('family',this)">👨‍👩‍👧 Family Corner</button>
+    <button class="main-tab" onclick="showSection('desserts',this)">🍰 Desserts</button>
+    <button class="main-tab" id="bar-tab" onclick="showSection('bar',this)">🍹 Bar Menu</button>
+  </div>
+</div>
+
+<div class="menu-content">
+
+  <!-- ══ BREAKFAST ══ -->
+  <div class="menu-section active" id="sec-breakfast">
+    <div class="cat-heading">Breakfast <em>Served 7:30AM – 11:00AM</em></div>
+    <div class="items-grid">
+      <div class="item-card"><div class="item-name">American Breakfast</div><div class="item-desc">Two eggs, bacon, grilled tomato, sausage, toast, baked beans & sautéed mushrooms</div><div class="item-footer"><span class="item-price">KES 1,250</span></div></div>
+      <div class="item-card"><div class="item-name">Full Breakfast</div><div class="item-desc">Egg of choice, toast, mini fruit salad, sausage or bacon with a cup of tea or coffee & home fries</div><div class="item-footer"><span class="item-price">KES 1,150</span><span class="badge badge-new">Best value</span></div></div>
+      <div class="item-card"><div class="item-name">Power Breakfast</div><div class="item-desc">Two pancakes, bacon, sausage</div><div class="item-footer"><span class="item-price">KES 800</span></div></div>
+      <div class="item-card"><div class="item-name">Pancakes</div><div class="item-desc">Two pancakes served with maple syrup</div><div class="item-footer"><span class="item-price">KES 480</span></div></div>
+      <div class="item-card"><div class="item-name">Fruit Salad</div><div class="item-desc">Assorted tropical fruits</div><div class="item-footer"><span class="item-price">KES 500</span></div></div>
+      <div class="item-card"><div class="item-name">Nutty Fruit Salad</div><div class="item-desc">Assorted tropical fruits with yogurt, honey & nuts</div><div class="item-footer"><span class="item-price">KES 600</span></div></div>
+    </div>
+    <div class="cat-heading">Egg Dishes <em>All served with home fries & toast</em></div>
+    <div class="items-grid">
+      <div class="item-card"><div class="item-name">Egg & Toast</div><div class="item-desc">Two eggs of your choice (scrambled / boiled / fried / sunny side up / poached)</div><div class="item-footer"><span class="item-price">KES 550</span></div></div>
+      <div class="item-card"><div class="item-name">Farmer's Omelette</div><div class="item-desc">Two-egg omelette with spinach, onions & mushrooms</div><div class="item-footer"><span class="item-price">KES 600</span></div></div>
+      <div class="item-card"><div class="item-name">Spanish Omelette</div><div class="item-desc">Two-egg omelette with tomatoes, onions & coriander</div><div class="item-footer"><span class="item-price">KES 650</span></div></div>
+      <div class="item-card"><div class="item-name">Spicy Bacon Omelette</div><div class="item-desc">Two-egg omelette with bacon, onions, green chilies & cheese</div><div class="item-footer"><span class="item-price">KES 750</span></div></div>
+      <div class="item-card"><div class="item-name">B, E, S, T</div><div class="item-desc">Bacon, eggs, sausage & toast</div><div class="item-footer"><span class="item-price">KES 700</span></div></div>
+      <div class="item-card"><div class="item-name">Steak & Eggs</div><div class="item-desc">Two eggs, beef fillet steak, toast, grilled tomato, mixed peppers & onions</div><div class="item-footer"><span class="item-price">KES 950</span></div></div>
+    </div>
+    <div class="cat-heading">Extras</div>
+    <div class="items-grid">
+      <div class="item-card"><div class="item-name">Beef Sausages</div><div class="item-footer"><span class="item-price">KES 300</span></div></div>
+      <div class="item-card"><div class="item-name">Pork Sausages</div><div class="item-footer"><span class="item-price">KES 300</span></div></div>
+      <div class="item-card"><div class="item-name">Bacon</div><div class="item-footer"><span class="item-price">KES 350</span></div></div>
+      <div class="item-card"><div class="item-name">Sautéed Mushrooms</div><div class="item-footer"><span class="item-price">KES 400</span></div></div>
+      <div class="item-card"><div class="item-name">Avocado</div><div class="item-footer"><span class="item-price">KES 100</span></div></div>
+      <div class="item-card"><div class="item-name">Toast</div><div class="item-footer"><span class="item-price">KES 150</span></div></div>
+      <div class="item-card"><div class="item-name">Baked Beans</div><div class="item-footer"><span class="item-price">KES 300</span></div></div>
+      <div class="item-card"><div class="item-name">Extra Cheese</div><div class="item-footer"><span class="item-price">KES 250</span></div></div>
+      <div class="item-card"><div class="item-name">Grilled Tomato</div><div class="item-footer"><span class="item-price">KES 100</span></div></div>
+    </div>
+  </div>
+
+  <!-- ══ DRINKS & JUICES ══ -->
+  <div class="menu-section" id="sec-drinks">
+    <div class="sub-tabs">
+      <button class="sub-tab active" onclick="showSub(this,'d-coffee')">Coffee</button>
+      <button class="sub-tab" onclick="showSub(this,'d-tea')">Tea & Hot</button>
+      <button class="sub-tab" onclick="showSub(this,'d-soft')">Soft Drinks</button>
+      <button class="sub-tab" onclick="showSub(this,'d-juice')">Juices</button>
+      <button class="sub-tab" onclick="showSub(this,'d-milkshake')">Milkshakes</button>
+      <button class="sub-tab" onclick="showSub(this,'d-mocktail')">Mocktails</button>
+      <button class="sub-tab" onclick="showSub(this,'d-smoothie')">Smoothies</button>
+      <button class="sub-tab" onclick="showSub(this,'d-lemonade')">Lemonades</button>
+      <button class="sub-tab" onclick="showSub(this,'d-refresh')">Refreshments</button>
+    </div>
+
+    <div id="d-coffee">
+      <div class="cat-heading">Coffee</div>
+      <div class="price-table">
+        <table>
+          <thead><tr><th>Item</th><th>Single</th><th>Double</th></tr></thead>
+          <tbody>
+            <tr><td>Espresso</td><td>200</td><td>250</td></tr>
+            <tr><td>Cappuccino</td><td>280</td><td>300</td></tr>
+            <tr><td>Caffe Latte</td><td>280</td><td>300</td></tr>
+            <tr><td>Macchiato</td><td>250</td><td>280</td></tr>
+            <tr><td>Latte Macchiato</td><td>280</td><td>300</td></tr>
+            <tr><td>Americano</td><td>250</td><td>280</td></tr>
+            <tr><td>Mocha</td><td>280</td><td>300</td></tr>
+            <tr><td>Mocaccino</td><td>280</td><td>300</td></tr>
+            <tr><td>White Coffee</td><td>250</td><td>–</td></tr>
+            <tr><td>French Press Coffee</td><td>250</td><td>–</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="items-grid">
+        <div class="item-card"><div class="item-name">Add Syrup</div><div class="item-footer"><span class="item-price">KES 150</span></div></div>
+        <div class="item-card"><div class="item-name">Add Espresso Shot</div><div class="item-footer"><span class="item-price">KES 150</span></div></div>
+        <div class="item-card"><div class="item-name">Add Honey</div><div class="item-footer"><span class="item-price">KES 100</span></div></div>
+      </div>
+      <div class="cat-heading">Iced Coffee Drinks</div>
+      <div class="items-grid">
+        <div class="item-card"><div class="item-name">Iced Tea</div><div class="item-footer"><span class="item-price">KES 280</span></div></div>
+        <div class="item-card"><div class="item-name">Iced Tea with Fresh Juice</div><div class="item-footer"><span class="item-price">KES 350</span></div></div>
+        <div class="item-card"><div class="item-name">Iced Coffee</div><div class="item-footer"><span class="item-price">KES 300</span></div></div>
+        <div class="item-card"><div class="item-name">Iced Latte</div><div class="item-footer"><span class="item-price">KES 350</span></div></div>
+        <div class="item-card"><div class="item-name">Iced Vanilla Latte</div><div class="item-footer"><span class="item-price">KES 400</span></div></div>
+        <div class="item-card"><div class="item-name">Iced Mocha</div><div class="item-footer"><span class="item-price">KES 400</span></div></div>
+        <div class="item-card"><div class="item-name">Iced Lemon & Ginger</div><div class="item-footer"><span class="item-price">KES 450</span></div></div>
+      </div>
+    </div>
+
+    <div id="d-tea" style="display:none">
+      <div class="cat-heading">Tea & Hot Drinks</div>
+      <div class="items-grid">
+        <div class="item-card"><div class="item-name">Mixed Tea</div><div class="item-footer"><span class="item-price">KES 250</span></div></div>
+        <div class="item-card"><div class="item-name">Tea Masala / Ginger</div><div class="item-footer"><span class="item-price">KES 270</span></div></div>
+        <div class="item-card"><div class="item-name">Herbal Tea</div><div class="item-desc">Ask your server for today's selection</div><div class="item-footer"><span class="item-price">KES 300</span></div></div>
+        <div class="item-card"><div class="item-name">Hot Chocolate</div><div class="item-footer"><span class="item-price">KES 250</span></div></div>
+        <div class="item-card"><div class="item-name">Dawa</div><div class="item-footer"><span class="item-price">KES 350</span></div></div>
+      </div>
+    </div>
+
+    <div id="d-soft" style="display:none">
+      <div class="cat-heading">Soft Drinks</div>
+      <div class="price-table">
+        <table>
+          <thead><tr><th>Item</th><th>Small</th><th>Big</th></tr></thead>
+          <tbody>
+            <tr><td>Redbull</td><td>400</td><td>–</td></tr>
+            <tr><td>Sodas</td><td>150</td><td>–</td></tr>
+            <tr><td>Water Still / Sparkling</td><td>200</td><td>350</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div id="d-juice" style="display:none">
+      <div class="cat-heading">Freshly Squeezed Juices</div>
+      <div class="items-grid">
+        <div class="item-card"><div class="item-name">Passion</div><div class="item-footer"><span class="item-price">KES 450</span></div></div>
+        <div class="item-card"><div class="item-name">Mango</div><div class="item-footer"><span class="item-price">KES 450</span></div></div>
+        <div class="item-card"><div class="item-name">Tree-Tomato</div><div class="item-footer"><span class="item-price">KES 450</span></div></div>
+        <div class="item-card"><div class="item-name">Pineapple</div><div class="item-footer"><span class="item-price">KES 450</span></div></div>
+        <div class="item-card"><div class="item-name">Cocktail Juice</div><div class="item-footer"><span class="item-price">KES 450</span></div></div>
+        <div class="item-card"><div class="item-name">Orange</div><div class="item-footer"><span class="item-price">KES 550</span></div></div>
+      </div>
+    </div>
+
+    <div id="d-milkshake" style="display:none">
+      <div class="cat-heading">Milkshakes</div>
+      <div class="items-grid">
+        <div class="item-card"><div class="item-name">Classic Shakes</div><div class="item-desc">Vanilla · Strawberry · Chocolate</div><div class="item-footer"><span class="item-price">KES 500</span></div></div>
+        <div class="item-card"><div class="item-name">Blueberry Burst</div><div class="item-desc">Blueberry fruits blended with vanilla ice cream and milk</div><div class="item-footer"><span class="item-price">KES 550</span></div></div>
+        <div class="item-card"><div class="item-name">Mango Shake</div><div class="item-desc">Fresh mango juice blended with vanilla ice cream</div><div class="item-footer"><span class="item-price">KES 550</span></div></div>
+        <div class="item-card"><div class="item-name">Oreo Shake</div><div class="item-desc">Oreo biscuits blended with vanilla ice cream and milk</div><div class="item-footer"><span class="item-price">KES 550</span></div></div>
+        <div class="item-card"><div class="item-name">Choc-chip Cookie Shake</div><div class="item-desc">Chocolate-chip cookies blended with vanilla ice cream and milk</div><div class="item-footer"><span class="item-price">KES 550</span></div></div>
+        <div class="item-card"><div class="item-name">Mocha Shake</div><div class="item-desc">Coffee blended with chocolate ice cream</div><div class="item-footer"><span class="item-price">KES 550</span></div></div>
+        <div class="item-card"><div class="item-name">Mint Shake</div><div class="item-desc">Fresh mint blended with vanilla ice cream and milk</div><div class="item-footer"><span class="item-price">KES 550</span></div></div>
+        <div class="item-card"><div class="item-name">Caramel Shake</div><div class="item-desc">Caramel syrup blended with vanilla ice cream and milk</div><div class="item-footer"><span class="item-price">KES 550</span></div></div>
+        <div class="item-card"><div class="item-name">Espresso Shake</div><div class="item-desc">Espresso blended with vanilla ice cream</div><div class="item-footer"><span class="item-price">KES 550</span></div></div>
+      </div>
+    </div>
+
+    <div id="d-mocktail" style="display:none">
+      <div class="cat-heading">Mocktails <em>All KES 550 · Happy Hour prices apply</em></div>
+      <div class="items-grid">
+        <div class="item-card"><div class="item-name">Country Bistro Surprise</div><div class="item-desc">Layers of avocado, mango juice, tree tomato juice</div><div class="item-footer"><span class="item-price">KES 550</span><span class="badge badge-hh">Happy Hour</span></div></div>
+        <div class="item-card"><div class="item-name">Country Bistro Sunset</div><div class="item-desc">Passion juice, orange juice, sprite, grenadine syrup</div><div class="item-footer"><span class="item-price">KES 550</span><span class="badge badge-hh">Happy Hour</span></div></div>
+        <div class="item-card"><div class="item-name">Virgin Mojito</div><div class="item-desc">Lime juice, mint leaves, lime wedge, soda</div><div class="item-footer"><span class="item-price">KES 550</span><span class="badge badge-hh">Happy Hour</span></div></div>
+        <div class="item-card"><div class="item-name">Country Bistro Kiss</div><div class="item-desc">Berrykiss tea, lemon juice & passion juice</div><div class="item-footer"><span class="item-price">KES 550</span><span class="badge badge-hh">Happy Hour</span></div></div>
+        <div class="item-card"><div class="item-name">Rainbow Mocktail</div><div class="item-desc">Lime juice, passion juice, mint syrup, sprite</div><div class="item-footer"><span class="item-price">KES 550</span><span class="badge badge-hh">Happy Hour</span></div></div>
+      </div>
+    </div>
+
+    <div id="d-smoothie" style="display:none">
+      <div class="cat-heading">Smoothies <em>All KES 550</em></div>
+      <div class="items-grid">
+        <div class="item-card"><div class="item-name">Go Healthy</div><div class="item-desc">Beetroot, banana, peanut butter, honey, milk</div><div class="item-footer"><span class="item-price">KES 550</span></div></div>
+        <div class="item-card"><div class="item-name">Green Smoothie</div><div class="item-desc">Celery, baby spinach, mint, avocado, moringa, honey</div><div class="item-footer"><span class="item-price">KES 550</span></div></div>
+        <div class="item-card"><div class="item-name">Mango Blast</div><div class="item-desc">Frozen mango fruits blended with vanilla yogurt</div><div class="item-footer"><span class="item-price">KES 550</span></div></div>
+        <div class="item-card"><div class="item-name">Strawberry Blast</div><div class="item-desc">Frozen strawberries blended with vanilla yogurt</div><div class="item-footer"><span class="item-price">KES 550</span></div></div>
+        <div class="item-card"><div class="item-name">Tropical Mix</div><div class="item-desc">Frozen strawberries, mango and banana with vanilla yogurt</div><div class="item-footer"><span class="item-price">KES 550</span></div></div>
+        <div class="item-card"><div class="item-name">Berry Smoothie</div><div class="item-desc">Frozen blueberry fruits blended with vanilla yogurt</div><div class="item-footer"><span class="item-price">KES 550</span></div></div>
+        <div class="item-card"><div class="item-name">Banana Smoothie</div><div class="item-desc">Frozen banana blended with vanilla yogurt</div><div class="item-footer"><span class="item-price">KES 550</span></div></div>
+        <div class="item-card"><div class="item-name">Pineapple Smoothie</div><div class="item-desc">Frozen pineapple blended with vanilla yogurt</div><div class="item-footer"><span class="item-price">KES 550</span></div></div>
+      </div>
+    </div>
+
+    <div id="d-lemonade" style="display:none">
+      <div class="cat-heading">Lemonades <em>All KES 450</em></div>
+      <div class="items-grid">
+        <div class="item-card"><div class="item-name">Classic Lemonade</div><div class="item-desc">Lime juice, sugar syrup, sprite, ice</div><div class="item-footer"><span class="item-price">KES 450</span></div></div>
+        <div class="item-card"><div class="item-name">Strawberry Lemonade</div><div class="item-desc">Strawberry blended with lime juice, sugar syrup, sprite, ice</div><div class="item-footer"><span class="item-price">KES 450</span></div></div>
+        <div class="item-card"><div class="item-name">Pineapple Lemonade</div><div class="item-desc">Pineapple blended with lime juice, sugar syrup, tonic, ice</div><div class="item-footer"><span class="item-price">KES 450</span></div></div>
+        <div class="item-card"><div class="item-name">Bistro Berry Lemonade</div><div class="item-desc">Lime juice, berry puree, a touch of honey, tonic, ice</div><div class="item-footer"><span class="item-price">KES 450</span></div></div>
+      </div>
+    </div>
+
+    <div id="d-refresh" style="display:none">
+      <div class="cat-heading">Bistro Refreshments <em>All KES 500</em></div>
+      <div class="items-grid">
+        <div class="item-card"><div class="item-name">Minty Pineapple</div><div class="item-desc">Orange juice, pineapple juice, ice blended with fresh mint leaves</div><div class="item-footer"><span class="item-price">KES 500</span></div></div>
+        <div class="item-card"><div class="item-name">Bistro Haze Delight</div><div class="item-desc">Layers of yogurt, ribena and espresso</div><div class="item-footer"><span class="item-price">KES 500</span></div></div>
+        <div class="item-card"><div class="item-name">Tropical Punch</div><div class="item-desc">Orange juice, grenadine syrup, sugar syrup, sprite</div><div class="item-footer"><span class="item-price">KES 500</span></div></div>
+        <div class="item-card"><div class="item-name">Country Bistro Spritz</div><div class="item-desc">Lime juice, sugar syrup, tropical fruits, grenadine syrup, sprite</div><div class="item-footer"><span class="item-price">KES 500</span></div></div>
+        <div class="item-card"><div class="item-name">Mango Tango Spritz</div><div class="item-desc">Layers of mango, beetroot blended with ginger</div><div class="item-footer"><span class="item-price">KES 500</span></div></div>
+        <div class="item-card"><div class="item-name">Passion Twist</div><div class="item-desc">Passion seeds mixed with tonic, mango juice and passion juice</div><div class="item-footer"><span class="item-price">KES 500</span></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SALADS & BITES ══ -->
+  <div class="menu-section" id="sec-bites">
+    <div class="cat-heading">Salads</div>
+    <div class="items-grid">
+      <div class="item-card"><div class="item-name">Rancher's Cobb Salad</div><div class="item-desc">Tender chicken strips, crispy bacon, avocado, boiled egg, cheddar cheese & cherry tomatoes with zesty lime vinaigrette</div><div class="item-footer"><span class="item-price">KES 1,300</span></div></div>
+      <div class="item-card"><div class="item-name">Thai Beef Salad</div><div class="item-desc">Mixed lettuce, grilled beef fillet strips, red cabbage, fresh mint, cucumber, cherry tomato, mixed peppers, sesame seeds, nuts with thai dressing</div><div class="item-footer"><span class="item-price">KES 1,250</span></div></div>
+      <div class="item-card"><div class="item-name">Seared Honey & Soy Chicken Salad</div><div class="item-desc">Grilled chicken in honey & soy, served on lettuce with cherry tomatoes, sweet corn & avocado</div><div class="item-footer"><span class="item-price">KES 1,100</span></div></div>
+      <div class="item-card"><div class="item-name">Country Bistro Health Salad</div><div class="item-desc">Mixed lettuce, beetroot, pickles, avocado with lime vinaigrette dressing</div><div class="item-footer"><span class="item-price">KES 800</span></div></div>
+      <div class="item-card"><div class="item-name">Tabbouleh Salad</div><div class="item-desc">Mixed lettuce, couscous, fresh mint, parsley, nuts, beetroot with lime vinaigrette</div><div class="item-footer"><span class="item-price">KES 750</span></div></div>
+      <div class="item-card"><div class="item-name">Fresh Garden Salad</div><div class="item-desc">Mixed lettuce, cherry tomato, mixed peppers, pickles with lime vinaigrette dressing</div><div class="item-footer"><span class="item-price">KES 700</span></div></div>
+    </div>
+    <div class="cat-heading">Soups</div>
+    <div class="items-grid">
+      <div class="item-card"><div class="item-name">Country Chicken Soup</div><div class="item-desc">Chicken chunks in chicken broth with mixed vegetables</div><div class="item-footer"><span class="item-price">KES 600</span></div></div>
+      <div class="item-card"><div class="item-name">Cream of Vegetable Soup</div><div class="item-desc">Organic vegetables in vegetable stock</div><div class="item-footer"><span class="item-price">KES 500</span></div></div>
+    </div>
+    <div class="cat-heading">Bits & Bites</div>
+    <div class="items-grid">
+      <div class="item-card"><div class="item-name">Mozzarella Sticks</div><div class="item-footer"><span class="item-price">KES 450</span></div></div>
+      <div class="item-card"><div class="item-name">Chips Masala</div><div class="item-footer"><span class="item-price">KES 450</span></div></div>
+      <div class="item-card"><div class="item-name">Bacon Loaded Fries</div><div class="item-footer"><span class="item-price">KES 500</span></div></div>
+      <div class="item-card"><div class="item-name">Cheesy Chips</div><div class="item-footer"><span class="item-price">KES 400</span></div></div>
+      <div class="item-card"><div class="item-name">Plantains</div><div class="item-footer"><span class="item-price">KES 400</span></div></div>
+      <div class="item-card"><div class="item-name">Sautéed Potatoes</div><div class="item-footer"><span class="item-price">KES 400</span></div></div>
+      <div class="item-card"><div class="item-name">Garlic Fries</div><div class="item-footer"><span class="item-price">KES 300</span></div></div>
+      <div class="item-card"><div class="item-name">Zucchini Fries</div><div class="item-footer"><span class="item-price">KES 350</span></div></div>
+      <div class="item-card"><div class="item-name">Chips</div><div class="item-footer"><span class="item-price">KES 250</span></div></div>
+      <div class="item-card"><div class="item-name">Beef Samosa</div><div class="item-footer"><span class="item-price">KES 400</span></div></div>
+      <div class="item-card"><div class="item-name">Chicken Samosa</div><div class="item-footer"><span class="item-price">KES 400</span></div></div>
+    </div>
+    <div class="cat-heading">Small Dishes</div>
+    <div class="items-grid">
+      <div class="item-card"><div class="item-name">Chicken Tikka Skewers</div><div class="item-desc">Succulent chicken cubes marinated in tikka sauce with bell peppers & onions</div><div class="item-footer"><span class="item-price">KES 650</span></div></div>
+      <div class="item-card"><div class="item-name">Fish Fingers</div><div class="item-desc">Deep fried bread crumbed fish fillet strips</div><div class="item-footer"><span class="item-price">KES 650</span></div></div>
+      <div class="item-card"><div class="item-name">Crispy Chicken Strips</div><div class="item-desc">Deep fried bread crumbed chicken strips</div><div class="item-footer"><span class="item-price">KES 550</span></div></div>
+      <div class="item-card"><div class="item-name">Chicken Wings</div><div class="item-desc">Choice of BBQ sauce or sticky ginger</div><div class="item-footer"><span class="item-price">6pc KES 700 / 12pc KES 1,100</span></div></div>
+      <div class="item-card"><div class="item-name">Burrito</div><div class="item-desc">Beef choma sausage, bacon, peppers & cheddar cheese</div><div class="item-footer"><span class="item-price">KES 900</span></div></div>
+      <div class="item-card"><div class="item-name">Beef or Chicken Tacos</div><div class="item-desc">Tortilla wraps topped with juicy beef or chicken flakes, feta cheese & house salsa</div><div class="item-footer"><span class="item-price">KES 650</span></div></div>
+      <div class="item-card"><div class="item-name">Gourmet Hot Dog</div><div class="item-desc">Beef choma sausage with lettuce, salsa, caramelized onions in a bread roll with fries</div><div class="item-footer"><span class="item-price">KES 650</span></div></div>
+    </div>
+  </div>
+
+  <!-- ══ MAINS ══ -->
+  <div class="menu-section" id="sec-mains">
+    <p class="section-intro">All mains served with two sides of your choice: hand-cut fries, ugali, steamed vegetables, mashed potatoes, roast potatoes, coconut rice, vegetable rice, spinach or kachumbari</p>
+    <div class="sub-tabs">
+      <button class="sub-tab active" onclick="showSub(this,'m-beef')">Beef</button>
+      <button class="sub-tab" onclick="showSub(this,'m-chicken')">Chicken</button>
+      <button class="sub-tab" onclick="showSub(this,'m-fish')">Fish</button>
+      <button class="sub-tab" onclick="showSub(this,'m-goat')">Goat & Lamb</button>
+      <button class="sub-tab" onclick="showSub(this,'m-pork')">Pork</button>
+      <button class="sub-tab" onclick="showSub(this,'m-curry')">Curries</button>
+      <button class="sub-tab" onclick="showSub(this,'m-pasta')">Pasta</button>
+      <button class="sub-tab" onclick="showSub(this,'m-veg')">Vegetarian</button>
+    </div>
+    <div id="m-beef">
+      <div class="cat-heading">Beef</div>
+      <div class="items-grid">
+        <div class="item-card"><div class="item-name">Dry Aged T-Bone Steak</div><div class="item-desc">Prime t-bone grilled, mushroom or pepper sauce</div><div class="item-footer"><span class="item-price">KES 2,200</span></div></div>
+        <div class="item-card"><div class="item-name">Rib-Eye Steak</div><div class="item-desc">Grilled house rib-eye with mushroom or pepper sauce</div><div class="item-footer"><span class="item-price">KES 1,900</span></div></div>
+        <div class="item-card"><div class="item-name">Fillet Steak</div><div class="item-desc">Grilled prime beef fillet with pepper or mushroom sauce</div><div class="item-footer"><span class="item-price">KES 1,600</span></div></div>
+        <div class="item-card"><div class="item-name">Braised Beef Ribs</div><div class="item-desc">Slow-cooked short ribs in beef gravy</div><div class="item-footer"><span class="item-price">KES 1,250</span></div></div>
+        <div class="item-card"><div class="item-name">Beef Pepper Steak</div><div class="item-desc">Ask your server for availability</div><div class="item-footer"><span class="item-price">Available</span></div></div>
+        <div class="item-card"><div class="item-name">Mushroom Beef Steak</div><div class="item-desc">Ask your server for availability</div><div class="item-footer"><span class="item-price">Available</span></div></div>
+      </div>
+    </div>
+    <div id="m-chicken" style="display:none">
+      <div class="cat-heading">Chicken</div>
+      <div class="items-grid">
+        <div class="item-card"><div class="item-name">Grilled Chicken Breast</div><div class="item-desc">Chicken breast with tomato butter sauce</div><div class="item-footer"><span class="item-price">KES 1,550</span></div></div>
+        <div class="item-card"><div class="item-name">Mushroom Chicken Breast</div><div class="item-desc">Grilled chicken breast with mushroom sauce & parmesan cheese</div><div class="item-footer"><span class="item-price">KES 1,600</span></div></div>
+        <div class="item-card"><div class="item-name">Kienyeji Chicken</div><div class="item-desc">Sizzling wet-fried kienyeji chicken</div><div class="item-footer"><span class="item-price">KES 1,900</span><span class="badge badge-new">Popular</span></div></div>
+        <div class="item-card"><div class="item-name">Peri Peri Chicken</div><div class="item-desc">Grilled spicy chicken breast (peri peri) with house sauce</div><div class="item-footer"><span class="item-price">KES 1,500</span></div></div>
+        <div class="item-card"><div class="item-name">Roast Chicken</div><div class="item-desc">Slow-roasted chicken</div><div class="item-footer"><span class="item-price">KES 1,400</span></div></div>
+        <div class="item-card"><div class="item-name">Chicken Milanese</div><div class="item-desc">Deep-fried chicken breast in lemon-parsley crumbs</div><div class="item-footer"><span class="item-price">KES 1,400</span></div></div>
+      </div>
+    </div>
+    <div id="m-fish" style="display:none">
+      <div class="cat-heading">Fish</div>
+      <div class="items-grid">
+        <div class="item-card"><div class="item-name">Fish Fillet</div><div class="item-desc">Pan-seared fish fillet</div><div class="item-footer"><span class="item-price">KES 1,500</span></div></div>
+        <div class="item-card"><div class="item-name">Whole Tilapia (Dry/Wet)</div><div class="item-desc">Deep-fried to perfection (dry) or in a succulent wet rendition</div><div class="item-footer"><span class="item-price">KES 1,600</span></div></div>
+        <div class="item-card"><div class="item-name">Onion-Crusted Tilapia Fillet</div><div class="item-desc">Crispy tilapia fillet, onion-crusted, served on pea puree with sweet corn & lemon</div><div class="item-footer"><span class="item-price">KES 1,450</span></div></div>
+        <div class="item-card"><div class="item-name">Fried Fish & Chips</div><div class="item-desc">Deep-fried breaded fish fillet served with fries</div><div class="item-footer"><span class="item-price">KES 1,400</span></div></div>
+      </div>
+    </div>
+    <div id="m-goat" style="display:none">
+      <div class="cat-heading">Goat & Lamb</div>
+      <div class="items-grid">
+        <div class="item-card"><div class="item-name">Goat Wet Fry / Dry Fry</div><div class="item-desc">Goat meat pan-fried with green peppers & onions</div><div class="item-footer"><span class="item-price">KES 1,450</span></div></div>
+        <div class="item-card"><div class="item-name">Lamb Chops</div><div class="item-desc">Grilled lamb chops with pepper or mushroom sauce</div><div class="item-footer"><span class="item-price">KES 1,600</span></div></div>
+        <div class="item-card"><div class="item-name">Lamb Leg</div><div class="item-desc">Roasted lamb leg in lamb gravy</div><div class="item-footer"><span class="item-price">KES 1,550</span></div></div>
+      </div>
+    </div>
+    <div id="m-pork" style="display:none">
+      <div class="cat-heading">Pork</div>
+      <div class="items-grid">
+        <div class="item-card"><div class="item-name">Pork Chops (Sweet)</div><div class="item-desc">Pork chops glazed with honey mustard sauce</div><div class="item-footer"><span class="item-price">KES 1,600</span></div></div>
+        <div class="item-card"><div class="item-name">Pork Ribs</div><div class="item-desc">Pork ribs glazed in barbeque sauce</div><div class="item-footer"><span class="item-price">KES 1,550</span></div></div>
+      </div>
+    </div>
+    <div id="m-curry" style="display:none">
+      <div class="cat-heading">Curries</div>
+      <div class="items-grid">
+        <div class="item-card"><div class="item-name">Lamb Curry</div><div class="item-desc">Boneless lamb cubes simmered in curry sauce</div><div class="item-footer"><span class="item-price">KES 1,500</span></div></div>
+        <div class="item-card"><div class="item-name">Goat Curry</div><div class="item-desc">Goat meat cubes simmered in curry sauce</div><div class="item-footer"><span class="item-price">KES 1,450</span></div></div>
+        <div class="item-card"><div class="item-name">Swahili Fish Curry</div><div class="item-desc">Fish fillet cubes simmered in coconut curry sauce</div><div class="item-footer"><span class="item-price">KES 1,550</span></div></div>
+        <div class="item-card"><div class="item-name">Classic Chicken Curry</div><div class="item-desc">Boneless chicken cubes simmered in curry sauce</div><div class="item-footer"><span class="item-price">KES 1,500</span></div></div>
+        <div class="item-card"><div class="item-name">Thai Chicken Curry</div><div class="item-desc">Boneless chicken strips simmered in spicy coconut sauce</div><div class="item-footer"><span class="item-price">KES 1,600</span></div></div>
+      </div>
+    </div>
+    <div id="m-pasta" style="display:none">
+      <div class="cat-heading">Pasta</div>
+      <div class="items-grid">
+        <div class="item-card"><div class="item-name">Beef Lasagna</div><div class="item-desc">Layers of beef ragu, mozzarella & parmesan</div><div class="item-footer"><span class="item-price">KES 1,400</span></div></div>
+        <div class="item-card"><div class="item-name">Penne Rusticana</div><div class="item-desc">Pasta in a pink sauce with roasted pepper, bacon & chicken</div><div class="item-footer"><span class="item-price">KES 1,250</span></div></div>
+        <div class="item-card"><div class="item-name">Spaghetti Bolognese</div><div class="item-desc">Spaghetti with beef ragu & parmesan cheese</div><div class="item-footer"><span class="item-price">KES 1,300</span></div></div>
+        <div class="item-card"><div class="item-name">Chicken Spaghetti</div><div class="item-desc">Spaghetti with chicken in white sauce & parmesan cheese</div><div class="item-footer"><span class="item-price">KES 1,150</span></div></div>
+        <div class="item-card"><div class="item-name">Pasta Carbonara</div><div class="item-desc">Pasta with crispy bacon in creamy sauce</div><div class="item-footer"><span class="item-price">KES 1,100</span></div></div>
+      </div>
+    </div>
+    <div id="m-veg" style="display:none">
+      <div class="cat-heading">Vegetarian</div>
+      <div class="items-grid">
+        <div class="item-card"><div class="item-name">Vegetable Stir Fry</div><div class="item-desc">Sautéed mixed vegetables served with plain rice & kachumbari</div><div class="item-footer"><span class="item-price">KES 1,000</span></div></div>
+        <div class="item-card"><div class="item-name">Vegetable Curry</div><div class="item-desc">Mixed vegetables cooked in coconut curry sauce served with plain rice & kachumbari</div><div class="item-footer"><span class="item-price">KES 1,100</span></div></div>
+      </div>
+    </div>
+    <div class="cat-heading" style="margin-top:2rem">Sides & Sauces</div>
+    <div class="items-grid">
+      <div class="item-card"><div class="item-name">Mushroom Sauce</div><div class="item-footer"><span class="item-price">KES 250</span></div></div>
+      <div class="item-card"><div class="item-name">Pepper Sauce</div><div class="item-footer"><span class="item-price">KES 200</span></div></div>
+      <div class="item-card"><div class="item-name">BBQ Sauce</div><div class="item-footer"><span class="item-price">KES 200</span></div></div>
+      <div class="item-card"><div class="item-name">Creamed Spinach</div><div class="item-footer"><span class="item-price">KES 300</span></div></div>
+      <div class="item-card"><div class="item-name">Seasonal Vegetables</div><div class="item-footer"><span class="item-price">KES 350</span></div></div>
+      <div class="item-card"><div class="item-name">Vegetable Rice</div><div class="item-footer"><span class="item-price">KES 300</span></div></div>
+      <div class="item-card"><div class="item-name">Coconut Rice</div><div class="item-footer"><span class="item-price">KES 250</span></div></div>
+      <div class="item-card"><div class="item-name">Ugali</div><div class="item-footer"><span class="item-price">KES 250</span></div></div>
+      <div class="item-card"><div class="item-name">Mashed Potatoes</div><div class="item-footer"><span class="item-price">KES 250</span></div></div>
+      <div class="item-card"><div class="item-name">Roast Potatoes</div><div class="item-footer"><span class="item-price">KES 300</span></div></div>
+      <div class="item-card"><div class="item-name">Kachumbari</div><div class="item-footer"><span class="item-price">KES 200</span></div></div>
+      <div class="item-card"><div class="item-name">Plain Rice</div><div class="item-footer"><span class="item-price">KES 250</span></div></div>
+    </div>
+  </div>
+
+  <!-- ══ BURGERS ══ -->
+  <div class="menu-section" id="sec-burgers">
+    <p class="section-intro">All burgers served with a side of fries</p>
+    <div class="cat-heading">Burgers</div>
+    <div class="items-grid">
+      <div class="item-card"><div class="item-name">Country Style Cheese Burger</div><div class="item-desc">Beef patty, cheddar cheese, fried egg, bacon, onion rings, tomatoes & lettuce</div><div class="item-footer"><span class="item-price">KES 1,450</span><span class="badge badge-new">★ Fan favourite</span></div></div>
+      <div class="item-card"><div class="item-name">Bacon Cheese Burger</div><div class="item-desc">Beef patty, cheddar cheese, bacon, onion rings, tomatoes & lettuce</div><div class="item-footer"><span class="item-price">KES 1,400</span></div></div>
+      <div class="item-card"><div class="item-name">Crispy Chicken Burger</div><div class="item-desc">Bread crumbed chicken, avocado, tomatoes, lettuce & onion rings</div><div class="item-footer"><span class="item-price">KES 1,150</span></div></div>
+      <div class="item-card"><div class="item-name">Grilled PeriPeri Chicken Burger</div><div class="item-desc">Grilled spicy chicken breast, red cabbage and apple coleslaw</div><div class="item-footer"><span class="item-price">KES 1,200</span></div></div>
+      <div class="item-card"><div class="item-name">Grilled Chicken Burger</div><div class="item-desc">Chicken patty, onion rings, tomatoes & lettuce</div><div class="item-footer"><span class="item-price">KES 1,050</span></div></div>
+      <div class="item-card"><div class="item-name">Beef Burger</div><div class="item-desc">Beef patty, onion rings, tomatoes & lettuce</div><div class="item-footer"><span class="item-price">KES 1,000</span></div></div>
+      <div class="item-card"><div class="item-name">Veggie Burger</div><div class="item-desc">Mashed potatoes & vegetable rice grilled patty, onion rings, tomatoes & lettuce</div><div class="item-footer"><span class="item-price">KES 800</span></div></div>
+    </div>
+    <div class="cat-heading">Sandwiches & Wraps</div>
+    <div class="items-grid">
+      <div class="item-card"><div class="item-name">Bistro Club Sandwich</div><div class="item-desc">Triple-decker with fried egg, cheese, bacon, chicken, lettuce, tomatoes & onion rings</div><div class="item-footer"><span class="item-price">KES 1,250</span></div></div>
+      <div class="item-card"><div class="item-name">Bacon Cheese & Tomato Sandwich</div><div class="item-desc">Bacon, cheese, lettuce, tomato & onion rings</div><div class="item-footer"><span class="item-price">KES 1,100</span></div></div>
+      <div class="item-card"><div class="item-name">Chicken & Cheese Sandwich</div><div class="item-desc">Grilled chicken breast with cheese, onion rings and tomatoes</div><div class="item-footer"><span class="item-price">KES 1,050</span></div></div>
+      <div class="item-card"><div class="item-name">Cheese Tomato Sandwich</div><div class="item-desc">Tomatoes, cheese, onion rings & lettuce</div><div class="item-footer"><span class="item-price">KES 850</span></div></div>
+      <div class="item-card"><div class="item-name">Chicken Wrap</div><div class="item-desc">Grilled chicken strips, onions, tomatoes, lettuce & cheddar cheese</div><div class="item-footer"><span class="item-price">KES 900</span></div></div>
+      <div class="item-card"><div class="item-name">Fish Wrap</div><div class="item-desc">Buttered deep-fried fish strips, onions, tomatoes, pickles & lettuce</div><div class="item-footer"><span class="item-price">KES 850</span></div></div>
+      <div class="item-card"><div class="item-name">Veggie Wrap</div><div class="item-desc">Sweet peppers, lettuce, onions & feta cheese</div><div class="item-footer"><span class="item-price">KES 650</span></div></div>
+    </div>
+    <div class="cat-heading">Burger Extras</div>
+    <div class="items-grid">
+      <div class="item-card"><div class="item-name">Beef Patty</div><div class="item-footer"><span class="item-price">KES 250</span></div></div>
+      <div class="item-card"><div class="item-name">Chicken Patty</div><div class="item-footer"><span class="item-price">KES 250</span></div></div>
+      <div class="item-card"><div class="item-name">Cheddar Cheese</div><div class="item-footer"><span class="item-price">KES 250</span></div></div>
+      <div class="item-card"><div class="item-name">Bacon</div><div class="item-footer"><span class="item-price">KES 350</span></div></div>
+      <div class="item-card"><div class="item-name">Tempura Onion Rings</div><div class="item-footer"><span class="item-price">KES 300</span></div></div>
+      <div class="item-card"><div class="item-name">Avocado</div><div class="item-footer"><span class="item-price">KES 100</span></div></div>
+      <div class="item-card"><div class="item-name">Caramelized Onions</div><div class="item-footer"><span class="item-price">KES 150</span></div></div>
+      <div class="item-card"><div class="item-name">Burger Bun</div><div class="item-footer"><span class="item-price">KES 150</span></div></div>
+    </div>
+  </div>
+
+  <!-- ══ PIZZA ══ -->
+  <div class="menu-section" id="sec-pizza">
+    <div class="cat-heading">Pizzas <em>Available Medium & Large</em></div>
+    <div class="items-grid">
+      <div class="item-card"><div class="item-name">Pizza Meat Deluxe</div><div class="item-desc">Minced meat, chicken, bacon, green pepper, mozzarella & tomato sauce</div><div class="item-footer"><span class="item-price">Med KES 1,250 / Lg KES 1,450</span></div></div>
+      <div class="item-card"><div class="item-name">Country Style Pizza</div><div class="item-desc">Minced meat, chicken, sweetcorn, baby spinach, sweet peppers, mozzarella & tomato sauce</div><div class="item-footer"><span class="item-price">Med KES 1,250 / Lg KES 1,450</span><span class="badge badge-new">Signature</span></div></div>
+      <div class="item-card"><div class="item-name">Hawaiian Pizza</div><div class="item-desc">Tomato sauce, mozzarella, crispy bacon, cooked ham & roasted pineapple</div><div class="item-footer"><span class="item-price">Med KES 1,100 / Lg KES 1,300</span></div></div>
+      <div class="item-card"><div class="item-name">Four Cheese Pizza</div><div class="item-desc">Tomato sauce, mozzarella, cheddar, feta & parmesan cheese</div><div class="item-footer"><span class="item-price">Med KES 1,050 / Lg KES 1,250</span></div></div>
+      <div class="item-card"><div class="item-name">Chicken / Beef Diablo</div><div class="item-desc">Tomato sauce, mozzarella, chicken or beef in spicy buffalo sauce, red onions & coriander</div><div class="item-footer"><span class="item-price">Med KES 1,000 / Lg KES 1,200</span></div></div>
+      <div class="item-card"><div class="item-name">Beef / Chicken Mushroom Pizza</div><div class="item-desc">Chicken or beef, mushrooms, tomato sauce, mozzarella, red onions & coriander</div><div class="item-footer"><span class="item-price">Med KES 1,000 / Lg KES 1,200</span></div></div>
+      <div class="item-card"><div class="item-name">Pizza Polo</div><div class="item-desc">Tomato sauce, chicken in BBQ sauce & mozzarella</div><div class="item-footer"><span class="item-price">Med KES 950 / Lg KES 1,150</span></div></div>
+      <div class="item-card"><div class="item-name">Pizza Margherita</div><div class="item-desc">Tomato sauce, mozzarella & basil</div><div class="item-footer"><span class="item-price">Med KES 900 / Lg KES 1,200</span></div></div>
+      <div class="item-card"><div class="item-name">Bistro Pepperoni Pizza</div><div class="item-desc">Beef choma sausage (mild spicy), tomato sauce & mozzarella</div><div class="item-footer"><span class="item-price">Med KES 750 / Lg KES 950</span></div></div>
+      <div class="item-card"><div class="item-name">Ham & Mushroom Pizza</div><div class="item-desc">Ham, mushrooms, mozzarella, tomato sauce & thyme</div><div class="item-footer"><span class="item-price">Med KES 800 / Lg KES 1,000</span></div></div>
+    </div>
+  </div>
+
+  <!-- ══ FAMILY CORNER ══ -->
+  <div class="menu-section" id="sec-family">
+    <div class="cat-heading">Family Corner <em>Perfect for groups & families</em></div>
+    <div class="bundle-card">
+      <div><div class="bundle-name">Mixed Platter for Three</div><div class="bundle-desc">Fillet steak, pork ribs, chicken wings in BBQ sauce, chicken breast & sausages served with three sides of choice</div></div>
+      <div><div class="bundle-price">KES 4,500</div><span class="badge badge-bundle">Bundle</span></div>
+    </div>
+    <div class="bundle-card">
+      <div><div class="bundle-name">Roast Platter</div><div class="bundle-desc">Roast chicken & lamb leg in gravy served with two accompaniments of choice</div></div>
+      <div><div class="bundle-price">KES 2,800</div><span class="badge badge-bundle">Bundle</span></div>
+    </div>
+    <div class="bundle-card">
+      <div><div class="bundle-name">Bistro Special Platter</div><div class="bundle-desc">Grilled lamb chops and roast chicken served with two sides of choice</div></div>
+      <div><div class="bundle-price">KES 2,800</div><span class="badge badge-bundle">Bundle</span></div>
+    </div>
+    <div class="bundle-card">
+      <div><div class="bundle-name">Mbuzi Choma</div><div class="bundle-desc">Mbuzi choma with sautéed onions & chilli served with two sides of choice</div></div>
+      <div><div class="bundle-price">KES 2,700</div><span class="badge badge-bundle">Bundle</span></div>
+    </div>
+    <div class="bundle-card">
+      <div><div class="bundle-name">Full Kienyeji Chicken</div><div class="bundle-desc">Full sizzling wet-fried kienyeji chicken served with three accompaniments of choice</div></div>
+      <div><div class="bundle-price">KES 3,800</div><span class="badge badge-bundle">Bundle</span></div>
+    </div>
+    <div class="cat-heading" style="margin-top:2.5rem">Kids Corner <em>Exclusively for our little guests</em></div>
+    <div class="kids-grid">
+      <div>
+        <div class="cat-heading" style="font-size:1.1rem;margin-top:0.5rem">Kids Meals</div>
+        <div class="items-grid">
+          <div class="item-card"><div class="item-name">Chicken Nuggets</div><div class="item-footer"><span class="item-price">KES 600</span></div></div>
+          <div class="item-card"><div class="item-name">Chicken Spaghetti</div><div class="item-desc">With cream sauce</div><div class="item-footer"><span class="item-price">KES 700</span></div></div>
+          <div class="item-card"><div class="item-name">Sausage and Chips</div><div class="item-footer"><span class="item-price">KES 500</span></div></div>
+          <div class="item-card"><div class="item-name">Kids Pizza</div><div class="item-desc">Sauce, cheese & chicken or beef</div><div class="item-footer"><span class="item-price">KES 650</span></div></div>
+          <div class="item-card"><div class="item-name">Spaghetti Bolognese</div><div class="item-footer"><span class="item-price">KES 650</span></div></div>
+          <div class="item-card"><div class="item-name">Spaghetti Meatballs</div><div class="item-footer"><span class="item-price">KES 650</span></div></div>
+        </div>
+      </div>
+      <div>
+        <div class="cat-heading" style="font-size:1.1rem;margin-top:0.5rem">Kids Drinks</div>
+        <div class="items-grid">
+          <div class="item-card"><div class="item-name">Double Dish Ice Cream</div><div class="item-footer"><span class="item-price">KES 400</span></div></div>
+          <div class="item-card"><div class="item-name">Strawberry Smoothie</div><div class="item-footer"><span class="item-price">KES 400</span></div></div>
+          <div class="item-card"><div class="item-name">Mango Smoothie</div><div class="item-footer"><span class="item-price">KES 400</span></div></div>
+          <div class="item-card"><div class="item-name">Country Bistro Spritz</div><div class="item-footer"><span class="item-price">KES 400</span></div></div>
+          <div class="item-card"><div class="item-name">Tropical Smoothie</div><div class="item-footer"><span class="item-price">KES 400</span></div></div>
+          <div class="item-card"><div class="item-name">Kiddy Juices</div><div class="item-footer"><span class="item-price">KES 300</span></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ DESSERTS ══ -->
+  <div class="menu-section" id="sec-desserts">
+    <div class="cat-heading">Desserts</div>
+    <div class="items-grid">
+      <div class="item-card"><div class="item-name">Brownie Delight</div><div class="item-footer"><span class="item-price">KES 400</span></div></div>
+      <div class="item-card"><div class="item-name">Double-Dish Ice Cream</div><div class="item-footer"><span class="item-price">KES 400</span></div></div>
+      <div class="item-card"><div class="item-name">Nutty Fruit Salad</div><div class="item-desc">Assorted tropical fruits with yogurt, honey & nuts</div><div class="item-footer"><span class="item-price">KES 600</span></div></div>
+      <div class="item-card"><div class="item-name">Fruit Salad</div><div class="item-footer"><span class="item-price">KES 500</span></div></div>
+      <div class="item-card"><div class="item-name">Cake of the Day</div><div class="item-footer"><span class="item-price">KES 400</span></div></div>
+      <div class="item-card"><div class="item-name">Chocolate Brownie</div><div class="item-footer"><span class="item-price">KES 250</span></div></div>
+      <div class="item-card"><div class="item-name">Marble Cake Slice</div><div class="item-footer"><span class="item-price">KES 200</span></div></div>
+      <div class="item-card"><div class="item-name">Choc-chip Cookies</div><div class="item-footer"><span class="item-price">KES 250</span></div></div>
+      <div class="item-card"><div class="item-name">Vanilla Cookies</div><div class="item-footer"><span class="item-price">KES 200</span></div></div>
+      <div class="item-card"><div class="item-name">Muffins</div><div class="item-footer"><span class="item-price">KES 150</span></div></div>
+    </div>
+  </div>
+
+  <!-- ══ BAR MENU ══ -->
+  <div class="menu-section" id="sec-bar">
+    <div class="sub-tabs">
+      <button class="sub-tab active" onclick="showSub(this,'b-cocktail')">Cocktails</button>
+      <button class="sub-tab" onclick="showSub(this,'b-whisky')">Whisky & Cognac</button>
+      <button class="sub-tab" onclick="showSub(this,'b-gin')">Gin & Vodka</button>
+      <button class="sub-tab" onclick="showSub(this,'b-rum')">Rum & Tequila</button>
+      <button class="sub-tab" onclick="showSub(this,'b-beer')">Beer & Cider</button>
+      <button class="sub-tab" onclick="showSub(this,'b-wine')">Wines</button>
+      <button class="sub-tab" onclick="showSub(this,'b-bubbly')">Bubbles</button>
+    </div>
+
+    <div id="b-cocktail">
+      <div class="cat-heading">Cocktails <em>Happy Hour 3PM–7PM daily</em></div>
+      <div class="items-grid">
+        <div class="item-card"><div class="item-name">Long Island Iced Tea</div><div class="item-desc">Vodka, gin, tequila, rum, triple sec, lime juice, lime wedges, coke</div><div class="item-footer"><span class="item-price">KES 1,100</span><span class="badge badge-hh">Happy Hour</span></div></div>
+        <div class="item-card"><div class="item-name">Blue Long Island</div><div class="item-desc">Vodka, gin, tequila, rum, blue curacao, lime juice, sprite</div><div class="item-footer"><span class="item-price">KES 1,100</span><span class="badge badge-hh">Happy Hour</span></div></div>
+        <div class="item-card"><div class="item-name">Purple Long Island</div><div class="item-desc">Vodka, gin, tequila, rum, blue curacao, triple sec, lemon slices, sprite</div><div class="item-footer"><span class="item-price">KES 1,100</span><span class="badge badge-hh">Happy Hour</span></div></div>
+        <div class="item-card"><div class="item-name">Red Sangria</div><div class="item-desc">Brandy, fruits, red wine, sprite</div><div class="item-footer"><span class="item-price">KES 1,100</span><span class="badge badge-hh">Happy Hour</span></div></div>
+        <div class="item-card"><div class="item-name">White Sangria</div><div class="item-desc">Clear tequila, fruits, white wine, sprite</div><div class="item-footer"><span class="item-price">KES 1,100</span><span class="badge badge-hh">Happy Hour</span></div></div>
+        <div class="item-card"><div class="item-name">Crazy Sangria</div><div class="item-desc">Brandy, red wine, Martini Rosso, fruit, cinnamon stick, soda</div><div class="item-footer"><span class="item-price">KES 1,100</span></div></div>
+        <div class="item-card"><div class="item-name">Mimosa</div><div class="item-desc">Orange juice, sparkling wine</div><div class="item-footer"><span class="item-price">KES 1,000</span></div></div>
+        <div class="item-card"><div class="item-name">Light Me Up</div><div class="item-desc">Vodka, malibu, blue curacao, pineapple juice, sugar syrup, lime juice</div><div class="item-footer"><span class="item-price">KES 1,000</span></div></div>
+        <div class="item-card"><div class="item-name">Whisky Sour</div><div class="item-desc">Whisky, lemon juice, orange juice</div><div class="item-footer"><span class="item-price">KES 900</span><span class="badge badge-hh">Happy Hour</span></div></div>
+        <div class="item-card"><div class="item-name">Mojito</div><div class="item-desc">Rum, lime juice, mint leaves, lime wedges, soda</div><div class="item-footer"><span class="item-price">KES 900</span><span class="badge badge-hh">Happy Hour</span></div></div>
+        <div class="item-card"><div class="item-name">Passion Mojito</div><div class="item-desc">Rum, lime juice, passion fruit juice, mint leaves, passion fruit pulp</div><div class="item-footer"><span class="item-price">KES 900</span><span class="badge badge-hh">Happy Hour</span></div></div>
+        <div class="item-card"><div class="item-name">Coconut Mojito</div><div class="item-desc">Coconut rum, mint, lemon juice, soda water</div><div class="item-footer"><span class="item-price">KES 900</span><span class="badge badge-hh">Happy Hour</span></div></div>
+        <div class="item-card"><div class="item-name">Spicy Mojito</div><div class="item-desc">Spicy rum, mint, lime, soda</div><div class="item-footer"><span class="item-price">KES 900</span><span class="badge badge-hh">Happy Hour</span></div></div>
+        <div class="item-card"><div class="item-name">Strawberry Mojito</div><div class="item-desc">Rum, mint, strawberries, lime, soda</div><div class="item-footer"><span class="item-price">KES 900</span><span class="badge badge-hh">Happy Hour</span></div></div>
+        <div class="item-card"><div class="item-name">Mango Margarita</div><div class="item-desc">Tequila gold, cointreau, lime juice, frozen mango</div><div class="item-footer"><span class="item-price">KES 950</span><span class="badge badge-hh">Happy Hour</span></div></div>
+        <div class="item-card"><div class="item-name">Strawberry Margarita</div><div class="item-desc">Tequila gold, cointreau, lime juice, frozen strawberries</div><div class="item-footer"><span class="item-price">KES 950</span><span class="badge badge-hh">Happy Hour</span></div></div>
+        <div class="item-card"><div class="item-name">Mai Tai</div><div class="item-desc">Clear rum, dark rum, liqueur, orange juice, pineapple juice, lime</div><div class="item-footer"><span class="item-price">KES 950</span></div></div>
+        <div class="item-card"><div class="item-name">Short and Sweet</div><div class="item-desc">Jack Daniel's honey, Grand Marnier, soda</div><div class="item-footer"><span class="item-price">KES 950</span></div></div>
+        <div class="item-card"><div class="item-name">Classic Martini</div><div class="item-desc">Vodka, Martini extra dry, Martini Bianco, ice</div><div class="item-footer"><span class="item-price">KES 950</span></div></div>
+        <div class="item-card"><div class="item-name">Irish Coffee</div><div class="item-desc">Irish whisky, coffee, cream</div><div class="item-footer"><span class="item-price">KES 950</span></div></div>
+        <div class="item-card"><div class="item-name">Boss Lady</div><div class="item-desc">Mixed Berry gin, assorted fruits, lime, tonic</div><div class="item-footer"><span class="item-price">KES 900</span></div></div>
+        <div class="item-card"><div class="item-name">Sexy on the Countryside</div><div class="item-desc">Vodka, gin, cranberry juice, orange juice</div><div class="item-footer"><span class="item-price">KES 900</span></div></div>
+        <div class="item-card"><div class="item-name">Piña Colada</div><div class="item-desc">Rum, pineapple juice, coconut cream</div><div class="item-footer"><span class="item-price">KES 800</span><span class="badge badge-hh">Happy Hour</span></div></div>
+        <div class="item-card"><div class="item-name">The Golden Eye</div><div class="item-desc">Rum, pineapple juice, lime juice</div><div class="item-footer"><span class="item-price">KES 800</span><span class="badge badge-hh">Happy Hour</span></div></div>
+        <div class="item-card"><div class="item-name">Blue Lagoon</div><div class="item-desc">Vodka, blue curacao, tonic</div><div class="item-footer"><span class="item-price">KES 850</span><span class="badge badge-hh">Happy Hour</span></div></div>
+        <div class="item-card"><div class="item-name">Kijiji Tunda</div><div class="item-desc">Pimm's, gin, lime, strawberries, cucumber, mint, orange, lemon, sprite</div><div class="item-footer"><span class="item-price">KES 850</span></div></div>
+        <div class="item-card"><div class="item-name">Country Bistro Cosmo</div><div class="item-desc">Vodka, cranberry juice, orange juice, lime juice</div><div class="item-footer"><span class="item-price">KES 800</span><span class="badge badge-hh">Happy Hour</span></div></div>
+        <div class="item-card"><div class="item-name">Jack Daniels Lemonade</div><div class="item-desc">Jack Daniels, lemon juice, tea bag, fruits, soda</div><div class="item-footer"><span class="item-price">KES 850</span><span class="badge badge-hh">Happy Hour</span></div></div>
+        <div class="item-card"><div class="item-name">Manhattan</div><div class="item-desc">Whisky, martini rosso, angostura bitters</div><div class="item-footer"><span class="item-price">KES 850</span></div></div>
+        <div class="item-card"><div class="item-name">Old Fashioned</div><div class="item-desc">Whisky, angostura bitters, brown sugar</div><div class="item-footer"><span class="item-price">KES 850</span></div></div>
+        <div class="item-card"><div class="item-name">Basil Smash</div><div class="item-desc">Gin, lemon, basil</div><div class="item-footer"><span class="item-price">KES 750</span><span class="badge badge-hh">Happy Hour</span></div></div>
+        <div class="item-card"><div class="item-name">Tom Collins</div><div class="item-desc">Gin, lemon juice, soda water</div><div class="item-footer"><span class="item-price">KES 800</span></div></div>
+        <div class="item-card"><div class="item-name">Lemon Drop</div><div class="item-desc">Vodka, lime juice, sugar syrup</div><div class="item-footer"><span class="item-price">KES 800</span></div></div>
+        <div class="item-card"><div class="item-name">Cow Girl Martini</div><div class="item-desc">Gin, lime juice, cranberry juice, angostura bitters</div><div class="item-footer"><span class="item-price">KES 850</span></div></div>
+        <div class="item-card"><div class="item-name">Elephant in the Room</div><div class="item-desc">Gin, cucumber, lemon juice, thyme, tonic</div><div class="item-footer"><span class="item-price">KES 800</span></div></div>
+      </div>
+    </div>
+
+    <div id="b-whisky" style="display:none">
+      <div class="cat-heading">Cognacs</div>
+      <div class="spirits-grid">
+        <div class="spirit-card"><div class="spirit-name">Remy Martin VSOP 700ml</div><div class="spirit-prices"><span>Bottle<strong>KES 15,500</strong></span><span>Shot<strong>KES 700</strong></span></div></div>
+        <div class="spirit-card"><div class="spirit-name">Hennessy VS 1L</div><div class="spirit-prices"><span>Bottle<strong>KES 20,000</strong></span><span>Shot<strong>KES 650</strong></span></div></div>
+        <div class="spirit-card"><div class="spirit-name">Hennessy VSOP 1L</div><div class="spirit-prices"><span>Bottle<strong>KES 27,000</strong></span><span>Shot<strong>KES 900</strong></span></div></div>
+        <div class="spirit-card"><div class="spirit-name">Martell VS 700ml</div><div class="spirit-prices"><span>Bottle<strong>KES 20,000</strong></span><span>Shot<strong>KES 650</strong></span></div></div>
+        <div class="spirit-card"><div class="spirit-name">Martell VSOP 700ml</div><div class="spirit-prices"><span>Bottle<strong>KES 27,000</strong></span><span>Shot<strong>KES 900</strong></span></div></div>
+      </div>
+      <div class="cat-heading">Brandy</div>
+      <div class="spirits-grid">
+        <div class="spirit-card"><div class="spirit-name">Richot 750ml</div><div class="spirit-prices"><span>Bottle<strong>KES 2,600</strong></span><span>Shot<strong>KES 200</strong></span></div></div>
+        <div class="spirit-card"><div class="spirit-name">Viceroy 750ml</div><div class="spirit-prices"><span>Bottle<strong>KES 3,000</strong></span><span>Shot<strong>KES 250</strong></span></div></div>
+      </div>
+      <div class="cat-heading">Whisky</div>
+      <div class="spirits-grid">
+        <div class="spirit-card"><div class="spirit-name">Jack Daniel's 1L</div><div class="spirit-prices"><span>Bottle<strong>KES 8,500</strong></span><span>Shot<strong>KES 350</strong></span></div></div>
+        <div class="spirit-card"><div class="spirit-name">Jack Daniel's Honey 1L</div><div class="spirit-prices"><span>Bottle<strong>KES 7,500</strong></span><span>Shot<strong>KES 350</strong></span></div></div>
+        <div class="spirit-card"><div class="spirit-name">Johnnie Walker Black 1L</div><div class="spirit-prices"><span>Bottle<strong>KES 7,500</strong></span><span>Shot<strong>KES 350</strong></span></div></div>
+        <div class="spirit-card"><div class="spirit-name">Johnnie Walker Double Black 1L</div><div class="spirit-prices"><span>Bottle<strong>KES 11,500</strong></span><span>Shot<strong>KES 400</strong></span></div></div>
+        <div class="spirit-card"><div class="spirit-name">Johnnie Walker Red 1L</div><div class="spirit-prices"><span>Bottle<strong>KES 4,500</strong></span><span>Shot<strong>KES 300</strong></span></div></div>
+        <div class="spirit-card"><div class="spirit-name">Johnnie Walker Gold Reserve 750ml</div><div class="spirit-prices"><span>Bottle<strong>KES 14,500</strong></span><span>Shot<strong>KES 600</strong></span></div></div>
+        <div class="spirit-card"><div class="spirit-name">Glenfiddich 12yrs 750ml</div><div class="spirit-prices"><span>Bottle<strong>KES 14,000</strong></span><span>Shot<strong>KES 700</strong></span></div></div>
+        <div class="spirit-card"><div class="spirit-name">Glenfiddich 15yrs 750ml</div><div class="spirit-prices"><span>Bottle<strong>KES 14,500</strong></span><span>Shot<strong>KES 800</strong></span></div></div>
+        <div class="spirit-card"><div class="spirit-name">Glenfiddich 18yrs 750ml</div><div class="spirit-prices"><span>Bottle<strong>KES 15,000</strong></span><span>Shot<strong>KES 900</strong></span></div></div>
+        <div class="spirit-card"><div class="spirit-name">Jameson 1L</div><div class="spirit-prices"><span>Bottle<strong>KES 5,500</strong></span><span>Shot<strong>KES 300</strong></span></div></div>
+        <div class="spirit-card"><div class="spirit-name">Singleton Dufftown 750ml</div><div class="spirit-prices"><span>Bottle<strong>KES 9,000</strong></span><span>Shot<strong>KES 400</strong></span></div></div>
+        <div class="spirit-card"><div class="spirit-name">Chivas Regal 12yrs 750ml</div><div class="spirit-prices"><span>Bottle<strong>KES 7,000</strong></span><span>Shot<strong>KES 350</strong></span></div></div>
+        <div class="spirit-card"><div class="spirit-name">Glenlivet 12yrs 750ml</div><div class="spirit-prices"><span>Bottle<strong>KES 10,000</strong></span><span>Shot<strong>KES 450</strong></span></div></div>
+        <div class="spirit-card"><div class="spirit-name">Glenmorangie 10yrs 750ml</div><div class="spirit-prices"><span>Bottle<strong>KES 11,500</strong></span><span>Shot<strong>KES 500</strong></span></div></div>
+      </div>
+    </div>
+
+    <div id="b-gin" style="display:none">
+      <div class="cat-heading">Gin</div>
+      <div class="spirits-grid">
+        <div class="spirit-card"><div class="spirit-name">Gilbeys 750ml</div><div class="spirit-prices"><span>Bottle<strong>KES 4,000</strong></span><span>Shot<strong>KES 250</strong></span></div></div>
+        <div class="spirit-card"><div class="spirit-name">Gilbeys Mixed Berry 750ml</div><div class="spirit-prices"><span>Bottle<strong>KES 4,000</strong></span><span>Shot<strong>KES 250</strong></span></div></div>
+        <div class="spirit-card"><div class="spirit-name">Gordon's Pink 750ml</div><div class="spirit-prices"><span>Bottle<strong>KES 4,500</strong></span><span>Shot<strong>KES 250</strong></span></div></div>
+        <div class="spirit-card"><div class="spirit-name">Gordon's London Dry 750ml</div><div class="spirit-prices"><span>Bottle<strong>KES 4,500</strong></span><span>Shot<strong>KES 250</strong></span></div></div>
+        <div class="spirit-card"><div class="spirit-name">Tanqueray 10yrs 750ml</div><div class="spirit-prices"><span>Bottle<strong>KES 8,000</strong></span><span>Shot<strong>KES 400</strong></span></div></div>
+        <div class="spirit-card"><div class="spirit-name">Tanqueray London Dry 750ml</div><div class="spirit-prices"><span>Bottle<strong>KES 7,000</strong></span><span>Shot<strong>KES 350</strong></span></div></div>
+        <div class="spirit-card"><div class="spirit-name">Tanqueray Royale 750ml</div><div class="spirit-prices"><span>Bottle<strong>KES 6,500</strong></span><span>Shot<strong>KES 300</strong></span></div></div>
+        <div class="spirit-card"><div class="spirit-name">Hendrick's 750ml</div><div class="spirit-prices"><span>Bottle<strong>KES 8,600</strong></span><span>Shot<strong>KES 400</strong></span></div></div>
+        <div class="spirit-card"><div class="spirit-name">Bombay Sapphire 750ml</div><div class="spirit-prices"><span>Bottle<strong>KES 5,000</strong></span><span>Shot<strong>KES 300</strong></span></div></div>
+      </div>
+      <div class="cat-heading">Vodka</div>
+      <div class="spirits-grid">
+        <div class="spirit-card"><div class="spirit-name">Smirnoff Vodka 1L</div><div class="spirit-prices"><span>Bottle<strong>KES 3,550</strong></span><span>Shot<strong>KES 250</strong></span></div></div>
+        <div class="spirit-card"><div class="spirit-name">Absolut 750ml</div><div class="spirit-prices"><span>Bottle<strong>KES 4,000</strong></span><span>Shot<strong>KES 250</strong></span></div></div>
+        <div class="spirit-card"><div class="spirit-name">Sky Vodka 750ml</div><div class="spirit-prices"><span>Bottle<strong>KES 4,000</strong></span><span>Shot<strong>KES 250</strong></span></div></div>
+        <div class="spirit-card"><div class="spirit-name">Ketel One 750ml</div><div class="spirit-prices"><span>Bottle<strong>KES 6,850</strong></span><span>Shot<strong>KES 300</strong></span></div></div>
+        <div class="spirit-card"><div class="spirit-name">Ciroc 1L</div><div class="spirit-prices"><span>Bottle<strong>KES 9,600</strong></span><span>Shot<strong>KES 350</strong></span></div></div>
+        <div class="spirit-card"><div class="spirit-name">Greygoose 1L</div><div class="spirit-prices"><span>Bottle<strong>KES 9,500</strong></span><span>Shot<strong>KES 350</strong></span></div></div>
+      </div>
+      <div class="cat-heading">Aperitifs</div>
+      <div class="spirits-grid">
+        <div class="spirit-card"><div class="spirit-name">Martini Bianco 750ml</div><div class="spirit-prices"><span>Bottle<strong>KES 3,800</strong></span><span>Shot<strong>KES 300</strong></span></div></div>
+        <div class="spirit-card"><div class="spirit-name">Martini Rosso 750ml</div><div class="spirit-prices"><span>Bottle<strong>KES 3,500</strong></span><span>Shot<strong>KES 300</strong></span></div></div>
+        <div class="spirit-card"><div class="spirit-name">Martini Extra Dry 750ml</div><div class="spirit-prices"><span>Bottle<strong>KES 3,800</strong></span><span>Shot<strong>KES 300</strong></span></div></div>
+        <div class="spirit-card"><div class="spirit-name">Pimms No. 1 1L</div><div class="spirit-prices"><span>Bottle<strong>KES 4,500</strong></span><span>Shot<strong>KES 300</strong></span></div></div>
+        <div class="spirit-card"><div class="spirit-name">Campari 750ml</div><div class="spirit-prices"><span>Bottle<strong>KES 4,000</strong></span><span>Shot<strong>KES 300</strong></span></div></div>
+      </div>
+    </div>
+
+    <div id="b-rum" style="display:none">
+      <div class="cat-heading">Rum</div>
+      <div class="spirits-grid">
+        <div class="spirit-card"><div class="spirit-name">Myers's Rum 1L</div><div class="spirit-prices"><span>Bottle<strong>KES 5,000</strong></span><span>Shot<strong>KES 300</strong></span></div></div>
+        <div class="spirit-card"><div class="spirit-name">Bacardi Clear 750ml</div><div class="spirit-prices"><span>Bottle<strong>KES 5,000</strong></span><span>Shot<strong>KES 300</strong></span></div></div>
+        <div class="spirit-card"><div class="spirit-name">Malibu 750ml</div><div class="spirit-prices"><span>Bottle<strong>KES 5,000</strong></span><span>Shot<strong>KES 300</strong></span></div></div>
+        <div class="spirit-card"><div class="spirit-name">Captain Morgan Spice 750ml</div><div class="spirit-prices"><span>Bottle<strong>KES 4,500</strong></span><span>Shot<strong>KES 250</strong></span></div></div>
+        <div class="spirit-card"><div class="spirit-name">Kenya Cane 750ml</div><div class="spirit-prices"><span>Bottle<strong>KES 2,000</strong></span><span>Shot<strong>KES 200</strong></span></div></div>
+        <div class="spirit-card"><div class="spirit-name">Captain Morgan Gold 750ml</div><div class="spirit-prices"><span>Bottle<strong>KES 2,000</strong></span><span>Shot<strong>KES 200</strong></span></div></div>
+      </div>
+      <div class="cat-heading">Tequila</div>
+      <div class="spirits-grid">
+        <div class="spirit-card"><div class="spirit-name">Jose Cuervo Gold 1L</div><div class="spirit-prices"><span>Bottle<strong>KES 6,700</strong></span><span>Shot<strong>KES 300</strong></span></div></div>
+        <div class="spirit-card"><div class="spirit-name">Jose Cuervo Silver 1L</div><div class="spirit-prices"><span>Bottle<strong>KES 6,700</strong></span><span>Shot<strong>KES 300</strong></span></div></div>
+        <div class="spirit-card"><div class="spirit-name">Camino White 750ml</div><div class="spirit-prices"><span>Bottle<strong>KES 5,000</strong></span><span>Shot<strong>KES 300</strong></span></div></div>
+        <div class="spirit-card"><div class="spirit-name">Camino Gold 750ml</div><div class="spirit-prices"><span>Bottle<strong>KES 5,000</strong></span><span>Shot<strong>KES 300</strong></span></div></div>
+        <div class="spirit-card"><div class="spirit-name">Zappa Green 1L</div><div class="spirit-prices"><span>Bottle<strong>KES 3,500</strong></span><span>Shot<strong>KES 250</strong></span></div></div>
+      </div>
+      <div class="cat-heading">Liqueurs</div>
+      <div class="spirits-grid">
+        <div class="spirit-card"><div class="spirit-name">Sheridan's Coffee Liqueur 1L</div><div class="spirit-prices"><span>Bottle<strong>KES 9,500</strong></span><span>Shot<strong>KES 300</strong></span></div></div>
+        <div class="spirit-card"><div class="spirit-name">Grand Marnier 750ml</div><div class="spirit-prices"><span>Bottle<strong>KES 9,800</strong></span><span>Shot<strong>KES 400</strong></span></div></div>
+        <div class="spirit-card"><div class="spirit-name">Cointreau 1L</div><div class="spirit-prices"><span>Bottle<strong>KES 8,500</strong></span><span>Shot<strong>KES 300</strong></span></div></div>
+        <div class="spirit-card"><div class="spirit-name">Jägermeister 1L</div><div class="spirit-prices"><span>Bottle<strong>KES 7,200</strong></span><span>Shot<strong>KES 250</strong></span></div></div>
+        <div class="spirit-card"><div class="spirit-name">Baileys 1L</div><div class="spirit-prices"><span>Bottle<strong>KES 6,500</strong></span><span>Shot<strong>KES 300</strong></span></div></div>
+        <div class="spirit-card"><div class="spirit-name">Southern Comfort 1L</div><div class="spirit-prices"><span>Bottle<strong>KES 5,500</strong></span><span>Shot<strong>KES 300</strong></span></div></div>
+        <div class="spirit-card"><div class="spirit-name">Amarula 1L</div><div class="spirit-prices"><span>Bottle<strong>KES 5,000</strong></span><span>Shot<strong>KES 250</strong></span></div></div>
+        <div class="spirit-card"><div class="spirit-name">Triple Sec 750ml</div><div class="spirit-prices"><span>Bottle<strong>KES 4,000</strong></span><span>Shot<strong>KES 250</strong></span></div></div>
+      </div>
+    </div>
+
+    <div id="b-beer" style="display:none">
+      <div class="cat-heading">Beers & Ciders</div>
+      <div class="items-grid">
+        <div class="item-card"><div class="item-name">Heineken</div><div class="item-footer"><span class="item-price">KES 450</span></div></div>
+        <div class="item-card"><div class="item-name">Savanna Cider</div><div class="item-footer"><span class="item-price">KES 450</span></div></div>
+        <div class="item-card"><div class="item-name">Guinness Stout</div><div class="item-footer"><span class="item-price">KES 350</span></div></div>
+        <div class="item-card"><div class="item-name">Tusker Lager</div><div class="item-footer"><span class="item-price">KES 350</span></div></div>
+        <div class="item-card"><div class="item-name">Tusker Cider</div><div class="item-footer"><span class="item-price">KES 350</span></div></div>
+        <div class="item-card"><div class="item-name">Tusker Malt</div><div class="item-footer"><span class="item-price">KES 350</span></div></div>
+        <div class="item-card"><div class="item-name">Tusker Lite</div><div class="item-footer"><span class="item-price">KES 350</span></div></div>
+        <div class="item-card"><div class="item-name">White Cap Lager</div><div class="item-footer"><span class="item-price">KES 350</span></div></div>
+        <div class="item-card"><div class="item-name">White Cap Crisp</div><div class="item-footer"><span class="item-price">KES 350</span></div></div>
+        <div class="item-card"><div class="item-name">Pilsner Lager</div><div class="item-footer"><span class="item-price">KES 350</span></div></div>
+        <div class="item-card"><div class="item-name">Black Ice</div><div class="item-footer"><span class="item-price">KES 350</span></div></div>
+        <div class="item-card"><div class="item-name">Balozi</div><div class="item-footer"><span class="item-price">KES 350</span></div></div>
+        <div class="item-card"><div class="item-name">Snap</div><div class="item-footer"><span class="item-price">KES 350</span></div></div>
+        <div class="item-card"><div class="item-name">Guarana</div><div class="item-footer"><span class="item-price">KES 350</span></div></div>
+      </div>
+    </div>
+
+    <div id="b-wine" style="display:none">
+      <div class="cat-heading">Red Wines</div>
+      <div class="wine-grid">
+        <div class="wine-card"><div class="wine-name">Dragon's Back Mountain Natural Sweet Red</div><div class="wine-origin">South Africa</div><div class="wine-price">KES 3,800 bottle · KES 800 glass</div></div>
+        <div class="wine-card"><div class="wine-name">Pandoras Box Pinotage</div><div class="wine-origin">South Africa</div><div class="wine-price">KES 4,000 bottle · KES 850 glass</div></div>
+        <div class="wine-card"><div class="wine-name">Vendaval Merlot</div><div class="wine-origin">Chile</div><div class="wine-price">KES 4,000 bottle · KES 850 glass</div></div>
+        <div class="wine-card"><div class="wine-name">La Vieille Ferme Rouge</div><div class="wine-origin">Chile</div><div class="wine-price">KES 4,000 bottle</div></div>
+        <div class="wine-card"><div class="wine-name">B&G Reserve Merlot</div><div class="wine-origin">France</div><div class="wine-price">KES 5,000 bottle</div></div>
+        <div class="wine-card"><div class="wine-name">Septima Malbec</div><div class="wine-origin">Argentina</div><div class="wine-price">KES 4,500 bottle</div></div>
+        <div class="wine-card"><div class="wine-name">Condor Peak Merlot</div><div class="wine-origin">Argentina</div><div class="wine-price">KES 6,500 bottle</div></div>
+        <div class="wine-card"><div class="wine-name">Condor Peak Malbec</div><div class="wine-origin">Argentina</div><div class="wine-price">KES 4,800 bottle</div></div>
+      </div>
+      <div class="cat-heading">White Wines</div>
+      <div class="wine-grid">
+        <div class="wine-card"><div class="wine-name">Dragon's Back Mountain Natural Sweet White</div><div class="wine-origin">South Africa</div><div class="wine-price">KES 3,800 bottle · KES 800 glass</div></div>
+        <div class="wine-card"><div class="wine-name">Bigi Orvieto Classico Amabile</div><div class="wine-origin">Italy</div><div class="wine-price">KES 3,500 bottle · KES 800 glass</div></div>
+        <div class="wine-card"><div class="wine-name">Flagstone Poetry Chardonnay</div><div class="wine-origin">South Africa</div><div class="wine-price">KES 4,000 bottle · KES 850 glass</div></div>
+        <div class="wine-card"><div class="wine-name">Pandoras Box Sauvignon Blanc</div><div class="wine-origin">South Africa</div><div class="wine-price">KES 4,000 bottle · KES 850 glass</div></div>
+        <div class="wine-card"><div class="wine-name">Cielo Chardonnay</div><div class="wine-origin">Italy</div><div class="wine-price">KES 3,500 bottle</div></div>
+        <div class="wine-card"><div class="wine-name">La Vieille Ferme Blanc</div><div class="wine-origin">France</div><div class="wine-price">KES 4,500 bottle</div></div>
+        <div class="wine-card"><div class="wine-name">Ruffino Pinot Grigio</div><div class="wine-origin">Italy</div><div class="wine-price">KES 4,500 bottle</div></div>
+      </div>
+      <div class="cat-heading">Rosé</div>
+      <div class="wine-grid">
+        <div class="wine-card"><div class="wine-name">Bella Vino Seductively Sweet</div><div class="wine-origin">South Africa</div><div class="wine-price">KES 4,500 bottle · KES 900 glass</div></div>
+        <div class="wine-card"><div class="wine-name">Flagstone Poetry Cinsault Rose</div><div class="wine-origin">Italy</div><div class="wine-price">KES 4,500 bottle · KES 900 glass</div></div>
+        <div class="wine-card"><div class="wine-name">Cielo Pinot Grigio Blush</div><div class="wine-origin">Italy</div><div class="wine-price">KES 4,500 bottle · KES 900 glass</div></div>
+        <div class="wine-card"><div class="wine-name">La Vieille Ferme Rosé</div><div class="wine-origin">Italy</div><div class="wine-price">KES 4,500 bottle</div></div>
+      </div>
+    </div>
+
+    <div id="b-bubbly" style="display:none">
+      <div class="cat-heading">Bubbles & Champagne</div>
+      <div class="wine-grid">
+        <div class="wine-card"><div class="wine-name">Moët & Chandon Imperial Brut</div><div class="wine-origin">Italy</div><div class="wine-price">KES 12,500 bottle · KES 900 glass</div></div>
+        <div class="wine-card"><div class="wine-name">Zonin Prosecco</div><div class="wine-origin">Italy</div><div class="wine-price">KES 7,800 bottle</div></div>
+        <div class="wine-card"><div class="wine-name">Codorniu Vintage Cava</div><div class="wine-origin">Spain</div><div class="wine-price">KES 4,500 bottle · KES 900 glass</div></div>
+        <div class="wine-card"><div class="wine-name">Cielo Cuvée Privée Extra Dry</div><div class="wine-origin">Italy</div><div class="wine-price">KES 4,000 bottle · KES 1,000 glass</div></div>
+        <div class="wine-card"><div class="wine-name">Lambrusco Di Sorbara Cavicchioli</div><div class="wine-origin">Italy</div><div class="wine-price">KES 3,000 bottle · KES 750 glass</div></div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /menu-content -->
+
+<footer style="background:#1A1210;color:rgba(255,255,255,0.5);text-align:center;padding:1.5rem;font-size:0.8rem">
+  © 2025 Country Bistro · Ground Floor, Juja City Mall · +254 768 262450 · <a href="index.html" style="color:#C9963A;text-decoration:none">countrybistro.co.ke</a>
+</footer>
+
+<script>
+function toggleTheme() {
+  const html = document.documentElement;
+  html.setAttribute('data-theme', html.getAttribute('data-theme')==='dark' ? 'light' : 'dark');
+  document.getElementById('ti').textContent = html.getAttribute('data-theme')==='dark' ? '☾' : '☀';
+}
+
+function showSection(id, btn) {
+  document.querySelectorAll('.menu-section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.main-tab').forEach(b => b.classList.remove('active'));
+  document.getElementById('sec-'+id).classList.add('active');
+  btn.classList.add('active');
+  // reset all sub-tabs in this section
+  const sec = document.getElementById('sec-'+id);
+  const firstSubTab = sec.querySelector('.sub-tab');
+  if (firstSubTab) {
+    sec.querySelectorAll('.sub-tab').forEach(t => t.classList.remove('active'));
+    firstSubTab.classList.add('active');
+    // show only first sub-section
+    const allSubs = sec.querySelectorAll('[id^="d-"],[id^="m-"],[id^="b-"]');
+    if (allSubs.length > 0) {
+      allSubs.forEach(s => s.style.display = 'none');
+      allSubs[0].style.display = '';
+    }
+  }
+}
+
+function showSub(btn, id) {
+  const section = btn.closest('.menu-section');
+  section.querySelectorAll('.sub-tab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  // hide all sibling sub-divs
+  const prefix = id.split('-')[0] + '-';
+  section.querySelectorAll(`[id^="${prefix}"]`).forEach(el => el.style.display = 'none');
+  document.getElementById(id).style.display = '';
+}
+
+// Check if bar tab should be highlighted via hash
+if (window.location.hash === '#bar') {
+  document.querySelector('[onclick*="bar"]').click();
+}
+</script>
+</body>
+</html>
